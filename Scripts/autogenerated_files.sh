@@ -12,4 +12,10 @@ for MODULE in "${SWIFTGEN_MODULES[@]}"; do
 	swiftgen config run --config "${MODULE_DIR}/swiftgen.yml"
 done
 
-sourcery --config sourcery.yml
+SOURCERY_MODULES=(
+	)
+
+for MODULE in "${SOURCERY_MODULES[@]}"; do
+	MODULE_DIR="${MODULES_FOLDER}/${MODULE}"
+	sourcery --config "${MODULE_DIR}/.sourcery.yml"
+done
