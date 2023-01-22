@@ -1,0 +1,12 @@
+"EmployeeType.Worker.Title" = "Worker";
+"EmployeeType.Accountant.Title" = "Accountant";
+"EmployeeType.Accountant.AccountantType.Payroll" = "Payroll";
+"EmployeeType.Accountant.AccountantType.Inventroy" = "Inventroy";
+"EmployeeType.Manager.Title" = "Manager";
+
+"EmployeeForm.Item.EmployeeType.Title" = "Employee Type";
+"EmployeeForm.Item.Fullname.Title" = "Fullname";
+"EmployeeForm.Item.Salary.Title" = "Salary";
+"EmployeeForm.Item.TimePeriod" = "%@ - %@";
+"EmployeeForm.Item.Salary.Currency" = "%@ ₽";
+

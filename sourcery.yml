@@ -1,0 +1,11 @@
+configurations:
+  - sources:
+    - MediumRarePotato
+    templates:
+    - swift-templates/Sourcery/AutoMockable.stencil
+    output:
+      MediumRarePotato/Mock
+    args:
+      autoMockableTestableImports:
+        - MediumRarePotato
+      autoMockableImports:
