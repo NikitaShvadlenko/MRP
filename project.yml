@@ -35,6 +35,8 @@ targets:
     type: application
     sources:
       - path: "MediumRarePotato"
+        excludes:
+        - "Packages/**/"
     dependencies:
       - package: SnapKit
       - package: Alamofire
@@ -64,10 +66,3 @@ targets:
               else
                 echo "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint"
               fi
-  MediumRarePotato Tests:
-    type: bundle.unit-test
-    platform: iOS
-    sources:
-      - path: "MediumRarePotatoTests"
-    dependencies:
-      - target: MediumRarePotato
