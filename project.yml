@@ -19,6 +19,15 @@ packages:
   SnapKit:
     url: https://github.com/SnapKit/SnapKit
     minorVersion: 5.6.0
+  Alamofire:
+    url: https://github.com/Alamofire/Alamofire
+    minorVersion: 5.6.4
+
+  ## Local Packages  
+  ## UI
+  SharedResources:
+    path: MediumRarePotato/Packages/SharedResources
+    group: UI
 
 targets:
   MediumRarePotato:
@@ -28,6 +37,8 @@ targets:
       - path: "MediumRarePotato"
     dependencies:
       - package: SnapKit
+      - package: Alamofire
+      - package: SharedResources
 
     settings:
       base:
@@ -35,7 +46,7 @@ targets:
         DISPLAY_NAME: "MediumRarePotato"
         INFOPLIST_FILE: "MediumRarePotato/Info.plist"
         DEVELOPMENT_TEAM: SGM5527A99
-        PRODUCT_BUNDLE_IDENTIFIER: com.nikitaShvadlenko.coreDataBasics
+        PRODUCT_BUNDLE_IDENTIFIER: com.nikitaShvadlenko.mediumRarePotato
         CODE_SIGN_STYLE: Manual
       configs:
         Debug:

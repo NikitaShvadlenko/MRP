@@ -4,12 +4,16 @@ strings:
   outputs:
     - templateName: structured-swift5
       output: MediumRarePotato/Generated/Strings+Generated.swift
+      params:
+        publicAccess: true
 
 xcassets:
   inputs:
-    - MediumRarePotato/Resources/Assets.xcassets
+    - Sources/SharedResources/Resources/Assets.xcassets
+    - Sources/SharedResources/Resources/Colors.xcassets
   outputs:
     - templateName: swift5
       params:
         forceProvidesNamespaces: true
-      output: MediumRarePotato/Generated/XCAssets+Generated.swift
+        publicAccess: true
+      output: Sources/SharedResources/Generated/XCAssets+Generated.swift
