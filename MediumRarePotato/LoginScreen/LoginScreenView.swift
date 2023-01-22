@@ -15,6 +15,6 @@ final class LoginScreenView: UIView {
 // MARK: - Private methods
 extension LoginScreenView {
     private func configureViews() {
-        backgroundColor = .white
+        backgroundColor = .blue
     }
 }

@@ -11,10 +11,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
 
-           // let employeesListModule = EmployeesListAssembly.assemble()
+            let loginScreenModule = LoginScreenAssembly.assemble()
 
             let navigationController = UINavigationController(
-            //    rootViewController: employeesListModule.viewController
+            rootViewController: loginScreenModule.viewController
             )
 
             self.window?.rootViewController = navigationController
