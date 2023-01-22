@@ -1,10 +1,15 @@
 #!/bin/sh
 
-GENERATED_DIR="./MediumRarePotato/Packages/SharedRecources"
-eval mkdir -p $GENERATED_DIR
-eval touch $GENERATED_DIR/Strings+Generated.swift
-eval touch $GENERATED_DIR/XCAssets+Generated.swift
+SWIFTGEN_MODULES=(
+	"SharedResources"
+	)
 
-swiftgen config run --config swiftgen.yml
+MODULES_FOLDER="./MediumRarePotato/Packages"
+
+for MODULE in "${SWIFTGEN_MODULES[@]}"; do
+	MODULE_DIR="${MODULES_FOLDER}/${MODULE}"
+	mkdir -p "${MODULE_DIR}/Sources/${MODULE}/Generated"
+	swiftgen config run --config "${MODULE_DIR}/swiftgen.yml"
+done
 
 sourcery --config sourcery.yml
