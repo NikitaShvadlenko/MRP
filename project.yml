@@ -29,6 +29,14 @@ packages:
     path: MediumRarePotato/Packages/SharedResources
     group: UI
 
+  UIComponents:
+    path: MediumRarePotato/Packages/UIComponents
+    group: UI
+
+  ## Extensions
+  SharedExtensions:
+    path: MediumRarePotato/Packages/SharedExtensions
+
 targets:
   MediumRarePotato:
     platform: iOS
@@ -42,6 +50,7 @@ targets:
       - package: SnapKit
       - package: Alamofire
       - package: SharedResources
+      - package: UIComponents
 
     settings:
       base:
