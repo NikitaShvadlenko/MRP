@@ -1,6 +1,15 @@
 import UIKit
+import SharedResources
+import SnapKit
 
 final class LoginScreenView: UIView {
+
+    private lazy var backgroundView: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(asset: Asset.Assets.background)
+        return view
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureViews()
@@ -15,6 +24,9 @@ final class LoginScreenView: UIView {
 // MARK: - Private methods
 extension LoginScreenView {
     private func configureViews() {
-        backgroundColor = .blue
+        self.addSubview(backgroundView)
+        backgroundView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }
