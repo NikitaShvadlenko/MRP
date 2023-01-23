@@ -1,6 +1,7 @@
 import UIKit
 import SharedResources
 import SnapKit
+import UIComponents
 
 final class LoginScreenView: UIView, UITextFieldDelegate {
 
@@ -22,12 +23,8 @@ final class LoginScreenView: UIView, UITextFieldDelegate {
         return label
     }()
 
-    private lazy var tokenInputWindow: UITextField = {
-        let view = UITextField()
-        view.backgroundColor = .gray
-        view.placeholder = "Hello World"
-        view.borderStyle = .line
-        view.textColor = .red
+    private lazy var tokenInputWindow: CustomTextField = {
+        let view = CustomTextField()
         return view
     }()
 
