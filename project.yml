@@ -37,6 +37,7 @@ targets:
       - path: "MediumRarePotato"
         excludes:
         - "Packages/**/"
+
     dependencies:
       - package: SnapKit
       - package: Alamofire

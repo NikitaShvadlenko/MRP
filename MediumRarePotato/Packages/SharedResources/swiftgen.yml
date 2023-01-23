@@ -17,3 +17,12 @@ xcassets:
         forceProvidesNamespaces: true
         publicAccess: true
       output: Sources/SharedResources/Generated/XCAssets+Generated.swift
+fonts:
+   inputs: 
+    - Sources/SharedResources/Resources/Fonts
+   outputs:
+    - templateName: swift5
+      params:
+        publicAccess: true
+      output: Sources/SharedResources/Generated/Fonts.swift
+           
