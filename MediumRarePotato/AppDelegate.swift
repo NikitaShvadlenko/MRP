@@ -1,4 +1,5 @@
 import UIKit
+import SharedResources
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -10,15 +11,15 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
+        FontRegister().registerAvailableFonts()
+        let loginScreenModule = LoginScreenAssembly.assemble()
 
-            let loginScreenModule = LoginScreenAssembly.assemble()
-
-            let navigationController = UINavigationController(
+        let navigationController = UINavigationController(
             rootViewController: loginScreenModule.viewController
-            )
+        )
 
-            self.window?.rootViewController = navigationController
-            self.window?.makeKeyAndVisible()
+        self.window?.rootViewController = navigationController
+        self.window?.makeKeyAndVisible()
 
         return true
     }
