@@ -16,7 +16,7 @@ final class LoginScreenViewController: UIViewController {
     }
 
     func setLoginDelegate(delegate: LoginDelegateProtocol) {
-        loginScreenView.loginDelegate = delegate
+     loginScreenView.loginDelegate = delegate
     }
 }
 

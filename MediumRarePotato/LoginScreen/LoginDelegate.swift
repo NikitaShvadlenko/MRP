@@ -14,10 +14,10 @@ class LoginDelegate: NSObject {
 extension LoginDelegate: LoginDelegateProtocol {
     var textFieldEntry: String {
         get {
-            "Lalalal"
+            ""
         }
         set {
-            textFieldEntry = newValue
+            ""
         }
     }
 }

@@ -51,7 +51,8 @@ final class LoginScreenView: UIView {
     }()
 
     private lazy var loginButton: CustomButton = {
-        let button = CustomButton(frame: self.frame, title: L10n.login, d)
+        let button = CustomButton(frame: self.frame, title: L10n.login)
+        button.delegate = loginDelegate
         return button
     }()
 
