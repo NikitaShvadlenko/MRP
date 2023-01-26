@@ -61,7 +61,7 @@ public class CustomTextField: UIView {
     private func addBottomLine(to textField: UITextField) {
         let layer = CALayer()
         layer.frame = CGRect(x: 0, y: textField.frame.height - 1, width: textField.frame.width, height: 1)
-        layer.backgroundColor = Asset.Colors.primaryTextColor.color.cgColor
+        layer.backgroundColor = Asset.Colors.uiElementsColor.color.cgColor
         textField.layer.addSublayer(layer)
     }
 }
