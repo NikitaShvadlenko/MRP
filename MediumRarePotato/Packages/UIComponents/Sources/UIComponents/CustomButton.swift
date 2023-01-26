@@ -2,8 +2,14 @@ import UIKit
 import SharedResources
 import SnapKit
 
+protocol ButtonDelegateProtocol: AnyObject {
+    func buttonPressed()
+}
+
 public class CustomButton: UIButton {
+
     var title: String
+    weak var delegate: ButtonDelegateProtocol?
 
     private lazy var button: UIButton = {
         let button = UIButton()
@@ -12,6 +18,7 @@ public class CustomButton: UIButton {
         button.titleLabel?.font = UIFont(name: FontFamily.AmaticSC.bold.name, size: 25)
         button.layer.borderWidth = 1
         button.setTitle(title, for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchUpInside)
         return button
     }()
 
@@ -30,5 +37,17 @@ public class CustomButton: UIButton {
         button.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+
+    @objc
+    private func buttonPressed() {
+        UIView.animate(withDuration: 0.1) {
+            self.button.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+        }
+
+        UIView.animate(withDuration: 0.1) {
+            self.button.transform = .identity
+        }
+        delegate?.buttonPressed()
     }
 }
