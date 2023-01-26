@@ -3,7 +3,7 @@ import SharedResources
 import SnapKit
 import UIComponents
 
-final class LoginScreenView: UIView, UITextFieldDelegate {
+final class LoginScreenView: UIView {
 
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(
@@ -43,7 +43,7 @@ final class LoginScreenView: UIView, UITextFieldDelegate {
     }()
 
     private lazy var tokenInputWindow: CustomTextField = {
-        let view = CustomTextField(frame: self.frame, placeholder: L10n.tokenPlaceholder, delegate: self)
+        let view = CustomTextField(frame: self.frame, placeholder: L10n.tokenPlaceholder)
 
         return view
     }()

@@ -5,7 +5,7 @@ import SharedResources
 public class CustomTextField: UIView {
 
     var placeholder: String?
-    weak var delegate: UITextFieldDelegate?
+    public weak var delegate: UITextFieldDelegate?
 
     private lazy var backgroundView: UIView = {
         let view = UIView()
@@ -30,9 +30,8 @@ public class CustomTextField: UIView {
         return textField
     }()
 
-    public init(frame: CGRect, placeholder: String?, delegate: UITextFieldDelegate?) {
+    public init(frame: CGRect, placeholder: String?) {
         self.placeholder = placeholder
-        self.delegate = delegate
         super.init(frame: frame)
         setupView()
     }
