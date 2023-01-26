@@ -39,15 +39,25 @@ public class CustomButton: UIButton {
         }
     }
 
-    @objc
-    private func buttonPressed() {
-        UIView.animate(withDuration: 0.1) {
-            self.button.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+    private func touchIn() {
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.allowUserInteraction, .curveEaseOut]) {
+            self.button.backgroundColor = Asset.Colors.uiElementsColor.color
+            self.button.transform = .init(scaleX: 0.8, y: 0.8)
         }
+    }
 
-        UIView.animate(withDuration: 0.1) {
+    private func touchOut() {
+        UIView.animate(withDuration: 0.2, delay: 0, options: [.allowUserInteraction, .curveEaseIn]) {
+            self.button.backgroundColor = .none
             self.button.transform = .identity
         }
+    }
+
+    @objc
+    private func buttonPressed() {
+        touchIn()
         delegate?.buttonPressed()
+        touchOut()
+
     }
 }
