@@ -2,7 +2,7 @@ import UIKit
 import SharedResources
 import SnapKit
 
-public protocol ButtonDelegateProtocol: AnyObject {
+public protocol ButtonActionDelegate: AnyObject {
     func buttonPressed()
 }
 
@@ -10,7 +10,7 @@ public class CustomButton: UIView {
 
     var title: String
 
-    public weak var delegate: ButtonDelegateProtocol?
+    public weak var delegate: ButtonActionDelegate?
 
     private lazy var button: UIButton = {
         let button = UIButton()

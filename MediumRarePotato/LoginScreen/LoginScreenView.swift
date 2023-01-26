@@ -88,3 +88,25 @@ extension LoginScreenView {
         }
     }
 }
+
+// MARK: Public Methods
+extension LoginScreenView {
+
+    weak var buttonDelegate: ButtonActionDelegate? {
+        get {
+            loginButton.delegate
+        }
+        set {
+            loginButton.delegate = newValue
+        }
+    }
+
+    weak var textFieldDelegate: UITextFieldDelegate? {
+        get {
+            tokenInputWindow.delegate
+        }
+        set {
+            tokenInputWindow.delegate = newValue
+        }
+    }
+}

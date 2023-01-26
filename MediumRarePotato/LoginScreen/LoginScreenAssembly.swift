@@ -8,6 +8,8 @@ enum LoginScreenAssembly {
         let router = LoginScreenRouter()
 
         viewController.presenter = presenter
+        viewController.setTextFieldDelegate(viewController)
+        viewController.setLoginScreenButtonDelegate(viewController)
 
         presenter.view = viewController
         presenter.interactor = interactor
