@@ -24,7 +24,8 @@ final class LoginScreenView: UIView, UITextFieldDelegate {
     }()
 
     private lazy var tokenInputWindow: CustomTextField = {
-        let view = CustomTextField()
+        let view = CustomTextField(frame: self.frame, placeholder: L10n.tokenPlaceholder, delegate: self)
+
         return view
     }()
 
@@ -52,14 +53,14 @@ extension LoginScreenView {
 
         loginLabel.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(10)
-            make.height.equalTo(150)
+            make.height.equalTo(100)
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().multipliedBy(0.75)
         }
 
         tokenInputWindow.snp.makeConstraints { make in
-            make.height.equalTo(100)
-            make.center.equalToSuperview()
+            make.height.equalTo(50)
+            make.top.equalTo(loginLabel.snp.bottom).offset(10)
             make.trailing.leading.equalToSuperview().inset(8)
         }
     }
