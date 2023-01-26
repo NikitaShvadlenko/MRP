@@ -1,3 +1,4 @@
 "GameTitle" = "Medium Rare Potato";
 "Login" = "Login";
 "EnterAccessToken" = "Enter your access token below:";
+"tokenPlaceholder" = "i.e. 2f3628d8be86eb54acbb2c2b2dfc09bbf443";
