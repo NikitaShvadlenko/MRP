@@ -12,7 +12,7 @@ xcassets:
     - Sources/SharedResources/Resources/Assets.xcassets
     - Sources/SharedResources/Resources/Colors.xcassets
   outputs:
-    - templateName: swift5
+    - templatePath: ../../../Templates/xcassets-custom.stencil
       params:
         forceProvidesNamespaces: true
         publicAccess: true
