@@ -5,8 +5,6 @@ import UIComponents
 
 final class LoginScreenView: UIView {
 
-    weak var loginDelegate: LoginDelegateProtocol?
-
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView(
             arrangedSubviews: [
@@ -46,13 +44,11 @@ final class LoginScreenView: UIView {
 
     private lazy var tokenInputWindow: CustomTextField = {
         let view = CustomTextField(frame: self.frame, placeholder: L10n.tokenPlaceholder)
-        view.delegate = loginDelegate
         return view
     }()
 
     private lazy var loginButton: CustomButton = {
         let button = CustomButton(frame: self.frame, title: L10n.login)
-        button.delegate = loginDelegate
         return button
     }()
 

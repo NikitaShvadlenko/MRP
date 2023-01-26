@@ -6,7 +6,6 @@ enum LoginScreenAssembly {
         let presenter = LoginScreenPresenter()
         let interactor = LoginScreenInteractor()
         let router = LoginScreenRouter()
-        let loginDelegate = LoginDelegate()
 
         viewController.presenter = presenter
 
@@ -18,7 +17,7 @@ enum LoginScreenAssembly {
 
         router.viewController = viewController
         router.presenter = presenter
-        viewController.setLoginDelegate(delegate: loginDelegate)
+
         return AssembledModule(
             viewController: viewController,
             moduleInput: presenter
