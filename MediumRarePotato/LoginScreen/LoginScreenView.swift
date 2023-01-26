@@ -29,6 +29,11 @@ final class LoginScreenView: UIView, UITextFieldDelegate {
         return view
     }()
 
+    private lazy var loginButton: CustomButton = {
+        let button = CustomButton(frame: self.frame, title: L10n.login)
+        return button
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureViews()
@@ -62,6 +67,13 @@ extension LoginScreenView {
             make.height.equalTo(50)
             make.top.equalTo(loginLabel.snp.bottom).offset(10)
             make.trailing.leading.equalToSuperview().inset(8)
+        }
+
+        loginButton.snp.makeConstraints { make in
+            make.height.equalTo(40)
+            make.width.equalTo(120)
+            make.centerX.equalToSuperview()
+            make.top.equalTo(tokenInputWindow.snp.bottom).offset(10)
         }
     }
 }
