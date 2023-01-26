@@ -6,11 +6,11 @@ public protocol ButtonDelegateProtocol: AnyObject {
     func buttonPressed()
 }
 
-public class CustomButton: UIButton {
+public class CustomButton: UIView {
 
     var title: String
 
-  public weak var delegate: ButtonDelegateProtocol?
+    public weak var delegate: ButtonDelegateProtocol?
 
     private lazy var button: UIButton = {
         let button = UIButton()
@@ -40,25 +40,22 @@ public class CustomButton: UIButton {
         }
     }
 
-    private func touchIn() {
-        UIView.animate(withDuration: 0.2, delay: 0, options: [.allowUserInteraction, .curveEaseOut]) {
+    // swiftlint:disable multiline_arguments
+    private func animateTouch() {
+        UIView.animate(withDuration: 0.1, delay: 0, options: [.allowUserInteraction, .curveEaseOut]) {
             self.button.backgroundColor = Asset.Colors.uiElementsColor.color
             self.button.transform = .init(scaleX: 0.8, y: 0.8)
-        }
-    }
-
-    private func touchOut() {
-        UIView.animate(withDuration: 0.2, delay: 0, options: [.allowUserInteraction, .curveEaseIn]) {
-            self.button.backgroundColor = .none
-            self.button.transform = .identity
+        } completion: { _ in
+            UIView.animate(withDuration: 0.1, delay: 0, options: [.allowUserInteraction, .curveEaseIn]) {
+                self.button.backgroundColor = .none
+                self.button.transform = .identity
+            }
         }
     }
 
     @objc
     private func buttonPressed() {
-        touchIn()
+        animateTouch()
         delegate?.buttonPressed()
-        touchOut()
-
     }
 }
