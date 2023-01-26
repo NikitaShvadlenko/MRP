@@ -1,9 +1,8 @@
 import UIKit
+import UIComponents
 
-protocol LoginDelegateProtocol: AnyObject, UITextFieldDelegate {
+protocol LoginDelegateProtocol: AnyObject, UITextFieldDelegate, ButtonDelegateProtocol {
     var textFieldEntry: String { get set }
-
-    func buttonPressed()
 }
 
 class LoginDelegate: NSObject {

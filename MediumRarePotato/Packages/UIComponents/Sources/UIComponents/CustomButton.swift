@@ -9,7 +9,7 @@ public protocol ButtonDelegateProtocol: AnyObject {
 public class CustomButton: UIButton {
 
     var title: String
-    weak var delegate: ButtonDelegateProtocol?
+   public weak var delegate: ButtonDelegateProtocol?
 
     private lazy var button: UIButton = {
         let button = UIButton()
