@@ -5,6 +5,25 @@ import UIComponents
 
 final class LoginScreenView: UIView, UITextFieldDelegate {
 
+    private lazy var stackView: UIStackView = {
+        let stackView = UIStackView(
+            arrangedSubviews: [
+                loginLabel,
+                tokenInputWindow,
+                fillerView,
+                loginButton,
+                fillerView
+            ]
+        )
+        stackView.alignment = .center
+        stackView.axis = .vertical
+        stackView.spacing = 5
+        stackView.distribution = .equalSpacing
+        return stackView
+    }()
+
+    private let fillerView = UIView()
+
     private lazy var backgroundView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(asset: Asset.Assets.background)
@@ -49,31 +68,24 @@ final class LoginScreenView: UIView, UITextFieldDelegate {
 extension LoginScreenView {
     private func configureViews() {
         addSubview(backgroundView)
-        backgroundView.addSubview(loginLabel)
-        backgroundView.addSubview(tokenInputWindow)
+        backgroundView.addSubview(stackView)
 
         backgroundView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
 
-        loginLabel.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(10)
-            make.height.equalTo(100)
-            make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().multipliedBy(0.75)
-        }
-
-        tokenInputWindow.snp.makeConstraints { make in
-            make.height.equalTo(50)
-            make.top.equalTo(loginLabel.snp.bottom).offset(10)
-            make.trailing.leading.equalToSuperview().inset(8)
+        stackView.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            make.height.equalTo(backgroundView.snp.height).multipliedBy(0.3)
+            make.width.equalToSuperview()
         }
 
         loginButton.snp.makeConstraints { make in
-            make.height.equalTo(40)
             make.width.equalTo(120)
-            make.centerX.equalToSuperview()
-            make.top.equalTo(tokenInputWindow.snp.bottom).offset(10)
+        }
+
+        tokenInputWindow.snp.makeConstraints { make in
+            make.width.equalTo(backgroundView).multipliedBy(0.9)
         }
     }
 }
