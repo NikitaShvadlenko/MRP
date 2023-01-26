@@ -92,6 +92,10 @@ extension LoginScreenView {
 // MARK: Public Methods
 extension LoginScreenView {
 
+    var token: String? {
+            tokenInputWindow.text
+    }
+
     weak var buttonDelegate: ButtonActionDelegate? {
         get {
             loginButton.delegate

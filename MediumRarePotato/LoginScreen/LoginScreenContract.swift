@@ -5,6 +5,7 @@ protocol LoginScreenViewInput: AnyObject {
 
 protocol LoginScreenViewOutput {
     func viewDidLoad(_ view: LoginScreenViewInput)
+    func viewDidTapLoginButton(_ view: LoginScreenViewInput, token: String?)
 }
 
 // sourcery: AutoMockable

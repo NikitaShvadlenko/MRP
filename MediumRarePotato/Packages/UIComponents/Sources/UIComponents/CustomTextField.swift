@@ -13,7 +13,7 @@ public class CustomTextField: UIView {
         return view
     }()
 
-    private lazy var textField: UITextField = {
+     private lazy var textField: UITextField = {
         let textField = UITextField()
         textField.font = UIFont(name: FontFamily.AmaticSC.regular.name, size: 25)
         textField.textColor = Asset.Colors.secondaryTextColor.color
@@ -62,5 +62,12 @@ public class CustomTextField: UIView {
         layer.frame = CGRect(x: 0, y: textField.frame.height - 1, width: textField.frame.width, height: 1)
         layer.backgroundColor = Asset.Colors.uiElementsColor.color.cgColor
         textField.layer.addSublayer(layer)
+    }
+}
+
+// MARK: Public Methods
+extension CustomTextField {
+    public var text: String? {
+            textField.text
     }
 }

@@ -38,7 +38,8 @@ extension LoginScreenViewController {
 // MARK: ButtonActionDelegate
 extension LoginScreenViewController: ButtonActionDelegate {
     func buttonPressed() {
-        print("Button Pressed")
+        let token = loginScreenView.token
+        presenter?.viewDidTapLoginButton(self, token: token)
     }
 }
 
