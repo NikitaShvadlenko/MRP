@@ -12,6 +12,23 @@ class LoginDelegate: NSObject {
     }
 }
 
+extension LoginDelegate: LoginDelegateProtocol {
+    var textFieldEntry: String {
+        get {
+            "Lalalal"
+        }
+        set {
+            textFieldEntry = newValue
+        }
+    }
+}
+
 extension LoginDelegate: UITextFieldDelegate {
 
+}
+
+extension LoginDelegate: ButtonDelegateProtocol {
+    func buttonPressed() {
+        print("Button Pressed")
+    }
 }

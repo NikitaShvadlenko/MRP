@@ -2,7 +2,7 @@ import UIKit
 import SharedResources
 import SnapKit
 
-protocol ButtonDelegateProtocol: AnyObject {
+public protocol ButtonDelegateProtocol: AnyObject {
     func buttonPressed()
 }
 

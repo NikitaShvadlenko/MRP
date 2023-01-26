@@ -14,6 +14,10 @@ final class LoginScreenViewController: UIViewController {
         super.viewDidLoad()
         presenter?.viewDidLoad(self)
     }
+
+    func setLoginDelegate(delegate: LoginDelegateProtocol) {
+        loginScreenView.loginDelegate = delegate
+    }
 }
 
 // MARK: - LoginScreenViewInput
