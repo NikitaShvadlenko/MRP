@@ -32,6 +32,11 @@ packages:
   UIComponents:
     path: MediumRarePotato/Packages/UIComponents
     group: UI
+  
+  ## Business logic
+  Networking:
+    path: MediumRarePotato/Packages/Networking
+    group: Business logic
 
   ## Extensions
   SharedExtensions:
@@ -51,6 +56,7 @@ targets:
       - package: Alamofire
       - package: SharedResources
       - package: UIComponents
+      - package: Networking
 
     settings:
       base:
