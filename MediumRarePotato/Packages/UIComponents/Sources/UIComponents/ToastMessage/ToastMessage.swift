@@ -4,6 +4,10 @@ import SnapKit
 
 public final class ToastMessage: UIView {
 
+    private var timer = Timer()
+    private var timerOriginalDuration: Float
+    private var timerRemainingDuration: Float
+
     private lazy var progressBar: UIProgressView = {
         let view = UIProgressView()
         view.progress = 1
@@ -35,12 +39,15 @@ public final class ToastMessage: UIView {
         return button
     }()
 
-    public init(style: Style, message: String) {
+    public init(style: Style, message: String, timerDuration: Float) {
         let strategy = ToastStrategyFactory.strategy(for: style)
+        self.timerOriginalDuration = timerDuration * 20
+        self.timerRemainingDuration = self.timerOriginalDuration
         super.init(frame: .zero)
         strategy.setToastAssets(imageView: messageSymbol, progressBar: progressBar)
         label.text = message
         setupView()
+        startTimer()
     }
 
     required init?(coder: NSCoder) {
@@ -98,5 +105,29 @@ extension ToastMessage {
     public enum Style {
         case positive
         case negative
+    }
+}
+
+// MARK: Timer
+extension ToastMessage {
+    func startTimer() {
+        timer = Timer.scheduledTimer(
+            timeInterval: 0.05,
+            target: self,
+            selector: #selector(timerFired),
+            userInfo: nil,
+            repeats: true
+        )
+    }
+
+    @objc func timerFired() {
+        if timerRemainingDuration > 0 {
+            progressBar.progress = (timerRemainingDuration / timerOriginalDuration)
+            print(timerRemainingDuration)
+            timerRemainingDuration -= 1
+        } else {
+            timer.invalidate()
+            dismiss()
+        }
     }
 }
