@@ -1,4 +1,5 @@
 import UIKit
+import Networking
 
 enum LoginScreenAssembly {
     static func assemble() -> AssembledModule<LoginScreenModuleInput> {
@@ -6,6 +7,7 @@ enum LoginScreenAssembly {
         let presenter = LoginScreenPresenter()
         let interactor = LoginScreenInteractor()
         let router = LoginScreenRouter()
+        let networkManager = ManagerFactory.shared.networkManager
 
         viewController.presenter = presenter
 
@@ -14,6 +16,7 @@ enum LoginScreenAssembly {
         presenter.router = router
 
         interactor.presenter = presenter
+        interactor.networkManager = networkManager
 
         router.viewController = viewController
         router.presenter = presenter

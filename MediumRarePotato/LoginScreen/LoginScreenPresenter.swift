@@ -1,4 +1,5 @@
 import Foundation
+import Networking
 
 final class LoginScreenPresenter {
     weak var view: LoginScreenViewInput?
@@ -15,7 +16,7 @@ extension LoginScreenPresenter: LoginScreenViewOutput {
     }
 
     func viewDidTapLoginButton(_ view: LoginScreenViewInput, token: String?) {
-        login(with: token)
+        interactor?.login(with: token)
     }
 }
 
@@ -36,12 +37,5 @@ extension LoginScreenPresenter: LoginScreenModuleInput {
 
 // MARK: - Private methods
 extension LoginScreenPresenter {
-    private func login(with token: String?) {
-        // TODO: handle the empty field in a meaningful way
-        guard let token = token else {
-            print("Token field is empty")
-            return
-        }
-        print(token)
-    }
+
 }

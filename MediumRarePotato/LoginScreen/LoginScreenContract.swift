@@ -10,6 +10,7 @@ protocol LoginScreenViewOutput {
 
 // sourcery: AutoMockable
 protocol LoginScreenInteractorInput {
+    func login(with apiKey: String?)
 }
 
 // sourcery: AutoMockable
