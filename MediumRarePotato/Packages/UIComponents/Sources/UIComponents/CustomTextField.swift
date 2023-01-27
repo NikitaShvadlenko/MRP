@@ -12,9 +12,9 @@ public class CustomTextField: UIView {
         }
     }
 
-    public var isAutocorrectionEnabled = true {
+    public var autocorrectionType: UITextAutocorrectionType = .default {
         didSet {
-            textField.autocorrectionType = changeAutocorrectionType(isAutocorrectionEnabled: isAutocorrectionEnabled)
+            textField.autocorrectionType = autocorrectionType
         }
     }
 
@@ -73,16 +73,6 @@ public class CustomTextField: UIView {
         layer.frame = CGRect(x: 0, y: textField.frame.height - 1, width: textField.frame.width, height: 1)
         layer.backgroundColor = Asset.Colors.uiElementsColor.color.cgColor
         textField.layer.addSublayer(layer)
-    }
-
-    private func changeAutocorrectionType(isAutocorrectionEnabled: Bool) -> UITextAutocorrectionType {
-        switch isAutocorrectionEnabled {
-        case true:
-            return .yes
-
-        case false:
-            return .no
-        }
     }
 }
 
