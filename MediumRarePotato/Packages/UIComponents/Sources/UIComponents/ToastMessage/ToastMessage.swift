@@ -97,11 +97,22 @@ extension ToastMessage {
         }
     }
 
+    // swiftlint:disable multiline_arguments
     @objc
     private func dismiss() {
-        self.removeFromSuperview()
+        UIView.animate(withDuration: 0.2, delay: 0) {
+            self.transform = CGAffineTransformMakeTranslation(0, 20)
+        } completion: { _ in
+            UIView.animate(withDuration: 0.5, delay: 0) {
+                self.transform = CGAffineTransformMakeTranslation(0, -300)
+            } completion: { _ in
+                self.removeFromSuperview()
+            }
+        }
     }
+    // swiftlint:enable multiline_arguments
 }
+
 extension ToastMessage {
     public enum Style {
         case positive
