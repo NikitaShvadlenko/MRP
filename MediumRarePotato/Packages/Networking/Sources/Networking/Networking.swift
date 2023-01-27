@@ -1,15 +1,17 @@
 import Foundation
 import Alamofire
 
-final class NetworkManager {
+public final class NetworkManager {
+    public init() {
 
+    }
 }
 
 // MARK: Private Methods
 extension NetworkManager {
-    private func execute(parameters: [String: String]) {
-        AF.request("https://game.medium-rare-potato.io/", method: .get, parameters: parameters).response { response in
-            print(response)
+    private func execute(parameters: HTTPHeaders) {
+        AF.request("https://game.medium-rare-potato.io/v1/user/", method: .get, headers: parameters).response { response in
+            print(response.data)
         }
     }
 }
@@ -17,7 +19,7 @@ extension NetworkManager {
 // MARK: Public Methods
 extension NetworkManager {
     public func login(apiKey: String) {
-        let parameters: [String: String] = [
+        let parameters: HTTPHeaders = [
             "api-key": apiKey
         ]
         execute(parameters: parameters)
