@@ -2,9 +2,7 @@ import UIKit
 import SharedResources
 import SnapKit
 
-final class ToastMessage: UIView {
-
-    private var strategy: ToastStrategy
+public final class ToastMessage: UIView {
 
     private lazy var backgroundView: UIImageView = {
         let view = UIImageView()
@@ -37,8 +35,8 @@ final class ToastMessage: UIView {
         return button
     }()
 
-    public init(frame: CGRect, strategy: ToastStrategy, message: String) {
-        self.strategy = strategy
+    public init(frame: CGRect, style: Style, message: String) {
+        let strategy = ToastStrategyFactory.strategy(for: style)
         super.init(frame: frame)
         strategy.setToastAssets(imageView: messageSymbol, progressBar: progressBar)
         setupView()
@@ -53,5 +51,12 @@ final class ToastMessage: UIView {
 extension ToastMessage {
     func setupView() {
 
+    }
+}
+
+extension ToastMessage {
+    public enum Style {
+        case positive
+        case negative
     }
 }
