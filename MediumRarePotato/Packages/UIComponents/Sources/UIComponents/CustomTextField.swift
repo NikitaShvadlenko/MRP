@@ -79,6 +79,7 @@ public class CustomTextField: UIView {
         switch isAutocorrectionEnabled {
         case true:
             return .yes
+
         case false:
             return .no
         }
