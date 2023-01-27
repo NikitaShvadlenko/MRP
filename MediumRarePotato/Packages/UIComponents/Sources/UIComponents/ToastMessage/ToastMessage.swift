@@ -22,18 +22,19 @@ public final class ToastMessage: UIView {
 
     private lazy var label: UILabel = {
         let label = UILabel()
-        label.textAlignment = .center
-        label.font = UIFont(font: FontFamily.Neucha.regular, size: 14)
+        label.textAlignment = .left
+        label.font = UIFont(font: FontFamily.Neucha.regular, size: 18)
         label.textColor = Asset.Colors.secondaryTextColor.color
         label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.8
+        label.minimumScaleFactor = 0.6
         return label
     }()
 
     private lazy var dismissButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(sfSymbol: SFSymbol.closeSymbol), for: .normal)
+        let image = UIImage(sfSymbol: SFSymbol.closeSymbol)
+        button.setImage(image, for: .normal)
         button.tintColor = Asset.Colors.ToastColors.grayCross.color
         button.addTarget(self, action: #selector(dismiss), for: .touchDown)
         return button
@@ -77,22 +78,22 @@ extension ToastMessage {
         messageSymbol.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview().inset(8)
-            make.width.equalTo(40)
+            make.width.equalTo(30)
             make.height.equalTo(messageSymbol.snp.width)
         }
 
         dismissButton.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(8)
             make.trailing.equalToSuperview().inset(8)
-            make.width.equalTo(20)
-            make.height.equalTo(20)
+            make.width.equalTo(10)
+            make.height.equalTo(10)
         }
 
         label.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.trailing.equalTo(dismissButton.snp.leading).offset(2)
-            make.leading.equalTo(messageSymbol.snp.trailing).offset(2)
             make.bottom.equalTo(progressBar.snp.top)
+            make.trailing.equalTo(dismissButton.snp.leading).offset(2)
+            make.leading.equalTo(messageSymbol.snp.trailing).offset(8)
         }
     }
 
