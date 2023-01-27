@@ -123,7 +123,6 @@ extension ToastMessage {
     @objc func timerFired() {
         if timerRemainingDuration > 0 {
             progressBar.progress = (timerRemainingDuration / timerOriginalDuration)
-            print(timerRemainingDuration)
             timerRemainingDuration -= 1
         } else {
             timer.invalidate()
