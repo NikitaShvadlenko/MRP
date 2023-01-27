@@ -5,9 +5,16 @@ import SharedResources
 public class CustomTextField: UIView {
 
     var placeholder: String?
+
     public weak var delegate: UITextFieldDelegate? {
         didSet {
             textField.delegate = delegate
+        }
+    }
+
+    public var isAutocorrectionEnabled = true {
+        didSet {
+            textField.autocorrectionType = changeAutocorrectionType(isAutocorrectionEnabled: isAutocorrectionEnabled)
         }
     }
 
@@ -48,7 +55,7 @@ public class CustomTextField: UIView {
         addBottomLine(to: textField)
     }
 
-    func setupView() {
+    private func setupView() {
         self.addSubview(backgroundView)
         backgroundView.addSubview(textField)
         backgroundView.snp.makeConstraints { make in
@@ -66,6 +73,15 @@ public class CustomTextField: UIView {
         layer.frame = CGRect(x: 0, y: textField.frame.height - 1, width: textField.frame.width, height: 1)
         layer.backgroundColor = Asset.Colors.uiElementsColor.color.cgColor
         textField.layer.addSublayer(layer)
+    }
+
+    private func changeAutocorrectionType(isAutocorrectionEnabled: Bool) -> UITextAutocorrectionType {
+        switch isAutocorrectionEnabled {
+        case true:
+            return .yes
+        case false:
+            return .no
+        }
     }
 }
 

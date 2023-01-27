@@ -44,6 +44,7 @@ final class LoginScreenView: UIView {
 
     private lazy var tokenInputWindow: CustomTextField = {
         let view = CustomTextField(frame: self.frame, placeholder: L10n.tokenPlaceholder)
+        view.isAutocorrectionEnabled = false
         return view
     }()
 
