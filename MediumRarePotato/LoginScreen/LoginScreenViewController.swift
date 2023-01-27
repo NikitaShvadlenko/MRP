@@ -14,6 +14,7 @@ final class LoginScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad(self)
+        registerTapGesture()
     }
 
     func setLoginScreenButtonDelegate(_ delegate: ButtonActionDelegate) {
@@ -33,6 +34,11 @@ extension LoginScreenViewController: LoginScreenViewInput {
 
 // MARK: - Private methods
 extension LoginScreenViewController {
+    private func registerTapGesture() {
+        let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
 }
 
 // MARK: ButtonActionDelegate
@@ -45,5 +51,9 @@ extension LoginScreenViewController: ButtonActionDelegate {
 
 // MARK: UITextFieldDelegate
 extension LoginScreenViewController: UITextFieldDelegate {
-
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        buttonPressed()
+        return true
+    }
 }

@@ -5,7 +5,11 @@ import SharedResources
 public class CustomTextField: UIView {
 
     var placeholder: String?
-    public weak var delegate: UITextFieldDelegate?
+    public weak var delegate: UITextFieldDelegate? {
+        didSet {
+            textField.delegate = delegate
+        }
+    }
 
     private lazy var backgroundView: UIView = {
         let view = UIView()
@@ -20,7 +24,7 @@ public class CustomTextField: UIView {
         textField.textAlignment = .center
         textField.contentVerticalAlignment = .bottom
         textField.borderStyle = .none
-        textField.delegate = delegate
+        textField.returnKeyType = .done
         if let placeholder = placeholder {
             textField.attributedPlaceholder = NSMutableAttributedString(
                 string: placeholder,
