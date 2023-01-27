@@ -1,5 +1,6 @@
 import UIKit
 import UIComponents
+import SharedExtensions
 
 final class LoginScreenViewController: UIViewController {
 
@@ -48,6 +49,7 @@ extension LoginScreenViewController: ButtonActionDelegate {
     func buttonPressed() {
         let token = loginScreenView.token
         presenter?.viewDidTapLoginButton(self, token: token)
+        displayToastMessage(style: .positive, message: "Toast Message Appeared", timerDuration: 10)
     }
 }
 

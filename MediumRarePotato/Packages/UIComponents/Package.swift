@@ -14,7 +14,6 @@ let package = Package(
     ],
     dependencies: [
         .package(path: "../SharedResources"),
-        .package(path: "../SharedExtensions"),
         .package(url: "https://github.com/SnapKit/SnapKit", from: "5.0.1")
     ],
     targets: [
@@ -22,8 +21,7 @@ let package = Package(
             name: "UIComponents",
             dependencies: [
                 "SharedResources",
-                "SnapKit",
-                "SharedExtensions"
+                "SnapKit"
             ]
         )
     ]

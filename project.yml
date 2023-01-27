@@ -55,6 +55,7 @@ targets:
       - package: SnapKit
       - package: Alamofire
       - package: SharedResources
+      - package: SharedExtensions
       - package: UIComponents
       - package: Networking
 
