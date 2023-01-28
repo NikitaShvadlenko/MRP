@@ -1,8 +1,10 @@
 import UIKit
 import Networking
+import Utils
 
-enum LoginScreenAssembly {
-    static func assemble() -> AssembledModule<LoginScreenModuleInput> {
+public enum LoginScreenBuilder {
+
+     public static func build() -> UIViewController {
         let viewController = LoginScreenViewController()
         let presenter = LoginScreenPresenter()
         let interactor = LoginScreenInteractor()
@@ -21,9 +23,6 @@ enum LoginScreenAssembly {
         router.viewController = viewController
         router.presenter = presenter
 
-        return AssembledModule(
-            viewController: viewController,
-            moduleInput: presenter
-        )
+        return viewController
     }
 }

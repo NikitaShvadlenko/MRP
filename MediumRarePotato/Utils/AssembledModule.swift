@@ -1,6 +1,6 @@
 import UIKit
 
-struct AssembledModule<ModuleInput> {
+public struct AssembledModule<ModuleInput> {
     let viewController: UIViewController
     let moduleInput: ModuleInput
 }

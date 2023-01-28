@@ -42,9 +42,19 @@ packages:
     path: MediumRarePotato/Packages/SharedModels
     group: Business logic
 
-  ## Extensions
+  ## Utils
   SharedExtensions:
     path: MediumRarePotato/Packages/SharedExtensions
+    group: Utils
+
+  Utils:
+    path: MediumRarePotato/Packages/Utils
+    group: Utils
+    
+  ## Feature
+  LoginScreen:
+    path: MediumRarePotato/Packages/LoginScreen
+    group: Feature
 
 targets:
   MediumRarePotato:
@@ -56,13 +66,9 @@ targets:
         - "Packages/**/"
 
     dependencies:
-      - package: SnapKit
-      - package: Alamofire
+      - package: LoginScreen
       - package: SharedResources
-      - package: SharedExtensions
-      - package: UIComponents
-      - package: Networking
-      - package: SharedModels
+      - package: Utils
 
     settings:
       base:
