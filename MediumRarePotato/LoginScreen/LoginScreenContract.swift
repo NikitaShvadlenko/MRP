@@ -1,3 +1,4 @@
+import SharedModels
 // sourcery: AutoMockable
 protocol LoginScreenViewInput: AnyObject {
     func configureViews()
@@ -21,7 +22,8 @@ protocol LoginScreenInteractorInput {
 protocol LoginScreenInteractorOutput: AnyObject {
     func interactorSentRequest(_ interactor: LoginScreenInteractorInput)
     func interactorRequestComplete(_ interactor: LoginScreenInteractorInput)
-    func interactor(_ interactor: LoginScreenInteractorInput, requestCompletedWith error: String)
+    func interactor(_ interactor: LoginScreenInteractorInput, didReceiveError error: String)
+    func interactor(_ interactor: LoginScreenInteractorInput, didReceiveUserData data: UserData)
     func intercatorReceivedEmptyTokenField(_ interactor: LoginScreenInteractorInput)
 }
 

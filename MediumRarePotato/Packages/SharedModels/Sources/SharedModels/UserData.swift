@@ -1,4 +1,4 @@
-public struct UserStatus: Codable {
+public struct UserData: Codable {
     let user: User
     let status: String
 }
