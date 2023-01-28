@@ -21,7 +21,7 @@ protocol LoginScreenInteractorInput {
 protocol LoginScreenInteractorOutput: AnyObject {
     func interactorSentRequest(_ interactor: LoginScreenInteractorInput)
     func interactorRequestComplete(_ interactor: LoginScreenInteractorInput)
-    func interactorRequestCompleteWithError(_ interactor: LoginScreenInteractorInput, error: String)
+    func interactor(_ interactor: LoginScreenInteractorInput, requestCompletedWith error: String)
     func intercatorReceivedEmptyTokenField(_ interactor: LoginScreenInteractorInput)
 }
 

@@ -14,7 +14,6 @@ public final class NetworkManager {
 
 // MARK: Private Methods
 extension NetworkManager {
-
 }
 
 // MARK: Network Manager Protocol
