@@ -1,7 +1,5 @@
-import LoginScreen
 import UIKit
 import SharedResources
-import Utils
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,10 +12,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
         FontRegister().registerAvailableFonts()
-        let loginScreenViewController = LoginScreenBuilder.build()
+        let loginScreenModule = LoginScreenAssembly.assemble()
 
         let navigationController = UINavigationController(
-            rootViewController: loginScreenViewController
+            rootViewController: loginScreenModule.viewController
         )
 
         self.window?.rootViewController = navigationController
