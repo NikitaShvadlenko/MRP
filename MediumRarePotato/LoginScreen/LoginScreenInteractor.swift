@@ -17,7 +17,6 @@ extension LoginScreenInteractor: LoginScreenInteractorInput {
 
         guard !apiKey.isEmpty else {
             presenter?.intercatorReceivedEmptyTokenField(self)
-            self.presenter?.interactorRequestComplete(self)
             return
         }
 
@@ -30,7 +29,6 @@ extension LoginScreenInteractor: LoginScreenInteractorInput {
                     self.presenter?.interactor(self, didReceiveUserData: data)
                 }
             }
-            self.presenter?.interactorRequestComplete(self)
         }
     }
 }

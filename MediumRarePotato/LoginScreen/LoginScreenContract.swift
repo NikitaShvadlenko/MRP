@@ -21,7 +21,6 @@ protocol LoginScreenInteractorInput {
 // sourcery: AutoMockable
 protocol LoginScreenInteractorOutput: AnyObject {
     func interactorSentRequest(_ interactor: LoginScreenInteractorInput)
-    func interactorRequestComplete(_ interactor: LoginScreenInteractorInput)
     func interactor(_ interactor: LoginScreenInteractorInput, didReceiveError error: String)
     func interactor(_ interactor: LoginScreenInteractorInput, didReceiveUserData data: UserData)
     func intercatorReceivedEmptyTokenField(_ interactor: LoginScreenInteractorInput)

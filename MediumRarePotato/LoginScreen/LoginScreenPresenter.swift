@@ -26,10 +26,12 @@ extension LoginScreenPresenter: LoginScreenInteractorOutput {
 
     func interactor(_ interactor: LoginScreenInteractorInput, didReceiveUserData data: UserData) {
         // router must route to the new screen
+        view?.removeActivityIndicator()
     }
 
     func interactor(_ interactor: LoginScreenInteractorInput, didReceiveError error: String) {
         view?.displayNegativeToast(error: error)
+        view?.removeActivityIndicator()
     }
 
     func interactorSentRequest(_ interactor: LoginScreenInteractorInput) {
@@ -42,6 +44,7 @@ extension LoginScreenPresenter: LoginScreenInteractorOutput {
 
     func intercatorReceivedEmptyTokenField(_ interactor: LoginScreenInteractorInput) {
         view?.displayEmptyFieldToast()
+        view?.removeActivityIndicator()
     }
 }
 

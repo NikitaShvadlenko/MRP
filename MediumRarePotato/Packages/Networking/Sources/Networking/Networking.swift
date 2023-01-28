@@ -31,7 +31,7 @@ extension NetworkManager: NetworkManagerProtocol {
                 completion(nil, error)
             }
             if let data = response.value {
-                print(data)
+                completion(data, nil)
             }
         }
     }
