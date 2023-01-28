@@ -1,6 +1,9 @@
 // sourcery: AutoMockable
 protocol LoginScreenViewInput: AnyObject {
     func configureViews()
+    func showActivityIndicator()
+    func removeActivityIndicator()
+    func displayEmptyFieldToast()
 }
 
 protocol LoginScreenViewOutput {
@@ -15,6 +18,9 @@ protocol LoginScreenInteractorInput {
 
 // sourcery: AutoMockable
 protocol LoginScreenInteractorOutput: AnyObject {
+    func interactorSentRequest(_ interactor: LoginScreenInteractorInput)
+    func interactorRequestComplete(_ interactor: LoginScreenInteractorInput)
+    func intercatorReceivedEmptyTokenField(_ interactor: LoginScreenInteractorInput)
 }
 
 // sourcery: AutoMockable

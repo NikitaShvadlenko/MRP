@@ -4,6 +4,7 @@ import SharedExtensions
 
 final class LoginScreenViewController: UIViewController {
 
+    let activityViewController = ActivityViewController()
     private let loginScreenView = LoginScreenView()
 
     var presenter: LoginScreenViewOutput?
@@ -31,6 +32,18 @@ final class LoginScreenViewController: UIViewController {
 
 // MARK: - LoginScreenViewInput
 extension LoginScreenViewController: LoginScreenViewInput {
+    func showActivityIndicator() {
+        add(activityViewController)
+    }
+
+    func removeActivityIndicator() {
+        activityViewController.remove()
+    }
+
+    func displayEmptyFieldToast() {
+        displayToastMessage(style: .negative, message: "The token field can not be empty!", timerDuration: 10)
+    }
+
     func configureViews() {
     }
 }
@@ -49,7 +62,6 @@ extension LoginScreenViewController: ButtonActionDelegate {
     func buttonPressed() {
         let token = loginScreenView.token
         presenter?.viewDidTapLoginButton(self, token: token)
-        displayToastMessage(style: .positive, message: "Toast Message Appeared", timerDuration: 10)
     }
 }
 

@@ -22,6 +22,17 @@ extension LoginScreenPresenter: LoginScreenViewOutput {
 
 // MARK: - LoginScreenInteractorOutput
 extension LoginScreenPresenter: LoginScreenInteractorOutput {
+    func interactorSentRequest(_ interactor: LoginScreenInteractorInput) {
+        view?.showActivityIndicator()
+    }
+
+    func interactorRequestComplete(_ interactor: LoginScreenInteractorInput) {
+        view?.removeActivityIndicator()
+    }
+
+    func intercatorReceivedEmptyTokenField(_ interactor: LoginScreenInteractorInput) {
+        view?.displayEmptyFieldToast()
+    }
 }
 
 // MARK: - LoginScreenRouterOutput
