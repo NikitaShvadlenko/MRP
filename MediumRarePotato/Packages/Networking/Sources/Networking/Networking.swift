@@ -20,6 +20,7 @@ extension NetworkManager {
         )
         .response { response in
             print(response.data)
+            completion()
         }
     }
 }
@@ -31,6 +32,5 @@ extension NetworkManager: NetworkManagerProtocol {
             "api-key": apiKey
         ]
         execute(parameters: parameters, completion: completion)
-        completion()
     }
 }
