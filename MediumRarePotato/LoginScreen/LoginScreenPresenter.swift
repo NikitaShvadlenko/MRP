@@ -22,6 +22,11 @@ extension LoginScreenPresenter: LoginScreenViewOutput {
 
 // MARK: - LoginScreenInteractorOutput
 extension LoginScreenPresenter: LoginScreenInteractorOutput {
+
+    func interactorRequestCompleteWithError(_ interactor: LoginScreenInteractorInput, error: String) {
+        view?.displayNegativeToast(error: error)
+    }
+
     func interactorSentRequest(_ interactor: LoginScreenInteractorInput) {
         view?.showActivityIndicator()
     }

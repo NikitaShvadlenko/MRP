@@ -4,6 +4,7 @@ protocol LoginScreenViewInput: AnyObject {
     func showActivityIndicator()
     func removeActivityIndicator()
     func displayEmptyFieldToast()
+    func displayNegativeToast(error: String)
 }
 
 protocol LoginScreenViewOutput {
@@ -20,6 +21,7 @@ protocol LoginScreenInteractorInput {
 protocol LoginScreenInteractorOutput: AnyObject {
     func interactorSentRequest(_ interactor: LoginScreenInteractorInput)
     func interactorRequestComplete(_ interactor: LoginScreenInteractorInput)
+    func interactorRequestCompleteWithError(_ interactor: LoginScreenInteractorInput, error: String)
     func intercatorReceivedEmptyTokenField(_ interactor: LoginScreenInteractorInput)
 }
 

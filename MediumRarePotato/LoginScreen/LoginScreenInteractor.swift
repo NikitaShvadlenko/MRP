@@ -1,5 +1,6 @@
 import Foundation
 import Networking
+import SharedModels
 
 final class LoginScreenInteractor {
     weak var presenter: LoginScreenInteractorOutput?
@@ -20,8 +21,15 @@ extension LoginScreenInteractor: LoginScreenInteractorInput {
             return
         }
 
-        networkManager?.login(apiKey: apiKey) { [weak self] in
+        networkManager?.login(apiKey: apiKey) { [weak self] data, error  in
             guard let self = self else { return }
+            if let error = error {
+               self.presenter?.interactorRequestCompleteWithError(self, error: error.localizedDescription)
+            } else {
+                if let data = data {
+                    print(data)
+                }
+            }
             self.presenter?.interactorRequestComplete(self)
         }
     }

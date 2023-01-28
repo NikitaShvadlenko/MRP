@@ -38,6 +38,10 @@ packages:
     path: MediumRarePotato/Packages/Networking
     group: Business logic
 
+  SharedModels:
+    path: MediumRarePotato/Packages/SharedModels
+    group: Business logic
+
   ## Extensions
   SharedExtensions:
     path: MediumRarePotato/Packages/SharedExtensions
@@ -58,6 +62,7 @@ targets:
       - package: SharedExtensions
       - package: UIComponents
       - package: Networking
+      - package: SharedModels
 
     settings:
       base:

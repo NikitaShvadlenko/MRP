@@ -32,6 +32,7 @@ final class LoginScreenViewController: UIViewController {
 
 // MARK: - LoginScreenViewInput
 extension LoginScreenViewController: LoginScreenViewInput {
+
     func showActivityIndicator() {
         add(activityViewController)
     }
@@ -42,6 +43,10 @@ extension LoginScreenViewController: LoginScreenViewInput {
 
     func displayEmptyFieldToast() {
         displayToastMessage(style: .negative, message: "The token field can not be empty!", timerDuration: 10)
+    }
+
+    func displayNegativeToast(error: String) {
+        displayToastMessage(style: .negative, message: error, timerDuration: 10)
     }
 
     func configureViews() {
