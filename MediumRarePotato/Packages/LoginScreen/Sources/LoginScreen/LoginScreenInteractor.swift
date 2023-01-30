@@ -23,7 +23,7 @@ extension LoginScreenInteractor: LoginScreenInteractorInput {
         networkManager?.login(apiKey: apiKey) { [weak self] data, error  in
             guard let self = self else { return }
             if let error = error {
-               self.presenter?.interactor(self, didReceiveError: error.localizedDescription)
+                self.presenter?.interactor(self, didReceiveError: error.localizedDescription)
             } else {
                 if let data = data {
                     self.presenter?.interactor(self, didReceiveUserData: data)

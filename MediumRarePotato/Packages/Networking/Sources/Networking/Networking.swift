@@ -27,11 +27,25 @@ extension NetworkManager: NetworkManagerProtocol {
                    headers: parameters
         )
         .responseDecodable(of: UserData.self) { response in
-            if let error = response.error {
-                completion(nil, error)
-            }
-            if let data = response.value {
+            switch response.result {
+            case .success(let data):
                 completion(data, nil)
+
+            case .failure(let error):
+                guard let data = response.data else {
+                    completion(nil, error)
+                    return
+                }
+                do {
+                    let decodedError = try JSONDecoder().decode(ErrorResponse.self, from: data)
+                    let customError = NSError(
+                        domain: decodedError.errors[0].messages[0],
+                        code: error._code
+                    )
+                    completion(nil, customError)
+                } catch {
+                    completion(nil, error)
+                }
             }
         }
     }
