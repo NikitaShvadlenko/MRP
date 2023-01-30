@@ -9,7 +9,7 @@ let package = Package(
     products: [
         .library(
             name: "LoginScreen",
-            targets: ["LoginScreen"]),
+            targets: ["LoginScreen"])
     ],
     dependencies: [
         .package(url: "https://github.com/Alamofire/Alamofire", from: "5.6.4"),

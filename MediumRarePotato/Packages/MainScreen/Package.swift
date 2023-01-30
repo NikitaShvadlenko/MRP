@@ -9,7 +9,7 @@ let package = Package(
     products: [
         .library(
             name: "MainScreen",
-            targets: ["MainScreen"]),
+            targets: ["MainScreen"])
     ],
     dependencies: [
         .package(url: "https://github.com/Alamofire/Alamofire", from: "5.6.4"),
@@ -19,7 +19,7 @@ let package = Package(
         .package(path: "../SharedExtensions"),
         .package(path: "../SharedModels"),
         .package(path: "../Networking"),
-        .package(path: "../Utils"),
+        .package(path: "../Utils")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -34,7 +34,7 @@ let package = Package(
             "Utils",
             "Networking",
             "Alamofire",
-            "SnapKit",
+            "SnapKit"
             ])
     ]
 )
