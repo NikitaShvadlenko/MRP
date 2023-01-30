@@ -14,6 +14,27 @@ public final class NetworkManager {
 
 // MARK: Private Methods
 extension NetworkManager {
+    private func errorFromResponseBody<T>(
+        response: DataResponse<T, AFError>,
+        error: AFError,
+        completion: @escaping (UserData?, Error?) -> Void
+    ) {
+        guard let data = response.data, let responseCode = error.responseCode else {
+            completion(nil, error)
+            return
+        }
+
+        do {
+            let decodedError = try JSONDecoder().decode(ErrorResponse.self, from: data)
+            let customError = NSError(
+                domain: decodedError.errors[0].messages[0],
+                code: responseCode
+            )
+            completion(nil, customError)
+        } catch {
+            completion(nil, error)
+        }
+    }
 }
 
 // MARK: Network Manager Protocol
@@ -32,20 +53,7 @@ extension NetworkManager: NetworkManagerProtocol {
                 completion(data, nil)
 
             case .failure(let error):
-                guard let data = response.data else {
-                    completion(nil, error)
-                    return
-                }
-                do {
-                    let decodedError = try JSONDecoder().decode(ErrorResponse.self, from: data)
-                    let customError = NSError(
-                        domain: decodedError.errors[0].messages[0],
-                        code: error._code
-                    )
-                    completion(nil, customError)
-                } catch {
-                    completion(nil, error)
-                }
+                self.errorFromResponseBody(response: response, error: error, completion: completion)
             }
         }
     }
