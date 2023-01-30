@@ -32,7 +32,15 @@ packages:
   UIComponents:
     path: MediumRarePotato/Packages/UIComponents
     group: UI
-  
+
+  ## Feature
+  LoginScreen:
+    path: MediumRarePotato/Packages/LoginScreen
+    group: Feature
+
+  MainScreen:
+    path: MediumRarePotato/Packages/MainScreen
+    group: Feature
   ## Business logic
   Networking:
     path: MediumRarePotato/Packages/Networking
@@ -42,9 +50,14 @@ packages:
     path: MediumRarePotato/Packages/SharedModels
     group: Business logic
 
-  ## Extensions
-  SharedExtensions:
+  ## Utils
+  Utils:
+    path: MediumRarePotato/Packages/Utils
+    group: Utils
+
+SharedExtensions:
     path: MediumRarePotato/Packages/SharedExtensions
+    group: Utils
 
 targets:
   MediumRarePotato:
@@ -56,13 +69,8 @@ targets:
         - "Packages/**/"
 
     dependencies:
-      - package: SnapKit
-      - package: Alamofire
-      - package: SharedResources
-      - package: SharedExtensions
-      - package: UIComponents
-      - package: Networking
-      - package: SharedModels
+      - package: LoginScreen
+      - package: Utils
 
     settings:
       base:
