@@ -2,18 +2,18 @@ import UIKit
 import UIComponents
 import SharedExtensions
 
-final class LoginScreenViewController: UIViewController {
+public final class LoginScreenViewController: UIViewController {
 
     let activityViewController = ActivityViewController()
     private let loginScreenView = LoginScreenView()
 
     var presenter: LoginScreenViewOutput?
 
-    override func loadView() {
+    override public func loadView() {
         view = loginScreenView
     }
 
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad(self)
         setLoginScreenButtonDelegate(self)
@@ -64,7 +64,7 @@ extension LoginScreenViewController {
 
 // MARK: ButtonActionDelegate
 extension LoginScreenViewController: ButtonActionDelegate {
-    func buttonPressed() {
+    public func buttonPressed() {
         let token = loginScreenView.token
         presenter?.viewDidTapLoginButton(self, token: token)
     }
@@ -72,7 +72,7 @@ extension LoginScreenViewController: ButtonActionDelegate {
 
 // MARK: UITextFieldDelegate
 extension LoginScreenViewController: UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         buttonPressed()
         return true

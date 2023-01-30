@@ -33,10 +33,10 @@ protocol LoginScreenRouterInput {
 protocol LoginScreenRouterOutput: AnyObject {
 }
 
-protocol LoginScreenModuleInput: AnyObject {
+public protocol LoginScreenModuleInput: AnyObject {
 	func configureModule(output: LoginScreenModuleOutput?)
 }
 
 // sourcery: AutoMockable
-protocol LoginScreenModuleOutput: AnyObject {
+public protocol LoginScreenModuleOutput: AnyObject {
 }

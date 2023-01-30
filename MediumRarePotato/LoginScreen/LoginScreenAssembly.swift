@@ -1,8 +1,9 @@
 import UIKit
 import Networking
+import Utils
 
-enum LoginScreenAssembly {
-    static func assemble() -> AssembledModule<LoginScreenModuleInput> {
+public enum LoginScreenAssembly {
+    public static func assemble() -> AssembledModule<LoginScreenModuleInput> {
         let viewController = LoginScreenViewController()
         let presenter = LoginScreenPresenter()
         let interactor = LoginScreenInteractor()

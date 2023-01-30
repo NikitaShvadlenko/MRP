@@ -1,6 +1,7 @@
 import UIKit
+import Utils
 
-enum MainScreenAssembly {
+public enum MainScreenAssembly {
     static func assemble() -> AssembledModule<MainScreenModuleInput> {
         let viewController = MainScreenViewController()
         let presenter = MainScreenPresenter()
