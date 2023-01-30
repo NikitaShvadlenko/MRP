@@ -2,7 +2,7 @@ import UIKit
 import Utils
 
 public enum MainScreenAssembly {
-    static func assemble() -> AssembledModule<MainScreenModuleInput> {
+    public static func assemble() -> AssembledModule<MainScreenModuleInput> {
         let viewController = MainScreenViewController()
         let presenter = MainScreenPresenter()
         let interactor = MainScreenInteractor()
@@ -18,6 +18,8 @@ public enum MainScreenAssembly {
 
         router.viewController = viewController
         router.presenter = presenter
+
+        viewController.navigationItem.hidesBackButton = true
 
         return AssembledModule(
             viewController: viewController,

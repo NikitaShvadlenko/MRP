@@ -25,7 +25,7 @@ extension LoginScreenPresenter: LoginScreenViewOutput {
 extension LoginScreenPresenter: LoginScreenInteractorOutput {
 
     func interactor(_ interactor: LoginScreenInteractorInput, didReceiveUserData data: UserData) {
-        // router must route to the new screen
+        router?.routeToMainScreen()
         view?.removeActivityIndicator()
     }
 

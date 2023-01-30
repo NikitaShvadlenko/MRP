@@ -1,4 +1,5 @@
 import UIKit
+import MainScreen
 
 final class LoginScreenRouter {
     weak var viewController: UIViewController?
@@ -7,6 +8,13 @@ final class LoginScreenRouter {
 
 // MARK: - LoginScreenRouterInput
 extension LoginScreenRouter: LoginScreenRouterInput {
+    func routeToMainScreen() {
+        let mainScreenModule = MainScreenAssembly.assemble()
+        viewController?.navigationController?.pushViewController(
+            mainScreenModule.viewController,
+            animated: true
+        )
+    }
 }
 
 // MARK: - Private methods

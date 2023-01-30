@@ -1,6 +1,7 @@
 import UIKit
 import SharedResources
 import Utils
+import LoginScreen
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {

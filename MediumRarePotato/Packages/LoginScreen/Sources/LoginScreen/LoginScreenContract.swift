@@ -28,15 +28,16 @@ protocol LoginScreenInteractorOutput: AnyObject {
 
 // sourcery: AutoMockable
 protocol LoginScreenRouterInput {
+    func routeToMainScreen()
 }
 
 protocol LoginScreenRouterOutput: AnyObject {
 }
 
-protocol LoginScreenModuleInput: AnyObject {
+public protocol LoginScreenModuleInput: AnyObject {
 	func configureModule(output: LoginScreenModuleOutput?)
 }
 
 // sourcery: AutoMockable
-protocol LoginScreenModuleOutput: AnyObject {
+public protocol LoginScreenModuleOutput: AnyObject {
 }

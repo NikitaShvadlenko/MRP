@@ -22,10 +22,10 @@ protocol MainScreenRouterInput {
 protocol MainScreenRouterOutput: AnyObject {
 }
 
-protocol MainScreenModuleInput: AnyObject {
+public protocol MainScreenModuleInput: AnyObject {
 	func configureModule(output: MainScreenModuleOutput?)
 }
 
 // sourcery: AutoMockable
-protocol MainScreenModuleOutput: AnyObject {
+public protocol MainScreenModuleOutput: AnyObject {
 }
