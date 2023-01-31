@@ -41,11 +41,16 @@ packages:
   MainScreen:
     path: MediumRarePotato/Packages/MainScreen
     group: Feature
+
   ## Business logic
   Networking:
     path: MediumRarePotato/Packages/Networking
     group: Business logic
-
+  
+  Keychain:
+    path: MediumRarePotato/Packages/Keychain
+    group: Business logic
+  
   SharedModels:
     path: MediumRarePotato/Packages/SharedModels
     group: Business logic
