@@ -28,7 +28,9 @@ extension LoginScreenInteractor: LoginScreenInteractorInput {
                 self.presenter?.interactor(self, didReceiveError: error.localizedDescription)
             } else {
                 if let data = data {
-                    self.savePassword(apiKey)
+                    if self.retrievePassword() == nil {
+                        self.savePassword(apiKey)
+                    }
                     self.presenter?.interactor(self, didReceiveUserData: data, key: apiKey)
                 }
             }
