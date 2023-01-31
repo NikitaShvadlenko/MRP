@@ -24,7 +24,7 @@ extension LoginScreenPresenter: LoginScreenViewOutput {
 // MARK: - LoginScreenInteractorOutput
 extension LoginScreenPresenter: LoginScreenInteractorOutput {
 
-    func interactor(_ interactor: LoginScreenInteractorInput, didReceiveUserData data: UserData) {
+    func interactor(_ interactor: LoginScreenInteractorInput, didReceiveUserData data: UserData, key: String) {
         router?.routeToMainScreen()
         view?.removeActivityIndicator()
     }
@@ -61,5 +61,9 @@ extension LoginScreenPresenter: LoginScreenModuleInput {
 
 // MARK: - Private methods
 extension LoginScreenPresenter {
-
+    func login() {
+        if let password = interactor?.retrievePassword() {
+            interactor?.login(with: password)
+        }
+    }
 }

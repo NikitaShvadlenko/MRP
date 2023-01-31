@@ -1,5 +1,6 @@
 import UIKit
 import Utils
+import Keychain
 import Networking
 
 public enum LoginScreenAssembly {
@@ -9,13 +10,14 @@ public enum LoginScreenAssembly {
         let interactor = LoginScreenInteractor()
         let router = LoginScreenRouter()
         let networkManager = ManagerFactory.shared.networkManager
-
+        let passwordManager = Keychain()
         viewController.presenter = presenter
 
         presenter.view = viewController
         presenter.interactor = interactor
         presenter.router = router
 
+        interactor.passwordManager = passwordManager
         interactor.presenter = presenter
         interactor.networkManager = networkManager
 
