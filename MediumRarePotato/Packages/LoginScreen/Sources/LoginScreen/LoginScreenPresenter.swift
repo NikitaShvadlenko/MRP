@@ -13,7 +13,10 @@ final class LoginScreenPresenter {
 extension LoginScreenPresenter: LoginScreenViewOutput {
 
     func viewDidLoad(_ view: LoginScreenViewInput) {
-        view.configureViews()
+        DispatchQueue.main.async {
+            view.configureViews()
+            self.login()
+        }
     }
 
     func viewDidTapLoginButton(_ view: LoginScreenViewInput, token: String?) {
