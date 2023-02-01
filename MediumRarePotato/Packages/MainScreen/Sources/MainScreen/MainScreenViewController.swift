@@ -5,11 +5,38 @@ import UIComponents
 
 final class MainScreenViewController: UIViewController {
 
+    lazy var slideInMenuPadding: CGFloat = 0.5
+
+    private var isSlideMenuPresented = false
+
     private let mainScreenView = MainScreenView()
+
+    private lazy var menuView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .red
+        return view
+    }()
+
+    private lazy var containerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .blue
+        return view
+    }()
+
     var presenter: MainScreenViewOutput?
 
     override func loadView() {
         view = mainScreenView
+        view.addSubview(menuView)
+        menuView.snp.makeConstraints { make in
+            make.top.trailing.bottom.equalToSuperview()
+            make.width.equalTo(self.view.snp.width).multipliedBy(slideInMenuPadding)
+        }
+        view.addSubview(containerView)
+        containerView.snp.makeConstraints { make in
+            make.top.leading.bottom.equalToSuperview()
+            make.width.equalToSuperview()
+        }
     }
 
     override func viewDidLoad() {
@@ -26,7 +53,23 @@ extension MainScreenViewController: MainScreenViewInput {
     }
 
     func showSideMenu() {
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            usingSpringWithDamping: 0.8,
+            initialSpringVelocity: 0,
+            options: .curveEaseInOut,
+            animations: {
+                switch self.isSlideMenuPresented {
+                case true:
+                    self.containerView.frame.origin.x = 0
 
+                case false:
+                    self.containerView.frame.origin.x = -(self.containerView.frame.width * self.slideInMenuPadding)
+                }
+            }, completion: {_ in
+                self.isSlideMenuPresented.toggle()
+            })
     }
 
 }
