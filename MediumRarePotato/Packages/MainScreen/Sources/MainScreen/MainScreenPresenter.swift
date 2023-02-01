@@ -9,9 +9,19 @@ final class MainScreenPresenter {
 
 // MARK: - MainScreenViewOutput
 extension MainScreenPresenter: MainScreenViewOutput {
+
     func viewDidLoad(_ view: MainScreenViewInput) {
         view.configureViews()
     }
+
+    func viewPressedLogoButton(_ view: MainScreenViewInput) {
+        print("Routing to restaurants window...")
+    }
+
+    func viewPressedSideMenuButton(_ view: MainScreenViewInput) {
+        print("Showing side menu...")
+    }
+
 }
 
 // MARK: - MainScreenInteractorOutput

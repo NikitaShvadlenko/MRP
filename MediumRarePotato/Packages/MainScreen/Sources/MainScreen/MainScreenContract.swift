@@ -1,10 +1,13 @@
 // sourcery: AutoMockable
 protocol MainScreenViewInput: AnyObject {
     func configureViews()
+    func showSideMenu()
 }
 
 protocol MainScreenViewOutput {
     func viewDidLoad(_ view: MainScreenViewInput)
+    func viewPressedLogoButton(_ view: MainScreenViewInput)
+    func viewPressedSideMenuButton(_ view: MainScreenViewInput)
 }
 
 // sourcery: AutoMockable

@@ -6,10 +6,11 @@ public final class NavigationBarTitleView: UIView {
 
     public weak var delegate: ButtonActionDelegate?
 
-    private lazy var logoView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(asset: Asset.Assets.logo)
-        return imageView
+    private lazy var logoView: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(asset: Asset.Assets.logo), for: .normal)
+        button.addTarget(self, action: #selector(buttonPressed), for: .touchDown)
+        return button
     }()
 
     private lazy var titleLabel: UILabel = {

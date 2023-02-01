@@ -10,6 +10,7 @@ final class MainScreenViewController: UIViewController {
 
     override func loadView() {
         view = mainScreenView
+        view.isUserInteractionEnabled = true
     }
 
     override func viewDidLoad() {
@@ -20,15 +21,20 @@ final class MainScreenViewController: UIViewController {
 
 // MARK: - MainScreenViewInput
 extension MainScreenViewController: MainScreenViewInput {
+
     func configureViews() {
         configureNavigationBar()
-
     }
-}
 
+    func showSideMenu() {
+        print("Showing side menu")
+    }
+
+}
+// MARK: - ButtonActionDelegate
 extension MainScreenViewController: ButtonActionDelegate {
     func buttonPressed() {
-        print("Pressed button")
+        presenter?.viewPressedLogoButton(self)
     }
 }
 
@@ -47,7 +53,7 @@ extension MainScreenViewController {
             image: UIImage(sfSymbol: SFSymbol.threeLinesHorizontal, withConfiguration: largeSymbolConfiguration),
             style: .plain,
             target: self,
-            action: #selector(rightButtonTapped)
+            action: #selector(sideMenuButtonTapped)
         )
 
         navigationItem.rightBarButtonItem?.tintColor = SharedResources
@@ -57,6 +63,7 @@ extension MainScreenViewController {
             .color
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(customView: customView)
+
     }
 
     private func addBottomLine(to view: UIView) {
@@ -67,7 +74,7 @@ extension MainScreenViewController {
     }
 
     @objc
-    private func rightButtonTapped() {
-
+    private func sideMenuButtonTapped() {
+        presenter?.viewPressedSideMenuButton(self)
     }
 }
