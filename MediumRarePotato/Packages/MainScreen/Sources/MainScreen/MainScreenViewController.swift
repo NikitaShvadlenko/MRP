@@ -10,7 +10,6 @@ final class MainScreenViewController: UIViewController {
 
     override func loadView() {
         view = mainScreenView
-        view.isUserInteractionEnabled = true
     }
 
     override func viewDidLoad() {
@@ -27,7 +26,7 @@ extension MainScreenViewController: MainScreenViewInput {
     }
 
     func showSideMenu() {
-        print("Showing side menu")
+
     }
 
 }
