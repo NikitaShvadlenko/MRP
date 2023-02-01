@@ -19,8 +19,6 @@ public enum MainScreenAssembly {
         router.viewController = viewController
         router.presenter = presenter
 
-        viewController.navigationItem.hidesBackButton = true
-
         return AssembledModule(
             viewController: viewController,
             moduleInput: presenter

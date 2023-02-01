@@ -1,6 +1,15 @@
 import UIKit
+import SharedResources
+import SnapKit
 
 final class MainScreenView: UIView {
+
+    private lazy var view: UIImageView = {
+        let view = UIImageView()
+        view.image = UIImage(asset: Asset.Assets.background)
+        return view
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureViews()
@@ -15,6 +24,9 @@ final class MainScreenView: UIView {
 // MARK: - Private methods
 extension MainScreenView {
     private func configureViews() {
-        backgroundColor = .blue
+        addSubview(view)
+        view.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }
