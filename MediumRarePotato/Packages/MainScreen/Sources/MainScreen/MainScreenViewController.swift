@@ -29,12 +29,14 @@ final class MainScreenViewController: UIViewController {
         view = mainScreenView
         view.addSubview(menuView)
         menuView.snp.makeConstraints { make in
-            make.top.trailing.bottom.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.top.trailing.equalTo(self.view.safeAreaLayoutGuide)
             make.width.equalTo(self.view.snp.width).multipliedBy(slideInMenuPadding)
         }
         view.addSubview(containerView)
         containerView.snp.makeConstraints { make in
-            make.top.leading.bottom.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.top.leading.equalTo(self.view.safeAreaLayoutGuide)
             make.width.equalToSuperview()
         }
     }
