@@ -11,15 +11,15 @@ final class MainScreenViewController: UIViewController {
 
     private let mainScreenView = MainScreenView()
 
-    private lazy var menuView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .red
+    private lazy var menuView: UIViewController = {
+        let view = UIViewController()
+        view.view.backgroundColor = .red
         return view
     }()
 
-    private lazy var containerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .blue
+    private lazy var containerView: UIViewController = {
+        let view = UIViewController()
+        view.view.backgroundColor = .blue
         return view
     }()
 
@@ -27,14 +27,15 @@ final class MainScreenViewController: UIViewController {
 
     override func loadView() {
         view = mainScreenView
-        view.addSubview(menuView)
-        menuView.snp.makeConstraints { make in
+        add(menuView)
+        menuView.view.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
             make.top.trailing.equalTo(self.view.safeAreaLayoutGuide)
             make.width.equalTo(self.view.snp.width).multipliedBy(slideInMenuPadding)
         }
-        view.addSubview(containerView)
-        containerView.snp.makeConstraints { make in
+
+        add(containerView)
+        containerView.view.snp.makeConstraints { make in
             make.bottom.equalToSuperview()
             make.top.leading.equalTo(self.view.safeAreaLayoutGuide)
             make.width.equalToSuperview()
@@ -64,10 +65,10 @@ extension MainScreenViewController: MainScreenViewInput {
             animations: {
                 switch self.isSlideMenuPresented {
                 case true:
-                    self.containerView.frame.origin.x = 0
+                    self.containerView.view.frame.origin.x = 0
 
                 case false:
-                    self.containerView.frame.origin.x = -(self.containerView.frame.width * self.slideInMenuPadding)
+                    self.containerView.view.frame.origin.x = -(self.containerView.view.frame.width * self.slideInMenuPadding)
                 }
             }, completion: {_ in
                 self.isSlideMenuPresented.toggle()
