@@ -27,19 +27,12 @@ final class MainScreenViewController: UIViewController {
 
     override func loadView() {
         view = mainScreenView
-        add(menuView)
-        menuView.view.snp.makeConstraints { make in
-            make.bottom.equalToSuperview()
-            make.top.trailing.equalTo(self.view.safeAreaLayoutGuide)
-            make.width.equalTo(self.view.snp.width).multipliedBy(slideInMenuPadding)
-        }
 
-        add(containerView)
-        containerView.view.snp.makeConstraints { make in
-            make.bottom.equalToSuperview()
-            make.top.leading.equalTo(self.view.safeAreaLayoutGuide)
-            make.width.equalToSuperview()
-        }
+        createSideMenu(
+            menuViewController: menuView,
+            containerViewController: containerView,
+            padding: slideInMenuPadding
+        )
     }
 
     override func viewDidLoad() {

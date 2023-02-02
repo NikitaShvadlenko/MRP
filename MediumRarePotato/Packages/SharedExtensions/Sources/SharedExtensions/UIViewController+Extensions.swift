@@ -32,4 +32,27 @@ public extension UIViewController {
         view.removeFromSuperview()
         removeFromParent()
     }
+
+    func createSideMenu(
+        menuViewController: UIViewController,
+        containerViewController: UIViewController,
+        padding: CGFloat
+    ) {
+        add(menuViewController)
+        add(containerViewController)
+
+        add(menuViewController)
+        menuViewController.view.snp.makeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.top.trailing.equalTo(self.view.safeAreaLayoutGuide)
+            make.width.equalTo(self.view.snp.width).multipliedBy(padding)
+        }
+
+        add(containerViewController)
+        containerViewController.view.snp.makeConstraints { make in
+            make.bottom.equalToSuperview()
+            make.top.leading.equalTo(self.view.safeAreaLayoutGuide)
+            make.width.equalToSuperview()
+        }
+    }
 }
