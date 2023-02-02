@@ -55,4 +55,30 @@ public extension UIViewController {
             make.width.equalToSuperview()
         }
     }
+
+    func toggleSideMenu(
+        menuViewController: UIViewController,
+        containerViewController: UIViewController,
+        isSlideMenuPresented: Bool,
+        padding: CGFloat,
+        completion: @escaping () -> Void
+    ) {
+        UIView.animate(
+            withDuration: 0.5,
+            delay: 0,
+            usingSpringWithDamping: 0.8,
+            initialSpringVelocity: 0,
+            options: .curveEaseInOut,
+            animations: {
+                switch isSlideMenuPresented {
+                case true:
+                    containerViewController.view.frame.origin.x = 0
+
+                case false:
+                    containerViewController.view.frame.origin.x = -(containerViewController.view.frame.width * padding)
+                }
+            }, completion: {_ in
+                    completion()
+            })
+    }
 }

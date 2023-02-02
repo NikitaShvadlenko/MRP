@@ -11,13 +11,13 @@ final class MainScreenViewController: UIViewController {
 
     private let mainScreenView = MainScreenView()
 
-    private lazy var menuView: UIViewController = {
+    private lazy var menuViewController: UIViewController = {
         let view = UIViewController()
         view.view.backgroundColor = .red
         return view
     }()
 
-    private lazy var containerView: UIViewController = {
+    private lazy var containerViewController: UIViewController = {
         let view = UIViewController()
         view.view.backgroundColor = .blue
         return view
@@ -29,8 +29,8 @@ final class MainScreenViewController: UIViewController {
         view = mainScreenView
 
         createSideMenu(
-            menuViewController: menuView,
-            containerViewController: containerView,
+            menuViewController: menuViewController,
+            containerViewController: containerViewController,
             padding: slideInMenuPadding
         )
     }
@@ -49,23 +49,14 @@ extension MainScreenViewController: MainScreenViewInput {
     }
 
     func showSideMenu() {
-        UIView.animate(
-            withDuration: 0.5,
-            delay: 0,
-            usingSpringWithDamping: 0.8,
-            initialSpringVelocity: 0,
-            options: .curveEaseInOut,
-            animations: {
-                switch self.isSlideMenuPresented {
-                case true:
-                    self.containerView.view.frame.origin.x = 0
-
-                case false:
-                    self.containerView.view.frame.origin.x = -(self.containerView.view.frame.width * self.slideInMenuPadding)
-                }
-            }, completion: {_ in
-                self.isSlideMenuPresented.toggle()
-            })
+        toggleSideMenu(
+            menuViewController: menuViewController,
+            containerViewController: containerViewController,
+            isSlideMenuPresented: isSlideMenuPresented,
+            padding: slideInMenuPadding
+        ) {
+            self.isSlideMenuPresented.toggle()
+        }
     }
 
 }
