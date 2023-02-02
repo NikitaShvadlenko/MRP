@@ -21,6 +21,10 @@ final class SideMenuView: UIView {
         configureViews()
     }
 
+    override func layoutSubviews() {
+        addSideLine(to: self)
+    }
+
     @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -35,5 +39,12 @@ extension SideMenuView {
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+
+    private func addSideLine(to view: UIView) {
+        let layer = CALayer()
+        layer.frame = CGRect(x: 0, y: 0, width: 0.2, height: view.frame.height)
+        layer.backgroundColor = Asset.Colors.uiElementsColor.color.cgColor
+        view.layer.addSublayer(layer)
     }
 }
