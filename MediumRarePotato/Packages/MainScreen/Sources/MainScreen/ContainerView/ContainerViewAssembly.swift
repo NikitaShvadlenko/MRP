@@ -1,11 +1,12 @@
 import UIKit
+import Utils
 
-enum SideMenuAssembly {
-    static func assemble() -> AssembledModule<SideMenuModuleInput> {
-        let viewController = SideMenuViewController()
-        let presenter = SideMenuPresenter()
-        let interactor = SideMenuInteractor()
-        let router = SideMenuRouter()
+enum ContainerViewAssembly {
+    static func assemble() -> AssembledModule<ContainerViewModuleInput> {
+        let viewController = ContainerViewViewController()
+        let presenter = ContainerViewPresenter()
+        let interactor = ContainerViewInteractor()
+        let router = ContainerViewRouter()
 
         viewController.presenter = presenter
 

@@ -68,7 +68,7 @@ public extension UIViewController {
             delay: 0,
             usingSpringWithDamping: 0.8,
             initialSpringVelocity: 0,
-            options: .curveEaseInOut,
+            options: .curveEaseIn,
             animations: {
                 switch isSlideMenuPresented {
                 case true:

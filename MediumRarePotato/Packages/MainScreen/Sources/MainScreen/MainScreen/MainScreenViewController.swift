@@ -9,17 +9,22 @@ final class MainScreenViewController: UIViewController {
 
     private var isSlideMenuPresented = false
 
+    private lazy var overlayView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        view.alpha = 0
+        return view
+    }()
+
     private let mainScreenView = MainScreenView()
 
     private lazy var menuViewController: UIViewController = {
-        let view = UIViewController()
-        view.view.backgroundColor = .red
+        let view = SideMenuAssembly.assemble().viewController
         return view
     }()
 
     private lazy var containerViewController: UIViewController = {
-        let view = UIViewController()
-        view.view.backgroundColor = .blue
+        let view = ContainerViewAssembly.assemble().viewController
         return view
     }()
 
@@ -33,6 +38,11 @@ final class MainScreenViewController: UIViewController {
             containerViewController: containerViewController,
             padding: slideInMenuPadding
         )
+
+        containerViewController.view.addSubview(overlayView)
+        overlayView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 
     override func viewDidLoad() {
@@ -49,11 +59,19 @@ extension MainScreenViewController: MainScreenViewInput {
     }
 
     func showSideMenu() {
+        UIView.animate(withDuration: 0.5, delay: 0) {
+            if !self.isSlideMenuPresented {
+                self.overlayView.alpha = 0.4
+            } else {
+                self.overlayView.alpha = 0
+            }
+        }
+
         toggleSideMenu(
             menuViewController: menuViewController,
             containerViewController: containerViewController,
             isSlideMenuPresented: isSlideMenuPresented,
-            padding: slideInMenuPadding
+            padding: 0.5
         ) {
             self.isSlideMenuPresented.toggle()
         }
