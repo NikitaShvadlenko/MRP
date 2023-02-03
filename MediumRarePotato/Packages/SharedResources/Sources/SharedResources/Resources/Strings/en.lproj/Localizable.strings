@@ -2,3 +2,22 @@
 "Login" = "Login";
 "EnterAccessToken" = "Enter your access token below:";
 "tokenPlaceholder" = "i.e. 2f3628d8be86eb54acbb2c2b2dfc09bbf443";
+
+"MenuItems.bars" = "Bars";
+"MenuItems.myBars" = "My Bars";
+"MenuItems.restaurants" = "Restaurants";
+"MenuItems.myRestaurants" = "My Restaurants";
+"MenuItems.characters" = "Characters";
+"MenuItems.pvpCooks" = "PVP Cooks";
+"MenuItems.dishPool" = "Dish Pool";
+"MenuItems.shop" = "Shop";
+"MenuItems.craft" = "Craft";
+"MenuItems.cakes" = "Cakes";
+"MenuItems.referals" = "Referals";
+
+"Currency.mrp" = "MRP";
+"Currency.mrb" = "MRB";
+
+"Localization.eng" = "ENG";
+"Localization.ch" = "中文";
+
