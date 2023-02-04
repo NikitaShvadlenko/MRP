@@ -13,7 +13,15 @@
 "MenuItems.shop" = "Shop";
 "MenuItems.craft" = "Craft";
 "MenuItems.cakes" = "Cakes";
-"MenuItems.referals" = "Referals";
+"MenuItems.referrals" = "Referrals";
+"MenuItems.walletCards" = "Wallet Cards";
+"MenuItems.gameCards" = "Game Cards";
+"MenuItems.pvpRewards" = "PVP Rewards";
+"MenuItems.wallet" = "Wallet";
+"MenuItems.claims" = "Claims";
+"MenuItems.transactions" = "Transactions";
+"MenuItems.coupons" = "Coupons";
+"MenuItems.logout" = "Logout";
 
 "Currency.mrp" = "MRP";
 "Currency.mrb" = "MRB";

@@ -18,6 +18,13 @@ enum NavigationSection: CaseIterable {
     case shop
     case craft
     case cakes
-    case referals
+    case referrals
+    case walletCards
+    case gameCards
+    case pvpRewards
+    case wallet
+    case claims
+    case transactions
+    case coupons
+    case logout
 }
-
