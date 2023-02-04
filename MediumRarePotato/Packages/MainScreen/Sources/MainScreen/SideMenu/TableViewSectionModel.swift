@@ -1,13 +1,17 @@
 import Foundation
 import SharedResources
 
+protocol SideMenuItem {
+
+}
+
 enum SectionType: CaseIterable {
     case navigation
     case languageSelection
     case currentBalanceDisplay
 }
 
-enum NavigationSection: CaseIterable {
+enum NavigationSection: CaseIterable, SideMenuItem {
     case bars
     case myBars
     case restaurants

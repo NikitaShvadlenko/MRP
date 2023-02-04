@@ -14,6 +14,10 @@ final class SideMenuViewController: UIViewController {
         super.viewDidLoad()
         presenter?.viewDidLoad(self)
     }
+
+    func setTableViewDataSource(_ dataSource: UITableViewDataSource) {
+        sideMenuView.dataSource = dataSource
+    }
 }
 
 // MARK: - SideMenuViewInput

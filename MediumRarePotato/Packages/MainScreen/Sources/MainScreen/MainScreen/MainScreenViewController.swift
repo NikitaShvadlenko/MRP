@@ -5,7 +5,7 @@ import UIComponents
 
 final class MainScreenViewController: UIViewController {
 
-    lazy var slideInMenuPadding: CGFloat = 0.5
+    lazy var slideInMenuPadding: CGFloat = 0.65
 
     private var isSlideMenuPresented = false
 
@@ -38,7 +38,6 @@ final class MainScreenViewController: UIViewController {
             containerViewController: containerViewController,
             padding: slideInMenuPadding
         )
-
         containerViewController.view.addSubview(overlayView)
         overlayView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -71,7 +70,7 @@ extension MainScreenViewController: MainScreenViewInput {
             menuViewController: menuViewController,
             containerViewController: containerViewController,
             isSlideMenuPresented: isSlideMenuPresented,
-            padding: 0.5
+            padding: slideInMenuPadding
         ) {
             self.isSlideMenuPresented.toggle()
         }

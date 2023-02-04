@@ -4,15 +4,26 @@ import SnapKit
 
 final class SideMenuView: UIView {
 
+    public var dataSource: UITableViewDataSource? {
+        didSet {
+            tableView.dataSource = dataSource
+        }
+    }
+
     private lazy var backgroundView: UIView = {
         let view = UIImageView()
         view.image = UIImage(asset: Asset.Assets.background)
         return view
     }()
 
-    private lazy var tableView: UITableView = {
+     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundView = backgroundView
+        tableView.estimatedRowHeight = 200
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
+        tableView.allowsMultipleSelection = false
+        tableView.register(NavigationTableViewCell.self, forCellReuseIdentifier: "\(NavigationTableViewCell.self)")
         return tableView
     }()
 
@@ -47,4 +58,8 @@ extension SideMenuView {
         layer.backgroundColor = Asset.Colors.uiElementsColor.color.cgColor
         view.layer.addSublayer(layer)
     }
+}
+
+// MARK: Public Methods
+extension SideMenuView {
 }

@@ -27,14 +27,17 @@ extension TableViewManager: UITableViewDataSource {
             return 1
 
         default:
-            return 1
+            return 0
         }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            let cell = UITableViewCell()
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(NavigationTableViewCell.self)", for: indexPath) as? NavigationTableViewCell else {
+                fatalError("Could not deque cell")
+            }
+
             return cell
             // cell title = navigationItems[indexpath.row]
         case 1:

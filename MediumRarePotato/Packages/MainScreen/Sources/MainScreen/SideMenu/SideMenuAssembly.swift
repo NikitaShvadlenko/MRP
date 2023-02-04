@@ -7,8 +7,10 @@ enum SideMenuAssembly {
         let presenter = SideMenuPresenter()
         let interactor = SideMenuInteractor()
         let router = SideMenuRouter()
+        let dataSource = TableViewManager()
 
         viewController.presenter = presenter
+        viewController.setTableViewDataSource(dataSource)
 
         presenter.view = viewController
         presenter.interactor = interactor
