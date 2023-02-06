@@ -32,16 +32,6 @@ final class MainScreenViewController: UIViewController {
 
     override func loadView() {
         view = mainScreenView
-
-        createSideMenu(
-            menuViewController: menuViewController,
-            containerViewController: containerViewController,
-            padding: slideInMenuPadding
-        )
-        containerViewController.view.addSubview(overlayView)
-        overlayView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
     }
 
     override func viewDidLoad() {
@@ -56,24 +46,8 @@ extension MainScreenViewController: MainScreenViewInput {
     func configureViews() {
         configureNavigationBar()
     }
-
     func showSideMenu() {
-        UIView.animate(withDuration: 0.5, delay: 0) {
-            if !self.isSlideMenuPresented {
-                self.overlayView.alpha = 0.4
-            } else {
-                self.overlayView.alpha = 0
-            }
-        }
 
-        toggleSideMenu(
-            menuViewController: menuViewController,
-            containerViewController: containerViewController,
-            isSlideMenuPresented: isSlideMenuPresented,
-            padding: slideInMenuPadding
-        ) {
-            self.isSlideMenuPresented.toggle()
-        }
     }
 
 }
