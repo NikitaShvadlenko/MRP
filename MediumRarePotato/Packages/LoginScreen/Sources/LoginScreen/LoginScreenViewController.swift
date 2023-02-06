@@ -1,12 +1,12 @@
 import UIKit
 import UIComponents
 import SharedExtensions
+import SharedResources
 
 final class LoginScreenViewController: UIViewController {
 
     let activityViewController = ActivityViewController()
     private let loginScreenView = LoginScreenView()
-
     var presenter: LoginScreenViewOutput?
 
     override func loadView() {
@@ -42,11 +42,21 @@ extension LoginScreenViewController: LoginScreenViewInput {
     }
 
     func displayEmptyFieldToast() {
-        displayToastMessage(style: .negative, message: "The token field can not be empty!", timerDuration: 10)
+        let toastMessage = ToastMessage(
+            style: .negative,
+            message: L10n.Error.emptyTokenField,
+            timerDuration: 10
+        )
+        displayToastMessage(view: toastMessage)
     }
 
     func displayNegativeToast(error: String) {
-        displayToastMessage(style: .negative, message: error, timerDuration: 10)
+        let toastMessage = ToastMessage(
+            style: .negative,
+            message: error,
+            timerDuration: 10
+        )
+        displayToastMessage(view: toastMessage)
     }
 
     func configureViews() {

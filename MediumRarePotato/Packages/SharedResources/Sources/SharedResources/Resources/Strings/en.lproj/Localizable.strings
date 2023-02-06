@@ -29,3 +29,4 @@
 "Localization.eng" = "ENG";
 "Localization.ch" = "中文";
 
+"Error.emptyTokenField" = "The token field can not be empty!";

@@ -1,9 +1,9 @@
 import UIKit
-import UIComponents
+import SnapKit
 
 public extension UIViewController {
-    func displayToastMessage(style: ToastMessage.Style, message: String, timerDuration: Float) {
-        let toastMessage = ToastMessage(style: style, message: message, timerDuration: timerDuration)
+    func displayToastMessage(view: UIView) {
+        let toastMessage = view
         self.view.addSubview(toastMessage)
         toastMessage.snp.updateConstraints { make in
             make.height.equalTo(100)
