@@ -24,6 +24,11 @@ final class MainScreenViewController: UIViewController {
         return view
     }()
 
+    private lazy var containerViewController: UIViewController = {
+        let view = ContainerViewAssembly.assemble().viewController
+        return view
+    }()
+
     var presenter: MainScreenViewOutput?
 
     override func loadView() {
