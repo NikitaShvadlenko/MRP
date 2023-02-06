@@ -2,7 +2,7 @@ import UIKit
 import Utils
 
 public enum SideMenuAssembly {
-    public static func assemble() -> AssembledModule<SideMenuModuleInput> {
+    public static func assemble(containerViewController: UIViewController) -> AssembledModule<SideMenuModuleInput> {
         let viewController = SideMenuViewController()
         let presenter = SideMenuPresenter()
         let interactor = SideMenuInteractor()
@@ -20,6 +20,7 @@ public enum SideMenuAssembly {
 
         router.viewController = viewController
         router.presenter = presenter
+        router.containerViewController = containerViewController
 
         return AssembledModule(
             viewController: viewController,

@@ -20,7 +20,7 @@ final class MainScreenViewController: UIViewController {
     private let mainScreenView = MainScreenView()
 
     private lazy var menuViewController: UIViewController = {
-        let view = SideMenuAssembly.assemble().viewController
+        let view = SideMenuAssembly.assemble(containerViewController: containerViewController).viewController
         return view
     }()
 
@@ -38,6 +38,10 @@ final class MainScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.viewDidLoad(self)
+        add(containerViewController)
+        containerViewController.view.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }
 

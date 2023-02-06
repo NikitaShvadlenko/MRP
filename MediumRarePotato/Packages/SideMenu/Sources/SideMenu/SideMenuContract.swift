@@ -17,6 +17,7 @@ protocol SideMenuInteractorOutput: AnyObject {
 
 // sourcery: AutoMockable
 protocol SideMenuRouterInput {
+    func routeTo()
 }
 
 protocol SideMenuRouterOutput: AnyObject {
