@@ -1,8 +1,8 @@
 import UIKit
 import Utils
 
-enum SideMenuAssembly {
-    static func assemble() -> AssembledModule<SideMenuModuleInput> {
+public enum SideMenuAssembly {
+    public static func assemble() -> AssembledModule<SideMenuModuleInput> {
         let viewController = SideMenuViewController()
         let presenter = SideMenuPresenter()
         let interactor = SideMenuInteractor()

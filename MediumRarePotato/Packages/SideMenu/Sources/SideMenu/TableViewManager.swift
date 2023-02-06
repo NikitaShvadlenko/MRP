@@ -1,12 +1,12 @@
 import UIKit
 
 protocol SideMenuDelegate: AnyObject {
-
+    func routeTo()
 }
 
 final class TableViewManager: NSObject {
     let navigationItems = NavigationSection.allCases
-    weak var delegate: SideMenuDelegate?
+    public weak var delegate: SideMenuDelegate?
 }
 
 extension TableViewManager: UITableViewDataSource {

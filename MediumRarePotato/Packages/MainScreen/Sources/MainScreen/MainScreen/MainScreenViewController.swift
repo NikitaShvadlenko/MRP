@@ -2,6 +2,7 @@ import SharedResources
 import UIKit
 import SharedExtensions
 import UIComponents
+import SideMenu
 
 final class MainScreenViewController: UIViewController {
 

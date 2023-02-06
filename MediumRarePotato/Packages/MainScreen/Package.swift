@@ -12,14 +12,14 @@ let package = Package(
             targets: ["MainScreen"])
     ],
     dependencies: [
-        .package(url: "https://github.com/Alamofire/Alamofire", from: "5.6.4"),
         .package(url: "https://github.com/SnapKit/SnapKit", from: "5.0.1"),
         .package(path: "../UIComponents"),
         .package(path: "../SharedResources"),
         .package(path: "../SharedExtensions"),
         .package(path: "../SharedModels"),
         .package(path: "../Networking"),
-        .package(path: "../Utils")
+        .package(path: "../Utils"),
+        .package(path: "../SideMenu")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -33,8 +33,8 @@ let package = Package(
             "SharedModels",
             "Utils",
             "Networking",
-            "Alamofire",
-            "SnapKit"
+            "SnapKit",
+            "SideMenu"
             ])
     ]
 )

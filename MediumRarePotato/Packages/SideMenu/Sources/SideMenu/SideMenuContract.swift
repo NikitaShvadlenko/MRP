@@ -22,10 +22,10 @@ protocol SideMenuRouterInput {
 protocol SideMenuRouterOutput: AnyObject {
 }
 
-protocol SideMenuModuleInput: AnyObject {
+public protocol SideMenuModuleInput: AnyObject {
 	func configureModule(output: SideMenuModuleOutput?)
 }
 
 // sourcery: AutoMockable
-protocol SideMenuModuleOutput: AnyObject {
+public protocol SideMenuModuleOutput: AnyObject {
 }

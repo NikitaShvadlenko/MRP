@@ -29,6 +29,10 @@ packages:
     path: MediumRarePotato/Packages/SharedResources
     group: UI
 
+  SharedExtensions:
+    path: MediumRarePotato/Packages/SharedExtensions
+    group: UI
+
   UIComponents:
     path: MediumRarePotato/Packages/UIComponents
     group: UI
@@ -40,6 +44,10 @@ packages:
 
   MainScreen:
     path: MediumRarePotato/Packages/MainScreen
+    group: Feature
+
+  SideMenu:
+    path: MediumRarePotato/Packages/SideMenu
     group: Feature
 
   ## Business logic
