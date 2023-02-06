@@ -7,7 +7,7 @@ final class MainScreenViewController: UIViewController {
 
     lazy var slideInMenuPadding: CGFloat = 0.65
 
-    private var isSlideMenuPresented = false
+    private var isMenuDisplayed = false
 
     private lazy var overlayView: UIView = {
         let view = UIView()
@@ -46,8 +46,14 @@ extension MainScreenViewController: MainScreenViewInput {
     func configureViews() {
         configureNavigationBar()
     }
-    func showSideMenu() {
 
+    func showSideMenu() {
+        displaySideMenu(
+            sideMenuViewController: menuViewController,
+            padding: slideInMenuPadding,
+            isMenuDisplayed: &isMenuDisplayed,
+            animationDuration: 0.5
+        )
     }
 
 }
