@@ -15,6 +15,10 @@ final class SideMenuViewController: UIViewController {
         presenter?.viewDidLoad(self)
     }
 
+    func setTableViewDelegate(_ delegate: UITableViewDelegate) {
+        sideMenuView.delegate = delegate
+    }
+
     func setTableViewDataSource(_ dataSource: UITableViewDataSource) {
         sideMenuView.dataSource = dataSource
     }

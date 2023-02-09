@@ -30,6 +30,7 @@ extension TableViewManager: UITableViewDataSource {
             return 0
         }
     }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch SectionType(rawValue: indexPath.section) {
         case .navigation:
@@ -48,8 +49,14 @@ extension TableViewManager: UITableViewDataSource {
             return cell
 
         case .currentBalanceDisplay:
-            // create a function that would take the balance data and configure a custom cell with it
-            return UITableViewCell()
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: "\(CurrencyCell.self)",
+                for: indexPath
+            ) as? CurrencyCell else {
+                fatalError("Could not deque cell")
+            }
+            cell.configure(currency: "MRP", amount: 50012.4441114)
+            return cell
 
         case .languageSelection:
             // create a switcher in a cell (no need to implement functionality yet)
@@ -59,4 +66,7 @@ extension TableViewManager: UITableViewDataSource {
             return UITableViewCell()
         }
     }
+}
+// MARK: - UITableViewDelegate
+extension TableViewManager: UITableViewDelegate {
 }

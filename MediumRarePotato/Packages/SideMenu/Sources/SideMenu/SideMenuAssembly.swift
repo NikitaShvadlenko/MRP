@@ -12,6 +12,7 @@ public enum SideMenuAssembly {
         tableViewManager.delegate = viewController
         viewController.presenter = presenter
         viewController.setTableViewDataSource(tableViewManager)
+        viewController.setTableViewDelegate(tableViewManager)
 
         presenter.view = viewController
         presenter.interactor = interactor

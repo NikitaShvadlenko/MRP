@@ -10,6 +10,12 @@ final class SideMenuView: UIView {
         }
     }
 
+    public var delegate: UITableViewDelegate? {
+        didSet {
+            tableView.delegate = delegate
+        }
+    }
+
     private lazy var backgroundView: UIView = {
         let view = UIImageView()
         view.image = UIImage(asset: Asset.Assets.background)
@@ -19,11 +25,12 @@ final class SideMenuView: UIView {
      private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundView = backgroundView
-        tableView.estimatedRowHeight = 200
+        tableView.estimatedRowHeight = 250
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         tableView.allowsMultipleSelection = false
         tableView.register(NavigationTableViewCell.self, forCellReuseIdentifier: "\(NavigationTableViewCell.self)")
+        tableView.register(CurrencyCell.self, forCellReuseIdentifier: "\(CurrencyCell.self)")
         return tableView
     }()
 
@@ -48,13 +55,15 @@ extension SideMenuView {
 
         addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.lessThanOrEqualToSuperview()
+            make.height.equalToSuperview().multipliedBy(0.86).priority(.high)
         }
     }
 
     private func addSideLine(to view: UIView) {
         let layer = CALayer()
-        layer.frame = CGRect(x: 0, y: 0, width: 0.2, height: view.frame.height)
+        layer.frame = CGRect(x: 0, y: 0, width: 0.5, height: view.frame.height)
         layer.backgroundColor = Asset.Colors.uiElementsColor.color.cgColor
         view.layer.addSublayer(layer)
     }
