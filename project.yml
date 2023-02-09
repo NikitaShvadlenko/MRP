@@ -42,6 +42,10 @@ packages:
     path: MediumRarePotato/Packages/LoginScreen
     group: Feature
 
+  MyRestaurants:
+    path: MediumRarePotato/Packages/MyRestaurants
+    group: Feature
+
   MainScreen:
     path: MediumRarePotato/Packages/MainScreen
     group: Feature
