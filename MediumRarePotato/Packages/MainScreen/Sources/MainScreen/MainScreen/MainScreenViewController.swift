@@ -99,7 +99,7 @@ extension MainScreenViewController {
 
     private func addBottomLine(to view: UIView) {
         let layer = CALayer()
-        layer.frame = CGRect(x: 0, y: view.frame.height - 1, width: view.frame.width, height: 0.2)
+        layer.frame = CGRect(x: 0, y: view.frame.height - 1, width: view.frame.width, height: 0.5)
         layer.backgroundColor = Asset.Colors.uiElementsColor.color.cgColor
         view.layer.addSublayer(layer)
     }
