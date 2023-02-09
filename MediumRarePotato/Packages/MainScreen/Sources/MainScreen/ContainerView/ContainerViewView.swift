@@ -24,10 +24,9 @@ final class ContainerViewView: UIView {
 // MARK: - Private methods
 extension ContainerViewView {
     private func configureViews() {
-        backgroundColor = .blue
-        //      addSubview(view)
-//        view.snp.makeConstraints { make in
-//            make.edges.equalToSuperview()
-//        }
+        addSubview(view)
+        view.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }
