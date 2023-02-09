@@ -12,7 +12,8 @@ enum LanguageSelectionSection: CaseIterable {
 }
 
 enum CurrentBalanceSection: CaseIterable {
-    case currentBalance
+    case mrp
+    case mrb
 }
 
 enum NavigationSection: CaseIterable {
