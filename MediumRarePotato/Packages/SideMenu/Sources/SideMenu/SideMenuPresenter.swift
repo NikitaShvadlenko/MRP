@@ -9,6 +9,13 @@ final class SideMenuPresenter {
 
 // MARK: - SideMenuViewOutput
 extension SideMenuPresenter: SideMenuViewOutput {
+    func tableManagerNeedsSideMenuItem(for navigationSectionItem: NavigationSection) -> NavigationItem {
+        guard let item = interactor?.fetchNavigationSectionItem(for: navigationSectionItem) else {
+            fatalError("Could not fetch navigation item")
+        }
+        return item
+    }
+
     func viewDidLoad(_ view: SideMenuViewInput) {
         view.configureViews()
     }

@@ -6,17 +6,16 @@ class NavigationTableViewCell: UITableViewCell {
 
     let navigationLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: FontFamily.Neucha.regular.name, size: 25)
-        label.textAlignment = .center
+        label.font = UIFont(name: FontFamily.Neucha.regular.name, size: 22)
+        label.textAlignment = .left
         label.numberOfLines = 1
-        label.text = SharedResources.L10n.MenuItems.myRestaurants
         label.textColor = Asset.Colors.primaryTextColor.color
         return label
     }()
 
     let image: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(sfSymbol: SFSymbol.closeSymbol)
+        imageView.contentMode = .scaleAspectFit
         imageView.tintColor = Asset.Colors.uiElementsColor.color
         return imageView
     }()
@@ -41,17 +40,25 @@ extension NavigationTableViewCell {
         ].forEach(addSubview(_:))
 
         image.snp.makeConstraints { make in
-            make.height.equalTo(40)
+            make.height.equalTo(30)
             make.width.equalTo(image.snp.height)
-            make.leading.equalToSuperview().inset(8)
+            make.leading.equalToSuperview().inset(30)
             make.centerY.equalToSuperview()
         }
 
         navigationLabel.snp.makeConstraints { make in
-            make.leading.equalTo(image.snp.trailing).offset(10)
+            make.leading.equalTo(image.snp.trailing).offset(40)
             make.top.equalTo(image.snp.top)
             make.bottom.equalTo(image.snp.bottom)
             make.trailing.equalToSuperview().inset(10)
         }
+    }
+}
+
+// MARK: Public functions
+extension NavigationTableViewCell {
+    public func configure(icon: UIImage, name: String) {
+        navigationLabel.text = name
+        image.image = icon
     }
 }

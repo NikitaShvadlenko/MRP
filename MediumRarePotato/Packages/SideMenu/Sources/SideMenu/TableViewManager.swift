@@ -1,7 +1,7 @@
 import UIKit
 
 protocol SideMenuDelegate: AnyObject {
-    func routeTo()
+    func tableViewManagerNeedsNavigationItem(for navigationSectionItem: NavigationSection) -> NavigationItem
 }
 
 final class TableViewManager: NSObject {
@@ -33,16 +33,18 @@ extension TableViewManager: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch SectionType(rawValue: indexPath.section) {
         case .navigation:
-            // create a function that takes NavigationSection case and returns the string and image to setup the cell.
-            // (+ create a configuration function for the cell)
-
             guard let cell = tableView.dequeueReusableCell(
                 withIdentifier: "\(NavigationTableViewCell.self)",
                 for: indexPath
             ) as? NavigationTableViewCell else {
                 fatalError("Could not deque cell")
             }
-
+            guard let item = delegate?.tableViewManagerNeedsNavigationItem(
+                for: NavigationSection.allCases[indexPath.row]
+            ) else {
+                fatalError("Could not get item")
+            }
+            cell.configure(icon: item.image, name: item.name)
             return cell
 
         case .currentBalanceDisplay:

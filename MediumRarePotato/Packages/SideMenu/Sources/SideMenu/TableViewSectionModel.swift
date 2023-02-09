@@ -37,7 +37,7 @@ enum NavigationSection: CaseIterable {
     case logout
 }
 
-struct NavigationItemModel {
+struct NavigationItem {
     let name: String
     let image: UIImage
 }

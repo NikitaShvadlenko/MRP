@@ -6,10 +6,12 @@ protocol SideMenuViewInput: AnyObject {
 
 protocol SideMenuViewOutput {
     func viewDidLoad(_ view: SideMenuViewInput)
+    func tableManagerNeedsSideMenuItem(for navigationSectionItem: NavigationSection) -> NavigationItem
 }
 
 // sourcery: AutoMockable
 protocol SideMenuInteractorInput {
+    func fetchNavigationSectionItem(for navigationSection: NavigationSection) -> NavigationItem
 }
 
 // sourcery: AutoMockable
