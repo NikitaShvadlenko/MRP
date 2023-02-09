@@ -1,3 +1,4 @@
+import UIKit
 // sourcery: AutoMockable
 protocol SideMenuViewInput: AnyObject {
     func configureViews()
@@ -17,7 +18,7 @@ protocol SideMenuInteractorOutput: AnyObject {
 
 // sourcery: AutoMockable
 protocol SideMenuRouterInput {
-    func routeTo()
+    func routeTo(_ viewController: UIViewController)
 }
 
 protocol SideMenuRouterOutput: AnyObject {

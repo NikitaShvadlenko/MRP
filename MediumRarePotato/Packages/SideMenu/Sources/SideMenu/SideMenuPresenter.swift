@@ -11,7 +11,6 @@ final class SideMenuPresenter {
 extension SideMenuPresenter: SideMenuViewOutput {
     func viewDidLoad(_ view: SideMenuViewInput) {
         view.configureViews()
-        router?.routeTo()
     }
 }
 

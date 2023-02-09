@@ -9,10 +9,17 @@ final class SideMenuRouter {
 
 // MARK: - SideMenuRouterInput
 extension SideMenuRouter: SideMenuRouterInput {
-    func routeTo() {
-        let testVc = UIViewController()
-        testVc.view.backgroundColor = .red
-        
+    func routeTo(_ viewController: UIViewController) {
+        guard let parent = containerViewController?.parent else {
+            fatalError("no parent")
+        }
+        containerViewController?.removeFromParent()
+        viewController.view.backgroundColor = .red
+        parent.view.addSubview(viewController.view)
+        viewController.view.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        viewController.view.layoutSubviews()
     }
 }
 
