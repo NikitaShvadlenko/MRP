@@ -1,17 +1,21 @@
-import Foundation
+import UIKit
 import SharedResources
 
-protocol SideMenuItem {
-
-}
-
-enum SectionType: CaseIterable {
+enum SectionType: Int, CaseIterable {
     case navigation
     case languageSelection
     case currentBalanceDisplay
 }
 
-enum NavigationSection: CaseIterable, SideMenuItem {
+enum LanguageSelectionSection: CaseIterable {
+    case languageSelection
+}
+
+enum CurrentBalanceSection: CaseIterable {
+    case currentBalance
+}
+
+enum NavigationSection: CaseIterable {
     case bars
     case myBars
     case restaurants
@@ -31,4 +35,9 @@ enum NavigationSection: CaseIterable, SideMenuItem {
     case transactions
     case coupons
     case logout
+}
+
+struct NavigationItemModel {
+    let name: String
+    let image: UIImage
 }

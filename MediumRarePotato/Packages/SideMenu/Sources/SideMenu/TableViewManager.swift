@@ -16,37 +16,45 @@ extension TableViewManager: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
+        switch SectionType(rawValue: section) {
+        case .navigation:
             return NavigationSection.allCases.count
 
-        case 1:
-            return 1
+        case .currentBalanceDisplay:
+            return CurrentBalanceSection.allCases.count
 
-        case 2:
-            return 1
+        case .languageSelection:
+            return LanguageSelectionSection.allCases.count
 
         default:
             return 0
         }
     }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "\(NavigationTableViewCell.self)", for: indexPath) as? NavigationTableViewCell else {
+        switch SectionType(rawValue: indexPath.section) {
+        case .navigation:
+            // create a function that takes NavigationSection case and returns the string and image to setup the cell.
+            // (+ create a configuration function for the cell)
+
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: "\(NavigationTableViewCell.self)",
+                for: indexPath
+            ) as? NavigationTableViewCell else {
                 fatalError("Could not deque cell")
             }
 
             return cell
-            // cell title = navigationItems[indexpath.row]
-        case 1:
-            return UITableViewCell() // language selection cell
-        case 2:
-            return UITableViewCell() // currency cell
+
+        case .currentBalanceDisplay:
+            // create a function that would take the balance data and configure a custom cell with it
+            return UITableViewCell()
+
+        case .languageSelection:
+            // create a switcher in a cell (no need to implement functionality yet)
+            return UITableViewCell()
+
         default:
             return UITableViewCell()
         }
-
     }
 }
