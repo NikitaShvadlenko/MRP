@@ -27,6 +27,6 @@
 "Currency.mrb" = "MRB";
 
 "Localization.eng" = "ENG";
-"Localization.ch" = "中文";
+"Localization.ru" = "RU";
 
 "Error.emptyTokenField" = "The token field can not be empty!";

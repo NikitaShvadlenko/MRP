@@ -10,6 +10,10 @@ final class SideMenuPresenter {
 
 // MARK: - SideMenuViewOutput
 extension SideMenuPresenter: SideMenuViewOutput {
+    func viewDidPressLanguageSelectionButton(title: String) {
+        interactor?.changeDefaultLocalization(title)
+    }
+
     func tableManagerNeedsCurrencyItem(for currentBalanceSection: CurrentBalanceSection) -> CurrencyItem? {
         interactor?.retrieveUserData(for: currentBalanceSection)
     }

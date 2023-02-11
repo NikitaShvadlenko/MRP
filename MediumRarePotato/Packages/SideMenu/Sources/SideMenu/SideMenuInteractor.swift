@@ -9,6 +9,10 @@ final class SideMenuInteractor {
 
 // MARK: - SideMenuInteractorInput
 extension SideMenuInteractor: SideMenuInteractorInput {
+    func changeDefaultLocalization(_ languageKey: String) {
+        print("Changing language to... ", languageKey)
+    }
+
     func retrieveUserData(for currentBalanceSection: CurrentBalanceSection) -> CurrencyItem? {
         guard let userData = gameDataManager?.retrieveUserData() else {
             return nil

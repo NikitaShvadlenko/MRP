@@ -74,7 +74,6 @@ extension TableViewManager: UITableViewDataSource {
             ) as? LanguageSelectionCell else {
                 fatalError("Could not deque cell")
             }
-            // TODO: fix customCell delegate
             cell.addButton(for: ["Ch", "Eng"], delegate: self)
             cell.selectionStyle = .none
             return cell

@@ -1,0 +1,32 @@
+"GameTitle" = "Medium Rare Potato";
+"Login" = "Войти";
+"EnterAccessToken" = "Введите токен ниже:";
+"tokenPlaceholder" = "Например: 2f3628d8be86eb54acbb2c2b2dfc09bbf443";
+
+"MenuItems.bars" = "Бары";
+"MenuItems.myBars" = "Мои Бары";
+"MenuItems.restaurants" = "Рестораны";
+"MenuItems.myRestaurants" = "Мои рестораны";
+"MenuItems.characters" = "Персонажи";
+"MenuItems.pvpCooks" = "ПВП куков";
+"MenuItems.dishPool" = "Пул блюд";
+"MenuItems.shop" = "Магазин";
+"MenuItems.craft" = "Крафт";
+"MenuItems.cakes" = "Тортики";
+"MenuItems.referrals" = "Рефералы";
+"MenuItems.walletCards" = "Карты кошелька";
+"MenuItems.gameCards" = "Игровые карты";
+"MenuItems.pvpRewards" = "Награды за ПВП";
+"MenuItems.wallet" = "Кошелёк";
+"MenuItems.claims" = "Claims";
+"MenuItems.transactions" = "Транзакции";
+"MenuItems.coupons" = "Купоны";
+"MenuItems.logout" = "Выйти";
+
+"Currency.mrp" = "MRP";
+"Currency.mrb" = "MRB";
+
+"Localization.eng" = "ENG";
+"Localization.ru" = "RU";
+
+"Error.emptyTokenField" = "Поле для токена не может быть пустым!";

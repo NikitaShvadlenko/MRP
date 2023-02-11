@@ -8,12 +8,14 @@ protocol SideMenuViewOutput {
     func viewDidLoad(_ view: SideMenuViewInput)
     func tableManagerNeedsSideMenuItem(for navigationSectionItem: NavigationSection) -> NavigationItem
     func tableManagerNeedsCurrencyItem(for currentBalanceSection: CurrentBalanceSection) -> CurrencyItem?
+    func viewDidPressLanguageSelectionButton(title: String)
 }
 
 // sourcery: AutoMockable
 protocol SideMenuInteractorInput {
     func fetchNavigationSectionItem(for navigationSection: NavigationSection) -> NavigationItem
     func retrieveUserData(for currentBalanceSection: CurrentBalanceSection) -> CurrencyItem?
+    func changeDefaultLocalization(_ languageKey: String)
 }
 
 // sourcery: AutoMockable

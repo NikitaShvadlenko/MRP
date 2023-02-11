@@ -25,6 +25,10 @@ final class SideMenuViewController: UIViewController {
 }
 // MARK: - SideMenuDelegate
 extension SideMenuViewController: SideMenuDelegate {
+    func viewDidPressLanguageSelectionButton(title: String) {
+        presenter?.viewDidPressLanguageSelectionButton(title: title)
+    }
+
     func tableViewManagerNeedsUserData(for currentBalanceSection: CurrentBalanceSection) -> CurrencyItem? {
         guard let presenter = presenter else {
             return nil
