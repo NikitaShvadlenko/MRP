@@ -9,7 +9,7 @@ public enum LoginScreenAssembly {
         let presenter = LoginScreenPresenter()
         let interactor = LoginScreenInteractor()
         let router = LoginScreenRouter()
-        let networkManager = ManagerFactory.shared.networkManager
+        let networkManager = NetworkingManagerFactory.shared.networkManager
         let passwordManager = Keychain()
         viewController.presenter = presenter
 

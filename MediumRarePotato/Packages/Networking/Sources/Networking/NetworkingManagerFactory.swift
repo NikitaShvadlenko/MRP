@@ -1,8 +1,8 @@
 import Foundation
 
-public final class ManagerFactory {
+public final class NetworkingManagerFactory {
 
-    public static let shared = ManagerFactory()
+    public static let shared = NetworkingManagerFactory()
 
     // Restrict initialization outside this class
     private init() { }
