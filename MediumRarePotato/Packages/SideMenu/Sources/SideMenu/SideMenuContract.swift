@@ -7,11 +7,13 @@ protocol SideMenuViewInput: AnyObject {
 protocol SideMenuViewOutput {
     func viewDidLoad(_ view: SideMenuViewInput)
     func tableManagerNeedsSideMenuItem(for navigationSectionItem: NavigationSection) -> NavigationItem
+    func tableManagerNeedsCurrencyItem(for currentBalanceSection: CurrentBalanceSection) -> CurrencyItem?
 }
 
 // sourcery: AutoMockable
 protocol SideMenuInteractorInput {
     func fetchNavigationSectionItem(for navigationSection: NavigationSection) -> NavigationItem
+    func retrieveUserData(for currentBalanceSection: CurrentBalanceSection) -> CurrencyItem?
 }
 
 // sourcery: AutoMockable

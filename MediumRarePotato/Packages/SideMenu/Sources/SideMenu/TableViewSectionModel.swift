@@ -42,3 +42,8 @@ struct NavigationItem {
     let name: String
     let image: UIImage
 }
+
+struct CurrencyItem {
+    var currencyName: String
+    var currencyQuantity: Float
+}

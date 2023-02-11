@@ -2,6 +2,7 @@ import UIKit
 
 protocol SideMenuDelegate: AnyObject {
     func tableViewManagerNeedsNavigationItem(for navigationSectionItem: NavigationSection) -> NavigationItem
+    func tableViewManagerNeedsUserData(for currentBalanceSection: CurrentBalanceSection) -> CurrencyItem?
 }
 
 final class TableViewManager: NSObject {
@@ -55,7 +56,13 @@ extension TableViewManager: UITableViewDataSource {
             ) as? CurrencyCell else {
                 fatalError("Could not deque cell")
             }
-            cell.configure(currency: "MRP", amount: 50012.4441114)
+            guard let currencyItem = delegate?.tableViewManagerNeedsUserData(
+                for: CurrentBalanceSection.allCases[indexPath.row]
+            ) else {
+                return UITableViewCell()
+            }
+
+            cell.configure(currency: currencyItem.currencyName, amount: currencyItem.currencyQuantity)
             return cell
 
         case .languageSelection:

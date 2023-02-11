@@ -1,12 +1,28 @@
 import UIKit
 import SharedResources
+import GameData
 
 final class SideMenuInteractor {
     weak var presenter: SideMenuInteractorOutput?
+    var gameDataManager: GameDataManagerProtocol?
 }
 
 // MARK: - SideMenuInteractorInput
 extension SideMenuInteractor: SideMenuInteractorInput {
+    func retrieveUserData(for currentBalanceSection: CurrentBalanceSection) -> CurrencyItem? {
+        guard let userData = gameDataManager?.retrieveUserData() else {
+            return nil
+        }
+
+        switch currentBalanceSection {
+        case .mrb:
+            return CurrencyItem(currencyName: L10n.Currency.mrb, currencyQuantity: userData.user.balance_mrb)
+
+        case .mrp:
+            return CurrencyItem(currencyName: L10n.Currency.mrp, currencyQuantity: userData.user.balance_mrp)
+        }
+    }
+
     // swiftlint:disable all
     func fetchNavigationSectionItem(for navigationSection: NavigationSection) -> NavigationItem {
         switch navigationSection {

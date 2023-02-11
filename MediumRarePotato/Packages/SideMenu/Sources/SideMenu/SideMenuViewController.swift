@@ -25,6 +25,14 @@ final class SideMenuViewController: UIViewController {
 }
 // MARK: - SideMenuDelegate
 extension SideMenuViewController: SideMenuDelegate {
+    func tableViewManagerNeedsUserData(for currentBalanceSection: CurrentBalanceSection) -> CurrencyItem? {
+        guard let presenter = presenter else {
+            return nil
+        }
+
+        return presenter.tableManagerNeedsCurrencyItem(for: currentBalanceSection)
+    }
+
     func tableViewManagerNeedsNavigationItem(for navigationSectionItem: NavigationSection) -> NavigationItem {
         guard let presenter = presenter else {
             fatalError("Presenter can not be nil")

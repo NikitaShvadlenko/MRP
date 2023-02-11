@@ -7,5 +7,5 @@ public final class GameDataFactory {
     // Restrict initialization outside this class
     private init() { }
 
-    public private(set) lazy var gameDataStore: GameDataStoreProtocol = GameDataStore()
+    public private(set) lazy var gameDataManager = GameDataManager()
 }

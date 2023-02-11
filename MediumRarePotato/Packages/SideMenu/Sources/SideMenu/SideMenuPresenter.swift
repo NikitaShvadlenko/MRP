@@ -1,4 +1,5 @@
 import Foundation
+import SharedResources
 
 final class SideMenuPresenter {
     weak var view: SideMenuViewInput?
@@ -9,6 +10,10 @@ final class SideMenuPresenter {
 
 // MARK: - SideMenuViewOutput
 extension SideMenuPresenter: SideMenuViewOutput {
+    func tableManagerNeedsCurrencyItem(for currentBalanceSection: CurrentBalanceSection) -> CurrencyItem? {
+        interactor?.retrieveUserData(for: currentBalanceSection)
+    }
+
     func tableManagerNeedsSideMenuItem(for navigationSectionItem: NavigationSection) -> NavigationItem {
         guard let item = interactor?.fetchNavigationSectionItem(for: navigationSectionItem) else {
             fatalError("Could not fetch navigation item")

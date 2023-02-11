@@ -11,7 +11,7 @@ public enum LoginScreenAssembly {
         let interactor = LoginScreenInteractor()
         let router = LoginScreenRouter()
         let networkManager = NetworkingManagerFactory.shared.networkManager
-        let gameDataManager = GameDataFactory.shared.gameDataStore
+        let gameDataManager = GameDataFactory.shared.gameDataManager
         let passwordManager = Keychain()
         viewController.presenter = presenter
 

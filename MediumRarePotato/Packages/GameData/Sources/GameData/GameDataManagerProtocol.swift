@@ -1,11 +1,12 @@
 import Foundation
 import SharedModels
 
-public protocol GameDataStoreProtocol {
+public protocol GameDataManagerProtocol {
     func setUserData(_ userData: UserData)
+    func retrieveUserData() -> UserData?
 }
 
-public class GameDataStore {
+public class GameDataManager {
     private(set) var userData: UserData?
 
     public init() {
@@ -13,7 +14,11 @@ public class GameDataStore {
 }
 
 // MARK: GameDataStoreProtocol
-extension GameDataStore: GameDataStoreProtocol {
+extension GameDataManager: GameDataManagerProtocol {
+    public func retrieveUserData() -> UserData? {
+        self.userData
+    }
+
     public func setUserData(_ userData: UserData) {
         self.userData = userData
     }

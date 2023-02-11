@@ -1,5 +1,5 @@
 public struct UserData: Codable {
-    let user: User
+    public let user: User
     let status: String
 }
 
@@ -14,8 +14,8 @@ public struct User: Codable {
     let api_key: String
     let game_balance: String
     let claim_amount: Double
-    let balance_mrp: Double
-    let balance_mrb: Double
+    public let balance_mrp: Float
+    public let balance_mrb: Float
     let last_withdraw: String
     let last_withdraw_mrb: String
     let is_banned: Bool

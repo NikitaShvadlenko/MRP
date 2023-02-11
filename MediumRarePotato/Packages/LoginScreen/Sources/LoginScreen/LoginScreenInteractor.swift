@@ -8,13 +8,13 @@ final class LoginScreenInteractor {
     weak var presenter: LoginScreenInteractorOutput?
     var networkManager: NetworkManagerProtocol?
     var passwordManager: PasswordManagerProtocol?
-    var gameDataManager: GameDataStoreProtocol?
+    var gameDataManager: GameDataManagerProtocol?
 }
 
 // MARK: - LoginScreenInteractorInput
 extension LoginScreenInteractor: LoginScreenInteractorInput {
-    func saveUserData(_ data: SharedModels.UserData) {
-        gameDataManager?.setUserData(data)
+    func saveUserData(_ data: UserData) {
+        self.gameDataManager?.setUserData(data)
     }
 
     func login(with apiKey: String?) {

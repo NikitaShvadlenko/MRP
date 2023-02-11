@@ -16,7 +16,8 @@ let package = Package(
         .package(url: "https://github.com/SnapKit/SnapKit", from: "5.0.1"),
         .package(path: "../SharedResources"),
         .package(path: "../Utils"),
-        .package(path: "../MyRestaurants")
+        .package(path: "../MyRestaurants"),
+        .package(path: "../GameData")
 
     ],
     targets: [
@@ -28,7 +29,8 @@ let package = Package(
                 "Utils",
                 "SnapKit",
                 "SharedResources",
-                "MyRestaurants"
+                "MyRestaurants",
+                "GameData"
             ])
     ]
 )

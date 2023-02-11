@@ -1,5 +1,6 @@
 import UIKit
 import Utils
+import GameData
 
 public enum SideMenuAssembly {
     public static func assemble(containerViewController: UIViewController) -> AssembledModule<SideMenuModuleInput> {
@@ -8,6 +9,7 @@ public enum SideMenuAssembly {
         let interactor = SideMenuInteractor()
         let router = SideMenuRouter()
         let tableViewManager = TableViewManager()
+        let gameDataManager = GameDataFactory.shared.gameDataManager
 
         tableViewManager.delegate = viewController
         viewController.presenter = presenter
@@ -17,7 +19,8 @@ public enum SideMenuAssembly {
         presenter.view = viewController
         presenter.interactor = interactor
         presenter.router = router
-
+        
+        interactor.gameDataManager = gameDataManager
         interactor.presenter = presenter
 
         router.viewController = viewController
