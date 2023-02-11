@@ -4,16 +4,31 @@ import SnapKit
 public extension UIViewController {
     func displayToastMessage(view: UIView) {
         let toastMessage = view
-        self.view.addSubview(toastMessage)
-        toastMessage.snp.updateConstraints { make in
-            make.height.equalTo(100)
-            make.trailing.leading.equalToSuperview().inset(8)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let window = windowScene.windows.first(where: { $0.isKeyWindow }) {
+            window.addSubview(toastMessage)
+        } else {
+            self.view.addSubview(toastMessage)
         }
 
-        toastMessage.transform = CGAffineTransform(translationX: 0, y: -100)
+        let screenSize = UIScreen.main.bounds.size
+        let height = screenSize.height * 0.1
+        toastMessage.snp.updateConstraints { make in
+            make.height.equalTo(height)
+            make.trailing.leading.equalToSuperview().inset(8)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).multipliedBy(0.7)
+        }
+
+        toastMessage.transform = CGAffineTransform(translationX: 0, y: -height)
+
         self.view.layoutIfNeeded()
-        UIView.animate(withDuration: 0.35) {
+        UIView.animate(
+            withDuration: 0.75,
+            delay: 0,
+            usingSpringWithDamping: 0.6,
+            initialSpringVelocity: 0,
+            options: .curveEaseInOut
+        ) {
             toastMessage.transform = .identity
         }
     }
