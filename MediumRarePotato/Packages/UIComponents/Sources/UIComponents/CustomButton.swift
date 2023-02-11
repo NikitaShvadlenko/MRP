@@ -2,8 +2,8 @@ import UIKit
 import SharedResources
 import SnapKit
 
-public protocol ButtonActionDelegate: AnyObject {
-    func buttonPressed()
+public protocol CustomButtonActionDelegate: AnyObject {
+    func buttonPressed(_ button: CustomButton)
 }
 
 public class CustomButton: UIView {
@@ -14,7 +14,7 @@ public class CustomButton: UIView {
         }
     }
 
-    public weak var delegate: ButtonActionDelegate?
+    public weak var delegate: CustomButtonActionDelegate?
 
     private lazy var button: UIButton = {
         let button = UIButton()
@@ -60,6 +60,6 @@ public class CustomButton: UIView {
     @objc
     private func buttonPressed() {
         animateTouch()
-        delegate?.buttonPressed()
+        delegate?.buttonPressed(self)
     }
 }

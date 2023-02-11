@@ -63,8 +63,8 @@ extension MainScreenViewController: MainScreenViewInput {
 
 }
 // MARK: - ButtonActionDelegate
-extension MainScreenViewController: ButtonActionDelegate {
-    func buttonPressed() {
+extension MainScreenViewController: NavigationBarTitleViewButtonDelegate {
+    func viewDidPressButton(_ button: UIButton) {
         presenter?.viewPressedLogoButton(self)
     }
 }

@@ -97,7 +97,7 @@ extension LoginScreenView {
             tokenInputWindow.text
     }
 
-    weak var buttonDelegate: ButtonActionDelegate? {
+    weak var buttonDelegate: CustomButtonActionDelegate? {
         get {
             loginButton.delegate
         }

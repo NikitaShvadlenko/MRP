@@ -21,7 +21,7 @@ final class LoginScreenViewController: UIViewController {
         registerTapGesture()
     }
 
-    func setLoginScreenButtonDelegate(_ delegate: ButtonActionDelegate) {
+    func setLoginScreenButtonDelegate(_ delegate: CustomButtonActionDelegate) {
         loginScreenView.buttonDelegate = delegate
     }
 
@@ -70,13 +70,17 @@ extension LoginScreenViewController {
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
+
+    private func loginWithToken() {
+        let token = loginScreenView.token
+        presenter?.viewDidTapLoginButton(self, token: token)
+    }
 }
 
 // MARK: ButtonActionDelegate
-extension LoginScreenViewController: ButtonActionDelegate {
-    func buttonPressed() {
-        let token = loginScreenView.token
-        presenter?.viewDidTapLoginButton(self, token: token)
+extension LoginScreenViewController: CustomButtonActionDelegate {
+    func buttonPressed(_ button: CustomButton) {
+        loginWithToken()
     }
 }
 
@@ -84,7 +88,7 @@ extension LoginScreenViewController: ButtonActionDelegate {
 extension LoginScreenViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        buttonPressed()
+        loginWithToken()
         return true
     }
 }

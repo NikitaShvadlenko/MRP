@@ -72,6 +72,7 @@ extension TableViewManager: UITableViewDataSource {
             ) as? LanguageSelectionCell else {
                 fatalError("Could not deque cell")
             }
+            // TODO: fix customCell delegate
             cell.addButton(for: ["Ch", "Eng"])
             return cell
 
@@ -81,6 +82,7 @@ extension TableViewManager: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // not every section must be selectable
         UIView.animate(withDuration: 0.5, delay: 0) {
             tableView.deselectRow(at: indexPath, animated: true)
         }

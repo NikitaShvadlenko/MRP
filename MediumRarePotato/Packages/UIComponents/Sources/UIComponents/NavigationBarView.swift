@@ -2,9 +2,13 @@ import UIKit
 import SharedResources
 import SnapKit
 
+public protocol NavigationBarTitleViewButtonDelegate: AnyObject {
+    func viewDidPressButton(_ button: UIButton)
+}
+
 public final class NavigationBarTitleView: UIView {
 
-    public weak var delegate: ButtonActionDelegate?
+    public weak var delegate: NavigationBarTitleViewButtonDelegate?
 
     private lazy var logoView: UIButton = {
         let button = UIButton()
@@ -63,6 +67,6 @@ extension NavigationBarTitleView {
 
     @objc
     private func buttonPressed() {
-        delegate?.buttonPressed()
+        delegate?.viewDidPressButton(logoView)
     }
 }
