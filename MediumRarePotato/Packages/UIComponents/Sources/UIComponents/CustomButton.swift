@@ -8,7 +8,11 @@ public protocol ButtonActionDelegate: AnyObject {
 
 public class CustomButton: UIView {
 
-    var title: String
+    public var title: String {
+        didSet {
+            button.setTitle(title, for: .normal)
+        }
+    }
 
     public weak var delegate: ButtonActionDelegate?
 

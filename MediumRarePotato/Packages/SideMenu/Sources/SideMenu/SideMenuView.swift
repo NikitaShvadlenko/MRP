@@ -31,6 +31,7 @@ final class SideMenuView: UIView {
         tableView.allowsMultipleSelection = false
         tableView.register(NavigationTableViewCell.self, forCellReuseIdentifier: "\(NavigationTableViewCell.self)")
         tableView.register(CurrencyCell.self, forCellReuseIdentifier: "\(CurrencyCell.self)")
+        tableView.register(LanguageSelectionCell.self, forCellReuseIdentifier: "\(LanguageSelectionCell.self)")
         return tableView
     }()
 

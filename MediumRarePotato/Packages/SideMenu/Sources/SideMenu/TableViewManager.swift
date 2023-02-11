@@ -66,11 +66,23 @@ extension TableViewManager: UITableViewDataSource {
             return cell
 
         case .languageSelection:
-            // create a switcher in a cell (no need to implement functionality yet)
-            return UITableViewCell()
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: "\(LanguageSelectionCell.self)",
+                for: indexPath
+            ) as? LanguageSelectionCell else {
+                fatalError("Could not deque cell")
+            }
+            cell.addButton(for: ["Ch", "Eng"])
+            return cell
 
         default:
             return UITableViewCell()
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        UIView.animate(withDuration: 0.5, delay: 0) {
+            tableView.deselectRow(at: indexPath, animated: true)
         }
     }
 }

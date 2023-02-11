@@ -19,7 +19,7 @@ public enum SideMenuAssembly {
         presenter.view = viewController
         presenter.interactor = interactor
         presenter.router = router
-        
+
         interactor.gameDataManager = gameDataManager
         interactor.presenter = presenter
 
