@@ -21,24 +21,32 @@ class LanguageSelectionCell: UITableViewCell {
     }
 }
 
-// MARK: Private functions
+// MARK: Private methods
 extension LanguageSelectionCell {
-    func setupView() {
+   private func setupView() {
         backgroundColor = .clear
         addSubview(stackView)
         stackView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(10)
         }
     }
+
+    private func removeAllSubviews(from view: UIView) {
+        for subview in view.subviews {
+            subview.removeFromSuperview()
+        }
+    }
 }
 
 // MARK: Public methods
 extension LanguageSelectionCell {
-    public func addButton(for languageTitles: [String]) {
+    public func addButton(for languageTitles: [String], delegate: CustomButtonActionDelegate) {
+        removeAllSubviews(from: stackView)
+        contentView.isUserInteractionEnabled = false
         for language in 0 ..< languageTitles.count {
             let button = CustomButton(frame: .zero, title: languageTitles[language])
+            button.delegate = delegate
             stackView.addArrangedSubview(button)
         }
-        layoutSubviews()
     }
 }
