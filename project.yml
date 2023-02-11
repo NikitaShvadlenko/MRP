@@ -67,6 +67,10 @@ packages:
     path: MediumRarePotato/Packages/SharedModels
     group: Business logic
 
+  GameData:
+    path: MediumRarePotato/Packages/GameData
+    group: Business logic
+
   ## Utils
   Utils:
     path: MediumRarePotato/Packages/Utils
