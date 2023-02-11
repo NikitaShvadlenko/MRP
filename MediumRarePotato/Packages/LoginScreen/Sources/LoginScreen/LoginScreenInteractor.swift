@@ -2,15 +2,21 @@ import Foundation
 import Networking
 import SharedModels
 import Keychain
+import GameData
 
 final class LoginScreenInteractor {
     weak var presenter: LoginScreenInteractorOutput?
     var networkManager: NetworkManagerProtocol?
     var passwordManager: PasswordManagerProtocol?
+    var gameDataManager: GameDataStoreProtocol?
 }
 
 // MARK: - LoginScreenInteractorInput
 extension LoginScreenInteractor: LoginScreenInteractorInput {
+    func saveUserData(_ data: SharedModels.UserData) {
+        gameDataManager?.setUserData(data)
+    }
+
     func login(with apiKey: String?) {
         self.presenter?.interactorSentRequest(self)
         guard let apiKey = apiKey else {

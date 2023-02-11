@@ -21,7 +21,8 @@ let package = Package(
         .package(path: "../Networking"),
         .package(path: "../Utils"),
         .package(path: "../MainScreen"),
-        .package(path: "../Keychain")
+        .package(path: "../Keychain"),
+        .package(path: "../GameData")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -38,7 +39,8 @@ let package = Package(
             "Alamofire",
             "SnapKit",
             "MainScreen",
-            "Keychain"
+            "Keychain",
+            "GameData"
             ])
     ]
 )

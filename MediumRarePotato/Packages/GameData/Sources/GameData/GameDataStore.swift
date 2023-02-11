@@ -18,4 +18,3 @@ extension GameDataStore: GameDataStoreProtocol {
         self.userData = userData
     }
 }
-

@@ -28,6 +28,7 @@ extension LoginScreenPresenter: LoginScreenViewOutput {
 extension LoginScreenPresenter: LoginScreenInteractorOutput {
 
     func interactor(_ interactor: LoginScreenInteractorInput, didReceiveUserData data: UserData, key: String) {
+        interactor.saveUserData(data)
         router?.routeToMainScreen()
         view?.removeActivityIndicator()
     }

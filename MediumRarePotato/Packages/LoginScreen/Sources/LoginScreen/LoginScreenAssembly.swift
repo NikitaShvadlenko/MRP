@@ -2,6 +2,7 @@ import UIKit
 import Utils
 import Keychain
 import Networking
+import GameData
 
 public enum LoginScreenAssembly {
     public static func assemble() -> AssembledModule<LoginScreenModuleInput> {
@@ -10,6 +11,7 @@ public enum LoginScreenAssembly {
         let interactor = LoginScreenInteractor()
         let router = LoginScreenRouter()
         let networkManager = NetworkingManagerFactory.shared.networkManager
+        let gameDataManager = GameDataFactory.shared.gameDataStore
         let passwordManager = Keychain()
         viewController.presenter = presenter
 
@@ -17,6 +19,7 @@ public enum LoginScreenAssembly {
         presenter.interactor = interactor
         presenter.router = router
 
+        interactor.gameDataManager = gameDataManager
         interactor.passwordManager = passwordManager
         interactor.presenter = presenter
         interactor.networkManager = networkManager

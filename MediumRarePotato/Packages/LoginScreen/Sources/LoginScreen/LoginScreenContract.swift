@@ -17,6 +17,7 @@ protocol LoginScreenViewOutput {
 protocol LoginScreenInteractorInput {
     func login(with apiKey: String?)
     func retrievePassword() -> String?
+    func saveUserData(_ data: UserData)
 }
 
 // sourcery: AutoMockable

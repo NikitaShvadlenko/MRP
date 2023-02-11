@@ -64,4 +64,3 @@ extension CurrencyCell {
         amountLabel.text = String(format: "%.4f", amount)
     }
 }
-
