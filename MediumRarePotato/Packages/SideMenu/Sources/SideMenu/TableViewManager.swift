@@ -1,8 +1,10 @@
 import UIKit
+import UIComponents
 
 protocol SideMenuDelegate: AnyObject {
     func tableViewManagerNeedsNavigationItem(for navigationSectionItem: NavigationSection) -> NavigationItem
     func tableViewManagerNeedsUserData(for currentBalanceSection: CurrentBalanceSection) -> CurrencyItem?
+    func viewDidPressLanguageSelectionButton(title: String)
 }
 
 final class TableViewManager: NSObject {
@@ -73,7 +75,8 @@ extension TableViewManager: UITableViewDataSource {
                 fatalError("Could not deque cell")
             }
             // TODO: fix customCell delegate
-            cell.addButton(for: ["Ch", "Eng"])
+            cell.addButton(for: ["Ch", "Eng"], delegate: self)
+            cell.selectionStyle = .none
             return cell
 
         default:
@@ -88,6 +91,14 @@ extension TableViewManager: UITableViewDataSource {
         }
     }
 }
+
 // MARK: - UITableViewDelegate
 extension TableViewManager: UITableViewDelegate {
+}
+
+// MARK: - CustomButtonActionDelegate
+extension TableViewManager: CustomButtonActionDelegate {
+    func buttonPressed(_ button: CustomButton) {
+        delegate?.viewDidPressLanguageSelectionButton(title: button.title)
+    }
 }
