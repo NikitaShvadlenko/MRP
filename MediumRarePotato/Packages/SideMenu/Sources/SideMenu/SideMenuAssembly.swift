@@ -10,6 +10,7 @@ public enum SideMenuAssembly {
         let router = SideMenuRouter()
         let tableViewManager = TableViewManager()
         let gameDataManager = GameDataFactory.shared.gameDataManager
+        let localizationManager = LocalizationManager()
 
         tableViewManager.delegate = viewController
         viewController.presenter = presenter
@@ -22,6 +23,7 @@ public enum SideMenuAssembly {
 
         interactor.gameDataManager = gameDataManager
         interactor.presenter = presenter
+        interactor.localizationManager = localizationManager
 
         router.viewController = viewController
         router.presenter = presenter

@@ -1,4 +1,6 @@
 import UIKit
+import SharedModels
+import GameData
 
 final class SideMenuViewController: UIViewController {
 
@@ -12,6 +14,7 @@ final class SideMenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(handleLocalizationChange), name: Notification.Name.LocalizationDidChange, object: nil)
         presenter?.viewDidLoad(self)
     }
 
@@ -25,6 +28,13 @@ final class SideMenuViewController: UIViewController {
 }
 // MARK: - SideMenuDelegate
 extension SideMenuViewController: SideMenuDelegate {
+    func tableViewManagerNeedsListOfSupportedLanguages() -> [Language]? {
+        guard let presenter = presenter else {
+            return nil
+        }
+        return presenter.viewNeedsListOfSupportedLanguages()
+    }
+
     func viewDidPressLanguageSelectionButton(title: String) {
         presenter?.viewDidPressLanguageSelectionButton(title: title)
     }
@@ -53,4 +63,7 @@ extension SideMenuViewController: SideMenuViewInput {
 
 // MARK: - Private methods
 extension SideMenuViewController {
+    @objc func handleLocalizationChange() {
+        sideMenuView.reloadTableView()
+    }
 }

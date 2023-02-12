@@ -1,9 +1,11 @@
 import UIKit
 import UIComponents
+import SharedModels
 
 protocol SideMenuDelegate: AnyObject {
     func tableViewManagerNeedsNavigationItem(for navigationSectionItem: NavigationSection) -> NavigationItem
     func tableViewManagerNeedsUserData(for currentBalanceSection: CurrentBalanceSection) -> CurrencyItem?
+    func tableViewManagerNeedsListOfSupportedLanguages() -> [Language]?
     func viewDidPressLanguageSelectionButton(title: String)
 }
 
@@ -63,7 +65,7 @@ extension TableViewManager: UITableViewDataSource {
             ) else {
                 return UITableViewCell()
             }
-
+            cell.selectionStyle = .none
             cell.configure(currency: currencyItem.currencyName, amount: currencyItem.currencyQuantity)
             return cell
 
@@ -74,7 +76,7 @@ extension TableViewManager: UITableViewDataSource {
             ) as? LanguageSelectionCell else {
                 fatalError("Could not deque cell")
             }
-            cell.addButton(for: ["Ch", "Eng"], delegate: self)
+            cell.addButton(for: ["ru", "en"], delegate: self)
             cell.selectionStyle = .none
             return cell
 
@@ -84,7 +86,6 @@ extension TableViewManager: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        // not every section must be selectable
         UIView.animate(withDuration: 0.5, delay: 0) {
             tableView.deselectRow(at: indexPath, animated: true)
         }

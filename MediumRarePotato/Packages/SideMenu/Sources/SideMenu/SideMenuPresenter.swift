@@ -1,5 +1,6 @@
 import Foundation
 import SharedResources
+import SharedModels
 
 final class SideMenuPresenter {
     weak var view: SideMenuViewInput?
@@ -10,6 +11,10 @@ final class SideMenuPresenter {
 
 // MARK: - SideMenuViewOutput
 extension SideMenuPresenter: SideMenuViewOutput {
+    func viewNeedsListOfSupportedLanguages() -> [Language]? {
+        interactor?.retrieveSupportedLanguages()
+    }
+
     func viewDidPressLanguageSelectionButton(title: String) {
         interactor?.changeDefaultLocalization(title)
     }

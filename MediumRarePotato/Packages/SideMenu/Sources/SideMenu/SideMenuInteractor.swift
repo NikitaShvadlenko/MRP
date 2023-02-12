@@ -1,16 +1,22 @@
 import UIKit
 import SharedResources
+import SharedModels
 import GameData
 
 final class SideMenuInteractor {
     weak var presenter: SideMenuInteractorOutput?
     var gameDataManager: GameDataManagerProtocol?
+    var localizationManager: LocalizationManagerProtocol?
 }
 
 // MARK: - SideMenuInteractorInput
 extension SideMenuInteractor: SideMenuInteractorInput {
+    func retrieveSupportedLanguages() -> [Language]? {
+        localizationManager?.supportedLanguages()
+    }
+
     func changeDefaultLocalization(_ languageKey: String) {
-        print("Changing language to... ", languageKey)
+        localizationManager?.changeLocalization(to: languageKey)
     }
 
     func retrieveUserData(for currentBalanceSection: CurrentBalanceSection) -> CurrencyItem? {
@@ -20,10 +26,10 @@ extension SideMenuInteractor: SideMenuInteractorInput {
 
         switch currentBalanceSection {
         case .mrb:
-            return CurrencyItem(currencyName: L10n.Currency.mrb, currencyQuantity: userData.user.balance_mrb)
+            return CurrencyItem(currencyName: L10n.Currency.mrp, currencyQuantity: userData.user.balance_mrb)
 
         case .mrp:
-            return CurrencyItem(currencyName: L10n.Currency.mrp, currencyQuantity: userData.user.balance_mrp)
+            return CurrencyItem(currencyName: L10n.Currency.mrb, currencyQuantity: userData.user.balance_mrp)
         }
     }
 

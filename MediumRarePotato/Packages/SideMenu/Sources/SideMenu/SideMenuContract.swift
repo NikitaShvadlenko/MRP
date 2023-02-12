@@ -1,3 +1,4 @@
+import SharedModels
 import UIKit
 // sourcery: AutoMockable
 protocol SideMenuViewInput: AnyObject {
@@ -8,6 +9,7 @@ protocol SideMenuViewOutput {
     func viewDidLoad(_ view: SideMenuViewInput)
     func tableManagerNeedsSideMenuItem(for navigationSectionItem: NavigationSection) -> NavigationItem
     func tableManagerNeedsCurrencyItem(for currentBalanceSection: CurrentBalanceSection) -> CurrencyItem?
+    func viewNeedsListOfSupportedLanguages() -> [Language]?
     func viewDidPressLanguageSelectionButton(title: String)
 }
 
@@ -16,6 +18,7 @@ protocol SideMenuInteractorInput {
     func fetchNavigationSectionItem(for navigationSection: NavigationSection) -> NavigationItem
     func retrieveUserData(for currentBalanceSection: CurrentBalanceSection) -> CurrencyItem?
     func changeDefaultLocalization(_ languageKey: String)
+    func retrieveSupportedLanguages() -> [Language]?
 }
 
 // sourcery: AutoMockable

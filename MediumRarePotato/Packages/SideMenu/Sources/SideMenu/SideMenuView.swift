@@ -72,4 +72,7 @@ extension SideMenuView {
 
 // MARK: Public Methods
 extension SideMenuView {
+    public func reloadTableView() {
+        tableView.reloadData()
+    }
 }
