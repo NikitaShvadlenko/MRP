@@ -3,13 +3,13 @@ import UIKit
 import SharedResources
 import SharedModels
 // Business logic must not depend on SharedResources package
-struct UserDefaultsKeys {
-    static let selectedLanguage = "SelectedLanguage"
-    static let locale = "Locale"
+enum UserDefaultsKeys {
+   static let selectedLanguage = "AppleLanguages"
+   static let localizationFileType = "lproj"
 }
 
 public extension Notification.Name {
-    public static let LocalizationDidChange = Notification.Name("LocalizationDidChange")
+    static let LocalizationDidChange = Notification.Name("LocalizationDidChange")
 }
 
 public protocol LocalizationManagerProtocol {
@@ -44,7 +44,7 @@ extension LocalizationManager: LocalizationManagerProtocol {
 
     public func changeLocalization(to systemName: String) {
         let defaults = UserDefaults.standard
-        defaults.set([systemName], forKey: "AppleLanguages")
+        defaults.set([systemName], forKey: UserDefaultsKeys.selectedLanguage)
         defaults.synchronize()
         Bundle.setLanguage(systemName)
         NotificationCenter.default.post(name: Notification.Name.LocalizationDidChange, object: nil)
@@ -53,11 +53,13 @@ extension LocalizationManager: LocalizationManagerProtocol {
 }
 
 extension Bundle {
+    private static var kLanguageBundleKey: UInt8 = 0
+
     static func setLanguage(_ language: String) {
-        UserDefaults.standard.set(language, forKey: "AppLanguage")
+        UserDefaults.standard.set(language, forKey: UserDefaultsKeys.selectedLanguage)
         UserDefaults.standard.synchronize()
-        let bondle = FontRegister().rbundle()
-        guard let path = bondle.path(forResource: language, ofType: "lproj") else {
+        let stringBundle = FontRegister().rbundle()
+        guard let path = stringBundle.path(forResource: language, ofType: UserDefaultsKeys.localizationFileType) else {
             return
         }
 
@@ -66,33 +68,8 @@ extension Bundle {
         objc_setAssociatedObject(
             Bundle.main,
             &Bundle.kLanguageBundleKey,
-            bondle,
+            bundle,
             objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC
         )
-    }
-
-    private static var kLanguageBundleKey: UInt8 = 0
-
-    var languageBundle: Bundle? {
-        get {
-            return objc_getAssociatedObject(self, &Bundle.kLanguageBundleKey) as? Bundle
-        }
-
-        set {
-            objc_setAssociatedObject(
-                self,
-                &Bundle.kLanguageBundleKey,
-                newValue,
-                objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC
-            )
-        }
-    }
-
-    func localizedString(forKey key: String, value: String?, table tableName: String?) -> String {
-        if let bundle = self.languageBundle {
-            return bundle.localizedString(forKey: key, value: value, table: tableName)
-        } else {
-            return NSLocalizedString(key, tableName: tableName, value: value ?? "", comment: "")
-        }
     }
 }
