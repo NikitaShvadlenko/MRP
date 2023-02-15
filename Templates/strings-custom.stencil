@@ -44,9 +44,7 @@ import Foundation
   {% elif param.lookupFunction %}
   {{accessModifier}} static var {{string.name|swiftIdentifier:"pretty"|lowerFirstWord|escapeReservedKeywords}}: String { return {{enumName}}.tr("{{table}}", "{{string.key}}", fallback: "{{translation}}") }
   {% else %}
-  {{accessModifier}} static func {{string.name|swiftIdentifier:"pretty"|lowerFirstWord|escapeReservedKeywords}}() -> String {
-  {{enumName}}.tr("{{table}}", "{{string.key}}", fallback: "{{translation}}")
-  }
+  {{accessModifier}} static func {{string.name|swiftIdentifier:"pretty"|lowerFirstWord|escapeReservedKeywords}}() -> String { {{enumName}}.tr("{{table}}", "{{string.key}}", fallback: "{{translation}}") }
   {% endif %}
   {% endfor %}
   {% for child in item.children %}
@@ -72,32 +70,26 @@ import Foundation
 // MARK: - Implementation Details
 
 extension {{enumName}} {
-  private static func tr(_ table: String, _ key: String, _ args: CVarArg..., fallback value: String) -> String {
-    {% if param.lookupFunction %}
-    let format = {{ param.lookupFunction }}(key, table, value)
-    {% else %}
-     guard let selectedLanguage = UserDefaults.standard.string(forKey: "AppLanguage") else {
-            print("SelectedLanguage is nil")
+    private static func tr(_ table: String, _ key: String, _ args: CVarArg..., fallback value: String) -> String {
+        guard let selectedLanguage = UserDefaults.standard.string(forKey: UserDefaultsKeys.selectedLanguage) else {
             let format = BundleToken.bundle.localizedString(forKey: key, value: value, table: table)
             return String(format: format, locale: Locale.current, arguments: args)
         }
 
-        guard let bundlePath = BundleToken.bundle.path(forResource: selectedLanguage, ofType: "lproj") else {
-            print("Bundle path is nil")
+        guard let bundlePath = BundleToken.bundle.path(forResource: selectedLanguage, ofType: UserDefaultsKeys.localizationFileType) else {
             let format = BundleToken.bundle.localizedString(forKey: key, value: value, table: table)
             return String(format: format, locale: Locale.current, arguments: args)
         }
 
         guard let bundle = Bundle(path: bundlePath) else {
-            print("Bundle is nil")
             let format = BundleToken.bundle.localizedString(forKey: key, value: value, table: table)
             return String(format: format, locale: Locale.current, arguments: args)
         }
-    let locale = Locale(identifier: selectedLanguage)
-    let format = bundle.localizedString(forKey: key, value: value, table: table)
-    {% endif %}
-    return String(format: format, locale: locale, arguments: args)
-  }
+
+        let locale = Locale(identifier: selectedLanguage)
+        let format = bundle.localizedString(forKey: key, value: value, table: table)
+        return String(format: format, locale: locale, arguments: args)
+    }
 }
 {% if not param.bundle and not param.lookupFunction %}
 

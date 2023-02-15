@@ -2,6 +2,7 @@ import Foundation
 
 public protocol ProvidesBundleInfo {
     func fetchBundleInfo(completion: (BundleInfo) -> Void)
+    func fetchCurrentBundle() -> Bundle
 }
 
 public final class BundleInfoProvider {
@@ -35,4 +36,7 @@ extension BundleInfoProvider: ProvidesBundleInfo {
         completion(bundleInfo)
     }
 
+    public func fetchCurrentBundle() -> Bundle {
+        Bundle.module
+    }
 }

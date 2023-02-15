@@ -1,13 +1,7 @@
 import Foundation
-import UIKit
 import SharedResources
 import SharedModels
 // Business logic must not depend on SharedResources package
-enum UserDefaultsKeys {
-   static let selectedLanguage = "AppleLanguages"
-   static let localizationFileType = "lproj"
-}
-
 public extension Notification.Name {
     static let LocalizationDidChange = Notification.Name("LocalizationDidChange")
 }
@@ -18,6 +12,7 @@ public protocol LocalizationManagerProtocol {
 }
 
 public class LocalizationManager {
+
     let languages: [Language] = [
         Language(
             displayName: L10n.Localization.eng(),
@@ -58,7 +53,7 @@ extension Bundle {
     static func setLanguage(_ language: String) {
         UserDefaults.standard.set(language, forKey: UserDefaultsKeys.selectedLanguage)
         UserDefaults.standard.synchronize()
-        let stringBundle = FontRegister().rbundle()
+        let stringBundle = BundleInfoProvider().fetchCurrentBundle()
         guard let path = stringBundle.path(forResource: language, ofType: UserDefaultsKeys.localizationFileType) else {
             return
         }
