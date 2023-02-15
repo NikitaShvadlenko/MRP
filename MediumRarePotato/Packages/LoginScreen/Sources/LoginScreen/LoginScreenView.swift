@@ -37,19 +37,19 @@ final class LoginScreenView: UIView {
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.4
-        label.text = SharedResources.L10n.enterAccessToken
+        label.text = SharedResources.L10n.enterAccessToken()
         label.textColor = Asset.Colors.primaryTextColor.color
         return label
     }()
 
     private lazy var tokenInputWindow: CustomTextField = {
-        let view = CustomTextField(frame: self.frame, placeholder: L10n.tokenPlaceholder)
+        let view = CustomTextField(frame: self.frame, placeholder: L10n.tokenPlaceholder())
         view.autocorrectionType = .no
         return view
     }()
 
     private lazy var loginButton: CustomButton = {
-        let button = CustomButton(frame: self.frame, title: L10n.login)
+        let button = CustomButton(frame: self.frame, title: L10n.login())
         return button
     }()
 

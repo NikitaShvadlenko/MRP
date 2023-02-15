@@ -44,7 +44,7 @@ extension LoginScreenViewController: LoginScreenViewInput {
     func displayEmptyFieldToast() {
         let toastMessage = ToastMessage(
             style: .negative,
-            message: L10n.Error.emptyTokenField,
+            message: L10n.Error.emptyTokenField(),
             timerDuration: 10
         )
         displayToastMessage(view: toastMessage)

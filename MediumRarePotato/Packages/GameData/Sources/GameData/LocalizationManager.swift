@@ -2,7 +2,7 @@ import Foundation
 import UIKit
 import SharedResources
 import SharedModels
-
+// Business logic must not depend on SharedResources package
 struct UserDefaultsKeys {
     static let selectedLanguage = "SelectedLanguage"
     static let locale = "Locale"
@@ -20,13 +20,13 @@ public protocol LocalizationManagerProtocol {
 public class LocalizationManager {
     let languages: [Language] = [
         Language(
-            displayName: L10n.Localization.eng,
+            displayName: L10n.Localization.eng(),
             name: "English",
             systemName: "en"
         ),
 
         Language(
-            displayName: L10n.Localization.ru,
+            displayName: L10n.Localization.ru(),
             name: "Russian",
             systemName: "ru"
         )

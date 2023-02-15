@@ -68,9 +68,9 @@ extension SideMenuViewController {
         guard let navigationController = self.navigationController else {
             return
         }
-
         for viewController in navigationController.viewControllers {
             viewController.beginAppearanceTransition(false, animated: false)
         }
+        sideMenuView.reloadTableView()
     }
 }

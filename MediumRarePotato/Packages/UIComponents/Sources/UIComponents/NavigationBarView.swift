@@ -19,7 +19,7 @@ public final class NavigationBarTitleView: UIView {
 
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = L10n.gameTitle
+        label.text = L10n.gameTitle()
         label.font = UIFont(font: FontFamily.AmaticSC.bold, size: 30)
         label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true

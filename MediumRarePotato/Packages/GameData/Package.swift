@@ -13,7 +13,8 @@ let package = Package(
             targets: ["GameData"])
     ],
     dependencies: [
-        .package(path: "../SharedModels")
+        .package(path: "../SharedModels"),
+        .package(path: "../SharedResources")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -21,7 +22,8 @@ let package = Package(
         .target(
             name: "GameData",
             dependencies: [
-                "SharedModels"
+                "SharedModels",
+                "SharedResources"
             ])
     ]
 )
