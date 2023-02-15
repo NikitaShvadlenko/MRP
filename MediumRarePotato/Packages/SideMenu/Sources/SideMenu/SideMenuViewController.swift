@@ -1,6 +1,7 @@
 import UIKit
 import SharedModels
 import GameData
+import SharedResources
 
 final class SideMenuViewController: UIViewController {
 
@@ -64,6 +65,12 @@ extension SideMenuViewController: SideMenuViewInput {
 // MARK: - Private methods
 extension SideMenuViewController {
     @objc func handleLocalizationChange() {
-        sideMenuView.reloadTableView()
+        guard let navigationController = self.navigationController else {
+            return
+        }
+
+        for viewController in navigationController.viewControllers {
+            viewController.beginAppearanceTransition(false, animated: false)
+        }
     }
 }

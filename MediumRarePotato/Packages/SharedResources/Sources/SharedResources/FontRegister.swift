@@ -33,5 +33,7 @@ extension FontRegister: RegistersFont {
             }
         }
     }
-
+    public func rbundle() -> Bundle {
+        bundle
+    }
 }

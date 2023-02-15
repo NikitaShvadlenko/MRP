@@ -37,7 +37,7 @@ extension SideMenuInteractor: SideMenuInteractorInput {
     func fetchNavigationSectionItem(for navigationSection: NavigationSection) -> NavigationItem {
         switch navigationSection {
         case .bars:
-            return NavigationItem(name: L10n.MenuItems.bars, image: UIImage(asset: Asset.Assets.Icons.bars) ?? UIImage())
+            return NavigationItem(name: L10n.MenuItems.bars(), image: UIImage(asset: Asset.Assets.Icons.bars) ?? UIImage())
         case .myBars:
             return NavigationItem(name: L10n.MenuItems.myBars, image: UIImage(asset: Asset.Assets.Icons.bars) ?? UIImage())
         case .restaurants:

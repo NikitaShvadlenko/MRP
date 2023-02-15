@@ -19,7 +19,6 @@ extension MainScreenPresenter: MainScreenViewOutput {
     }
 
     func viewPressedSideMenuButton(_ view: MainScreenViewInput) {
-        // get the menu items from interactor and pass to the VC
         view.showSideMenu()
     }
 
