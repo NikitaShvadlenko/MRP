@@ -4,7 +4,11 @@ import SharedResources
 
 public class CustomTextField: UIView {
 
-    var placeholder: String?
+    public var placeholder: String? {
+        didSet {
+            textField.placeholder = placeholder
+        }
+    }
 
     public weak var delegate: UITextFieldDelegate? {
         didSet {

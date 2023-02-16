@@ -116,9 +116,10 @@ extension LoginScreenView {
     }
 
     public func regenerateView() {
-        for subview in subviews {
-            subview.removeFromSuperview()
-        }
-        configureViews()
+        setNeedsLayout()
+        setNeedsDisplay()
+        loginLabel.text = L10n.enterAccessToken()
+        tokenInputWindow.placeholder = L10n.tokenPlaceholder()
+        loginButton.title = L10n.login()
     }
 }
