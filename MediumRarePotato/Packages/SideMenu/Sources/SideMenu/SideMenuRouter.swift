@@ -16,17 +16,12 @@ extension SideMenuRouter: SideMenuRouterInput {
         guard let parent = parent else {
             fatalError("no parent")
         }
-        var viewController: UIViewController?
 
-        switch navigationItem {
-        default:
-             viewController = MyRestaurantsAssembly.assemble().viewController
-        }
-
-        guard let viewController = viewController else { return }
+        let viewController = selectViewController(navigationItem)
 
         viewController.view.backgroundColor = .red
         for viewController in parent.children {
+            viewController.view.removeFromSuperview()
             viewController.removeFromParent()
         }
 
@@ -46,4 +41,10 @@ extension SideMenuRouter: SideMenuRouterInput {
 
 // MARK: - Private methods
 extension SideMenuRouter {
+    func selectViewController(_ navigationItem: NavigationSection) -> UIViewController {
+        switch navigationItem {
+        default:
+            return MyRestaurantsAssembly.assemble().viewController
+        }
+    }
 }
