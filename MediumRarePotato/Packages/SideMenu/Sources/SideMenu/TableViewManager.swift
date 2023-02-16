@@ -100,13 +100,13 @@ extension TableViewManager: UITableViewDataSource {
                 self.delegate?.tableViewDidSelectNavigationRow(navigationItem: navigationItem)
 
             case.currentBalanceDisplay:
-                print("Money")
+                break
 
             case.languageSelection:
-                print("Lang")
+               break
 
             default:
-                print("Unexpected behaviour")
+                break
             }
         }
     }
