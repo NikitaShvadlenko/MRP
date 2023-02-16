@@ -109,3 +109,10 @@ extension MainScreenViewController {
         presenter?.viewPressedSideMenuButton(self)
     }
 }
+
+// MARK: SideMenuManager
+extension MainScreenViewController: SideMenuManager {
+    func toggleMenuDisplay() {
+        isMenuDisplayed.toggle()
+    }
+}

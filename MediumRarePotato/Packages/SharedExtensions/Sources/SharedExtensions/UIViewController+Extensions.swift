@@ -5,6 +5,10 @@ public protocol Localizable {
     func localizationDidChange()
 }
 
+public protocol SideMenuManager {
+    func toggleMenuDisplay()
+}
+
 public extension UIViewController {
     func displayToastMessage(view: UIView) {
         let toastMessage = view

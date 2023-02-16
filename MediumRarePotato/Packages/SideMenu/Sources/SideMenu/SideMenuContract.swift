@@ -11,6 +11,7 @@ protocol SideMenuViewOutput {
     func tableManagerNeedsCurrencyItem(for currentBalanceSection: CurrentBalanceSection) -> CurrencyItem?
     func viewNeedsListOfSupportedLanguages() -> [Language]?
     func viewDidPressLanguageSelectionButton(title: String)
+    func viewDidSelectNavigationRow(navigationItem: NavigationSection)
 }
 
 // sourcery: AutoMockable
@@ -27,7 +28,7 @@ protocol SideMenuInteractorOutput: AnyObject {
 
 // sourcery: AutoMockable
 protocol SideMenuRouterInput {
-    func routeTo(_ viewController: UIViewController)
+   func routeTo(_ navigationItem: NavigationSection)
 }
 
 protocol SideMenuRouterOutput: AnyObject {

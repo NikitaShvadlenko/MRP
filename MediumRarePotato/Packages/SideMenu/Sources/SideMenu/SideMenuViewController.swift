@@ -35,6 +35,10 @@ final class SideMenuViewController: UIViewController {
 }
 // MARK: - SideMenuDelegate
 extension SideMenuViewController: SideMenuDelegate {
+    func tableViewDidSelectNavigationRow(navigationItem: NavigationSection) {
+        presenter?.viewDidSelectNavigationRow(navigationItem: navigationItem)
+    }
+
     func tableViewManagerNeedsListOfSupportedLanguages() -> [Language]? {
         guard let presenter = presenter else {
             return nil

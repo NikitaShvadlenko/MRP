@@ -11,6 +11,10 @@ final class SideMenuPresenter {
 
 // MARK: - SideMenuViewOutput
 extension SideMenuPresenter: SideMenuViewOutput {
+    func viewDidSelectNavigationRow(navigationItem: NavigationSection) {
+        router?.routeTo(navigationItem)
+    }
+
     func viewNeedsListOfSupportedLanguages() -> [Language]? {
         interactor?.retrieveSupportedLanguages()
     }

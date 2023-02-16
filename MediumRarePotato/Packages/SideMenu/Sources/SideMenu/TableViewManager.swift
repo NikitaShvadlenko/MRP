@@ -7,6 +7,7 @@ protocol SideMenuDelegate: AnyObject {
     func tableViewManagerNeedsUserData(for currentBalanceSection: CurrentBalanceSection) -> CurrencyItem?
     func tableViewManagerNeedsListOfSupportedLanguages() -> [Language]?
     func viewDidPressLanguageSelectionButton(title: String)
+    func tableViewDidSelectNavigationRow(navigationItem: NavigationSection)
 }
 
 final class TableViewManager: NSObject {
@@ -89,10 +90,26 @@ extension TableViewManager: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // swiftlint:disable multiline_arguments
         UIView.animate(withDuration: 0.5, delay: 0) {
             tableView.deselectRow(at: indexPath, animated: true)
+        } completion: { _ in
+            switch SectionType(rawValue: indexPath.section) {
+            case .navigation:
+                self.delegate?.tableViewDidSelectNavigationRow(navigationItem: NavigationSection.allCases[indexPath.row])
+
+            case.currentBalanceDisplay:
+                print("Money")
+
+            case.languageSelection:
+                print("Lang")
+
+            default:
+                print("Unexpected behaviour")
+            }
         }
     }
+    // swiftlint:enable multiline_arguments
 }
 
 // MARK: - UITableViewDelegate
