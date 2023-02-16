@@ -9,6 +9,25 @@ public protocol SideMenuManager {
     func toggleMenuDisplay()
 }
 
+// MARK: Add/Remove child
+public extension UIViewController {
+    func add(_ child: UIViewController) {
+        addChild(child)
+        view.addSubview(child.view)
+        child.didMove(toParent: self)
+    }
+
+    func remove() {
+        guard parent != nil else {
+            return
+        }
+        willMove(toParent: nil)
+        view.removeFromSuperview()
+        removeFromParent()
+    }
+}
+
+// MARK: ToastMessage
 public extension UIViewController {
     func displayToastMessage(view: UIView) {
         let toastMessage = view
@@ -40,6 +59,24 @@ public extension UIViewController {
             toastMessage.transform = .identity
         }
     }
+}
+
+// MARK: SideMenu
+public extension UIViewController {
+    func removeSideMenu(
+        sideMenuViewController: UIViewController,
+        animationDuration: Double
+    ) {
+        // swiftlint:disable multiline_arguments
+        UIView.animate(withDuration: animationDuration) {
+            sideMenuViewController.view.transform = CGAffineTransform(
+                translationX: sideMenuViewController.view.frame.width + 100, y: 0
+            )
+        } completion: { _ in
+            sideMenuViewController.remove()
+        }
+    }
+    // swiftlint:enable multiline_arguments
 
     func displaySideMenu(
         sideMenuViewController: UIViewController,
@@ -64,27 +101,7 @@ public extension UIViewController {
                 sideMenu.view.transform = .identity
             }
         } else {
-            // swiftlint:disable multiline_arguments
-            UIView.animate(withDuration: animationDuration) {
-                sideMenu.view.transform = CGAffineTransform(translationX: sideMenu.view.frame.width + 100, y: 0)
-            } completion: { _ in
-                sideMenu.remove()
-            }
+            removeSideMenu(sideMenuViewController: sideMenuViewController, animationDuration: animationDuration)
         }
-    }
-
-    func add(_ child: UIViewController) {
-        addChild(child)
-        view.addSubview(child.view)
-        child.didMove(toParent: self)
-    }
-
-    func remove() {
-        guard parent != nil else {
-            return
-        }
-        willMove(toParent: nil)
-        view.removeFromSuperview()
-        removeFromParent()
     }
 }

@@ -7,25 +7,29 @@ final class SideMenuRouter {
     weak var viewController: UIViewController?
     weak var presenter: SideMenuRouterOutput?
     var containerViewController: UIViewController?
-    lazy var parent = containerViewController?.parent
+    lazy var parent = viewController?.parent
 }
 
 // MARK: - SideMenuRouterInput
 extension SideMenuRouter: SideMenuRouterInput {
     func routeTo(_ navigationItem: NavigationSection) {
-        guard let parent = parent else {
+
+        guard let containerViewController = containerViewController else {
             fatalError("no parent")
         }
 
         let viewController = selectViewController(navigationItem)
 
         viewController.view.backgroundColor = .red
-        for viewController in parent.children {
+        for viewController in containerViewController.children {
+            if viewController is SideMenuViewController {
+                continue
+            }
             viewController.view.removeFromSuperview()
             viewController.removeFromParent()
         }
 
-        parent.add(viewController)
+        containerViewController.add(viewController)
         viewController.view.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -33,7 +37,7 @@ extension SideMenuRouter: SideMenuRouterInput {
 
         if parent is SideMenuManager {
             if let sideMenuManager = parent as? SideMenuManager {
-                sideMenuManager.toggleMenuDisplay()
+               sideMenuManager.toggleMenuDisplay()
             }
         }
     }

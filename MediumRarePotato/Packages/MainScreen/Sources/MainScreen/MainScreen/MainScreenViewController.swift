@@ -113,6 +113,7 @@ extension MainScreenViewController {
 // MARK: SideMenuManager
 extension MainScreenViewController: SideMenuManager {
     func toggleMenuDisplay() {
+        removeSideMenu(sideMenuViewController: menuViewController, animationDuration: 0.5)
         isMenuDisplayed.toggle()
     }
 }

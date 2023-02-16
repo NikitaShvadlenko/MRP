@@ -96,7 +96,8 @@ extension TableViewManager: UITableViewDataSource {
         } completion: { _ in
             switch SectionType(rawValue: indexPath.section) {
             case .navigation:
-                self.delegate?.tableViewDidSelectNavigationRow(navigationItem: NavigationSection.allCases[indexPath.row])
+                let navigationItem = NavigationSection.allCases[indexPath.row]
+                self.delegate?.tableViewDidSelectNavigationRow(navigationItem: navigationItem)
 
             case.currentBalanceDisplay:
                 print("Money")
