@@ -73,6 +73,7 @@ extension SideMenuView {
 // MARK: Public Methods
 extension SideMenuView {
     public func reloadTableView() {
+        tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
         tableView.reloadData()
     }
 }
