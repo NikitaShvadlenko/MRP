@@ -24,10 +24,9 @@ final class MyRestaurantsView: UIView {
 // MARK: - Private methods
 extension MyRestaurantsView {
     private func configureViews() {
-//        addSubview(backgroundView)
-//        backgroundView.snp.makeConstraints { make in
-//            make.edges.equalToSuperview()
-//        }
-        backgroundColor = .red
+        addSubview(backgroundView)
+        backgroundView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }

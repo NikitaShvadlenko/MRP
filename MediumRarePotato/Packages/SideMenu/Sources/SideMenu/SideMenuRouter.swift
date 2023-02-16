@@ -20,7 +20,6 @@ extension SideMenuRouter: SideMenuRouterInput {
 
         let viewController = selectViewController(navigationItem)
 
-        viewController.view.backgroundColor = .red
         for viewController in containerViewController.children {
             if viewController is SideMenuViewController {
                 continue
