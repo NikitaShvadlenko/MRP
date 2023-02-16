@@ -62,6 +62,7 @@ extension MainScreenViewController: MainScreenViewInput {
     }
 
 }
+
 // MARK: - ButtonActionDelegate
 extension MainScreenViewController: NavigationBarTitleViewButtonDelegate {
     func viewDidPressButton(_ button: UIButton) {
@@ -115,5 +116,50 @@ extension MainScreenViewController: SideMenuManager {
     func toggleMenuDisplay() {
         removeSideMenu(sideMenuViewController: menuViewController, animationDuration: 0.5)
         isMenuDisplayed.toggle()
+    }
+}
+
+// MARK: SideMenu
+extension MainScreenViewController {
+    func removeSideMenu(
+        sideMenuViewController: UIViewController,
+        animationDuration: Double
+    ) {
+        // swiftlint:disable multiline_arguments
+        UIView.animate(withDuration: animationDuration) {
+            sideMenuViewController.view.transform = CGAffineTransform(
+                translationX: sideMenuViewController.view.frame.width + 100, y: 0
+            )
+        } completion: { _ in
+            sideMenuViewController.remove()
+        }
+    }
+    // swiftlint:enable multiline_arguments
+
+    func displaySideMenu(
+        sideMenuViewController: UIViewController,
+        padding: CGFloat,
+        isMenuDisplayed: inout Bool,
+        animationDuration: Double
+    ) {
+        let sideMenu = sideMenuViewController
+        isMenuDisplayed.toggle()
+
+        if isMenuDisplayed {
+            self.add(sideMenu)
+            sideMenu.view.snp.makeConstraints { make in
+                make.height.equalToSuperview()
+                make.trailing.equalToSuperview()
+                make.width.equalTo(view.snp.width).multipliedBy(padding)
+                make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            }
+            self.view.layoutIfNeeded()
+            sideMenu.view.transform = CGAffineTransform(translationX: sideMenu.view.frame.width + 100, y: 0)
+            UIView.animate(withDuration: animationDuration) {
+                sideMenu.view.transform = .identity
+            }
+        } else {
+            removeSideMenu(sideMenuViewController: sideMenuViewController, animationDuration: animationDuration)
+        }
     }
 }
