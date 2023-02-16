@@ -1,4 +1,5 @@
 import UIKit
+import SharedModels
 import UIComponents
 
 class LanguageSelectionCell: UITableViewCell {
@@ -40,11 +41,11 @@ extension LanguageSelectionCell {
 
 // MARK: Public methods
 extension LanguageSelectionCell {
-    public func addButton(for languageTitles: [String], delegate: CustomButtonActionDelegate) {
+    public func addButton(for languages: [Language], delegate: CustomButtonActionDelegate) {
         removeAllSubviews(from: stackView)
         contentView.isUserInteractionEnabled = false
-        for language in 0 ..< languageTitles.count {
-            let button = CustomButton(frame: .zero, title: languageTitles[language])
+        for language in 0 ..< languages.count {
+            let button = CustomButton(frame: .zero, title: languages[language].displayName)
             button.delegate = delegate
             stackView.addArrangedSubview(button)
         }

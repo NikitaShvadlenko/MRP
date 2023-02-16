@@ -15,8 +15,8 @@ extension SideMenuInteractor: SideMenuInteractorInput {
         localizationManager?.supportedLanguages()
     }
 
-    func changeDefaultLocalization(_ languageKey: String) {
-        localizationManager?.changeLocalization(to: languageKey)
+    func changeDefaultLocalization(_ languageDisplayName: String) {
+        localizationManager?.changeLocalization(to: languageDisplayName)
     }
 
     func retrieveUserData(for currentBalanceSection: CurrentBalanceSection) -> CurrencyItem? {

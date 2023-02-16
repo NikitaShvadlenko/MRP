@@ -8,7 +8,7 @@ public extension Notification.Name {
 
 public protocol LocalizationManagerProtocol {
     func supportedLanguages() -> [Language]
-    func changeLocalization(to systemName: String)
+    func changeLocalization(to displayName: String)
 }
 
 public class LocalizationManager {
@@ -37,11 +37,12 @@ extension LocalizationManager: LocalizationManagerProtocol {
         languages
     }
 
-    public func changeLocalization(to systemName: String) {
+    public func changeLocalization(to displayName: String) {
+        guard let language = languages.first(where: { $0.displayName == displayName }) else { return }
         let defaults = UserDefaults.standard
-        defaults.set([systemName], forKey: UserDefaultsKeys.selectedLanguage)
+        defaults.set([language.systemName], forKey: UserDefaultsKeys.selectedLanguage)
         defaults.synchronize()
-        Bundle.setLanguage(systemName)
+        Bundle.setLanguage(language.systemName)
         NotificationCenter.default.post(name: Notification.Name.LocalizationDidChange, object: nil)
     }
 

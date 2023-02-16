@@ -76,7 +76,10 @@ extension TableViewManager: UITableViewDataSource {
             ) as? LanguageSelectionCell else {
                 fatalError("Could not deque cell")
             }
-            cell.addButton(for: ["ru", "en"], delegate: self)
+            guard let languages = delegate?.tableViewManagerNeedsListOfSupportedLanguages() else {
+                return UITableViewCell()
+            }
+            cell.addButton(for: languages, delegate: self)
             cell.selectionStyle = .none
             return cell
 
