@@ -1,6 +1,10 @@
 import UIKit
 import SnapKit
 
+public protocol Localizable {
+    func localizationDidChange()
+}
+
 public extension UIViewController {
     func displayToastMessage(view: UIView) {
         let toastMessage = view

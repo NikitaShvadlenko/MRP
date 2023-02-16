@@ -114,4 +114,11 @@ extension LoginScreenView {
             tokenInputWindow.delegate = newValue
         }
     }
+
+    public func regenerateView() {
+        for subview in subviews {
+            subview.removeFromSuperview()
+        }
+        configureViews()
+    }
 }

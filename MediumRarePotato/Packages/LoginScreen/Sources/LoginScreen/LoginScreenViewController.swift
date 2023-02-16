@@ -92,3 +92,10 @@ extension LoginScreenViewController: UITextFieldDelegate {
         return true
     }
 }
+
+// MARK: Localizable
+extension LoginScreenViewController: Localizable {
+    func localizationDidChange() {
+        loginScreenView.regenerateView()
+    }
+}

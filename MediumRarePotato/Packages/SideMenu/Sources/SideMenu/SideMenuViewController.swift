@@ -1,4 +1,5 @@
 import UIKit
+import SharedExtensions
 import SharedModels
 import GameData
 import SharedResources
@@ -15,7 +16,12 @@ final class SideMenuViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(handleLocalizationChange), name: Notification.Name.LocalizationDidChange, object: nil)
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleLocalizationChange),
+            name: Notification.Name.LocalizationDidChange,
+            object: nil
+        )
         presenter?.viewDidLoad(self)
     }
 
@@ -62,6 +68,13 @@ extension SideMenuViewController: SideMenuViewInput {
     }
 }
 
+// MARK: Localizable
+extension SideMenuViewController: Localizable {
+    func localizationDidChange() {
+        sideMenuView.reloadTableView()
+    }
+}
+
 // MARK: - Private methods
 extension SideMenuViewController {
     @objc func handleLocalizationChange() {
@@ -69,8 +82,8 @@ extension SideMenuViewController {
             return
         }
         for viewController in navigationController.viewControllers {
-            viewController.beginAppearanceTransition(false, animated: false)
+            guard let viewController = viewController as? Localizable else { return }
+            viewController.localizationDidChange()
         }
-        sideMenuView.reloadTableView()
     }
 }
