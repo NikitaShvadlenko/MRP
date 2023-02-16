@@ -82,8 +82,15 @@ extension SideMenuViewController {
             return
         }
         for viewController in navigationController.viewControllers {
-            guard let viewController = viewController as? Localizable else { return }
-            viewController.localizationDidChange()
+            if let viewController = viewController as? Localizable {
+                viewController.localizationDidChange()
+            }
+
+            for childVC in viewController.children {
+                if let localizableChildVC = childVC as? Localizable {
+                    localizableChildVC.localizationDidChange()
+                }
+            }
         }
     }
 }
