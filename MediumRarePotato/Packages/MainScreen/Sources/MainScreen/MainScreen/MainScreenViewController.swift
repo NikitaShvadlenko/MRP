@@ -7,8 +7,8 @@ import SideMenu
 final class MainScreenViewController: UIViewController {
 
     lazy var slideInMenuPadding: CGFloat = 0.65
-
     private var isMenuDisplayed = false
+    let animationDuration = 0.2
 
     private lazy var overlayView: UIView = {
         let view = UIView()
@@ -53,12 +53,7 @@ extension MainScreenViewController: MainScreenViewInput {
     }
 
     func showSideMenu() {
-        displaySideMenu(
-            sideMenuViewController: menuViewController,
-            padding: slideInMenuPadding,
-            isMenuDisplayed: &isMenuDisplayed,
-            animationDuration: 0.5
-        )
+        displaySideMenu(animationDuration: animationDuration)
     }
 
 }
@@ -114,36 +109,29 @@ extension MainScreenViewController {
 // MARK: SideMenuManager
 extension MainScreenViewController: SideMenuManager {
     func toggleMenuDisplay() {
-        removeSideMenu(sideMenuViewController: menuViewController, animationDuration: 0.5)
+        removeSideMenu(animationDuration: animationDuration)
         isMenuDisplayed.toggle()
     }
 }
 
 // MARK: SideMenu
 extension MainScreenViewController {
-    func removeSideMenu(
-        sideMenuViewController: UIViewController,
-        animationDuration: Double
-    ) {
+   private func removeSideMenu(animationDuration: Double) {
         overlayView.removeFromSuperview()
         // swiftlint:disable multiline_arguments
         UIView.animate(withDuration: animationDuration) {
-            sideMenuViewController.view.transform = CGAffineTransform(
-                translationX: sideMenuViewController.view.frame.width + 100, y: 0
+            self.menuViewController.view.transform = CGAffineTransform(
+                translationX: self.menuViewController.view.frame.width + 100, y: 0
             )
         } completion: { _ in
-            sideMenuViewController.remove()
+            self.menuViewController.remove()
         }
     }
     // swiftlint:enable multiline_arguments
 
-    func displaySideMenu(
-        sideMenuViewController: UIViewController,
-        padding: CGFloat,
-        isMenuDisplayed: inout Bool,
+    private func displaySideMenu(
         animationDuration: Double
     ) {
-        let sideMenu = sideMenuViewController
         isMenuDisplayed.toggle()
         mainScreenView.addSubview(overlayView)
         overlayView.alpha = 0.4
@@ -153,20 +141,23 @@ extension MainScreenViewController {
         }
 
         if isMenuDisplayed {
-            self.add(sideMenu)
-            sideMenu.view.snp.makeConstraints { make in
+            self.add(menuViewController)
+            menuViewController.view.snp.makeConstraints { make in
                 make.height.equalToSuperview()
                 make.trailing.equalToSuperview()
-                make.width.equalTo(view.snp.width).multipliedBy(padding)
+                make.width.equalTo(view.snp.width).multipliedBy(slideInMenuPadding)
                 make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             }
             self.view.layoutIfNeeded()
-            sideMenu.view.transform = CGAffineTransform(translationX: sideMenu.view.frame.width + 100, y: 0)
+            menuViewController.view.transform = CGAffineTransform(
+                translationX: menuViewController.view.frame.width + 100,
+                y: 0
+            )
             UIView.animate(withDuration: animationDuration) {
-                sideMenu.view.transform = .identity
+                self.menuViewController.view.transform = .identity
             }
         } else {
-            removeSideMenu(sideMenuViewController: sideMenuViewController, animationDuration: animationDuration)
+            removeSideMenu(animationDuration: animationDuration)
         }
     }
 }
