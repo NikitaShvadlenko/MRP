@@ -19,7 +19,7 @@ final class MainScreenViewController: UIViewController {
 
     private let mainScreenView = MainScreenView()
 
-    private lazy var menuViewController: UIViewController = {
+    private lazy var sideMenuVeiewController: UIViewController = {
         let view = SideMenuAssembly.assemble(containerViewController: containerViewController).viewController
         return view
     }()
@@ -120,11 +120,11 @@ extension MainScreenViewController {
         overlayView.removeFromSuperview()
         // swiftlint:disable multiline_arguments
         UIView.animate(withDuration: animationDuration) {
-            self.menuViewController.view.transform = CGAffineTransform(
-                translationX: self.menuViewController.view.frame.width + 100, y: 0
+            self.sideMenuVeiewController.view.transform = CGAffineTransform(
+                translationX: self.sideMenuVeiewController.view.frame.width + 100, y: 0
             )
         } completion: { _ in
-            self.menuViewController.remove()
+            self.sideMenuVeiewController.remove()
         }
     }
     // swiftlint:enable multiline_arguments
@@ -133,6 +133,7 @@ extension MainScreenViewController {
         animationDuration: Double
     ) {
         isMenuDisplayed.toggle()
+
         mainScreenView.addSubview(overlayView)
         overlayView.alpha = 0.4
         overlayView.snp.makeConstraints { make in
@@ -141,20 +142,20 @@ extension MainScreenViewController {
         }
 
         if isMenuDisplayed {
-            self.add(menuViewController)
-            menuViewController.view.snp.makeConstraints { make in
+            add(sideMenuVeiewController)
+            sideMenuVeiewController.view.snp.makeConstraints { make in
                 make.height.equalToSuperview()
                 make.trailing.equalToSuperview()
                 make.width.equalTo(view.snp.width).multipliedBy(slideInMenuPadding)
                 make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             }
-            self.view.layoutIfNeeded()
-            menuViewController.view.transform = CGAffineTransform(
-                translationX: menuViewController.view.frame.width + 100,
+            view.layoutIfNeeded()
+            sideMenuVeiewController.view.transform = CGAffineTransform(
+                translationX: sideMenuVeiewController.view.frame.width + 100,
                 y: 0
             )
             UIView.animate(withDuration: animationDuration) {
-                self.menuViewController.view.transform = .identity
+                self.sideMenuVeiewController.view.transform = .identity
             }
         } else {
             removeSideMenu(animationDuration: animationDuration)
