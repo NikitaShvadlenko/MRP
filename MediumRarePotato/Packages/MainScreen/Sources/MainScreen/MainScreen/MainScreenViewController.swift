@@ -125,6 +125,7 @@ extension MainScreenViewController {
         sideMenuViewController: UIViewController,
         animationDuration: Double
     ) {
+        overlayView.removeFromSuperview()
         // swiftlint:disable multiline_arguments
         UIView.animate(withDuration: animationDuration) {
             sideMenuViewController.view.transform = CGAffineTransform(
@@ -144,6 +145,12 @@ extension MainScreenViewController {
     ) {
         let sideMenu = sideMenuViewController
         isMenuDisplayed.toggle()
+        mainScreenView.addSubview(overlayView)
+        overlayView.alpha = 0.4
+        overlayView.snp.makeConstraints { make in
+            make.bottom.leading.trailing.equalToSuperview()
+            make.top.equalTo(mainScreenView.safeAreaLayoutGuide)
+        }
 
         if isMenuDisplayed {
             self.add(sideMenu)
