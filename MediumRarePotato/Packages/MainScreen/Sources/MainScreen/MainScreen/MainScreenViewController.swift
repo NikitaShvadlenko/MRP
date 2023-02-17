@@ -8,7 +8,7 @@ final class MainScreenViewController: UIViewController {
 
     lazy var slideInMenuPadding: CGFloat = 0.65
     private var isMenuDisplayed = false
-    let animationDuration = 0.2
+    let animationDuration = 0.4
 
     private lazy var overlayView: UIView = {
         let view = UIView()
@@ -135,7 +135,6 @@ extension MainScreenViewController {
         isMenuDisplayed.toggle()
 
         mainScreenView.addSubview(overlayView)
-        overlayView.alpha = 0.4
         overlayView.snp.makeConstraints { make in
             make.bottom.leading.trailing.equalToSuperview()
             make.top.equalTo(mainScreenView.safeAreaLayoutGuide)
@@ -155,6 +154,7 @@ extension MainScreenViewController {
                 y: 0
             )
             UIView.animate(withDuration: animationDuration) {
+                self.overlayView.alpha = 0.4
                 self.sideMenuVeiewController.view.transform = .identity
             }
         } else {
