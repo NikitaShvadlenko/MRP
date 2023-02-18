@@ -1,13 +1,20 @@
 import UIKit
 import SharedResources
 import SnapKit
+import UIComponents
 
 final class MyRestaurantsView: UIView {
 
     private lazy var backgroundView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(asset: Asset.Assets.background)
+        view.isUserInteractionEnabled = true
         return view
+    }()
+
+    private lazy var searchBar: SearchBar = {
+        let searchBar = SearchBar()
+        return searchBar
     }()
 
     override init(frame: CGRect) {
@@ -27,6 +34,22 @@ extension MyRestaurantsView {
         addSubview(backgroundView)
         backgroundView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        backgroundView.addSubview(searchBar)
+        searchBar.snp.makeConstraints { make in
+            make.top.leading.trailing.equalTo(safeAreaLayoutGuide)
+        }
+    }
+}
+
+// MARK: - Public Methods
+extension MyRestaurantsView {
+    var searchBarDelegate: SearchBarDelegate? {
+        get {
+            searchBar.delegate
+        }
+        set {
+            searchBar.delegate = newValue
         }
     }
 }

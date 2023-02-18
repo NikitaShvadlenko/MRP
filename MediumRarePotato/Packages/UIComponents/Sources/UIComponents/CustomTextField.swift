@@ -28,13 +28,14 @@ public class CustomTextField: UIView {
         return view
     }()
 
-     private lazy var textField: UITextField = {
+    private lazy var textField: UITextField = {
         let textField = UITextField()
         textField.font = UIFont(name: FontFamily.AmaticSC.regular.name, size: 25)
         textField.textColor = Asset.Colors.secondaryTextColor.color
         textField.textAlignment = .center
         textField.contentVerticalAlignment = .bottom
         textField.borderStyle = .none
+        textField.tintColor = Asset.Colors.placeholderColor.color
         textField.returnKeyType = .done
         if let placeholder = placeholder {
             textField.attributedPlaceholder = NSMutableAttributedString(
@@ -83,6 +84,6 @@ public class CustomTextField: UIView {
 // MARK: Public Methods
 extension CustomTextField {
     public var text: String? {
-            textField.text
+        textField.text
     }
 }

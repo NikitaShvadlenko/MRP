@@ -6,4 +6,6 @@ public enum SFSymbol: String, SFSymbolRepresentable {
     case exclamationMark = "exclamationmark.circle.fill"
     case checkMarkCircle = "checkmark.circle.fill"
     case closeSymbol = "xmark"
+    case search = "magnifyingglass"
+    case settings = "slider.horizontal.3"
 }
