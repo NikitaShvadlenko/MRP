@@ -20,7 +20,7 @@ final class MyRestaurantsView: UIView {
     private lazy var collectionView: CustomCollectionView = {
         let collectionView = CustomCollectionView()
         collectionView.backgroundColor = .yellow
-        collectionView.registerCollectionViewCell(UICollectionViewCell.self)
+        collectionView.registerCollectionViewCell(RestaurantCollectionViewCell.self)
         return collectionView
     }()
 
