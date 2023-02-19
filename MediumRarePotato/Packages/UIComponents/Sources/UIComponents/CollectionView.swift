@@ -1,7 +1,7 @@
 import UIKit
 import SnapKit
 
-class CustomCollectionView: UIView {
+public class CustomCollectionView: UIView {
 
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: self.frame, collectionViewLayout: flowLayout)
@@ -14,12 +14,10 @@ class CustomCollectionView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = Constants.spaceBetweenCells
         layout.minimumInteritemSpacing = Constants.spaceBetweenCells
-        layout.scrollDirection = .horizontal
+        layout.scrollDirection = .vertical
         layout.sectionInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 10)
         return layout
     }()
-
-    private var collectionViewHeightConstraint: LayoutConstraint?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,14 +26,6 @@ class CustomCollectionView: UIView {
 
     required init?(coder: NSCoder) {
         fatalError("Has not been implemented")
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        let width = collectionView.frame.width
-        let height = collectionViewHeightForWidth(width: width)
-        collectionViewHeightConstraint?.constant = height
-        self.layoutIfNeeded()
     }
 }
 
@@ -76,7 +66,6 @@ extension CustomCollectionView {
         addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-            self.collectionViewHeightConstraint = make.height.equalTo(1).constraint.layoutConstraints.first
         }
     }
 
@@ -93,12 +82,12 @@ extension CustomCollectionView {
     private enum Constants {
         static let spaceBetweenCells: CGFloat = 40
         static let spacesBetweenCellsCount: CGFloat = shownCellsCount.rounded() - 1
-        static let shownCellsCount: CGFloat = 1
+        static let shownCellsCount: CGFloat = 1.3
     }
 }
 
 extension CustomCollectionView: UICollectionViewDelegateFlowLayout {
-    func collectionView(
+    public func collectionView(
         _ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath

@@ -17,6 +17,13 @@ final class MyRestaurantsView: UIView {
         return searchBar
     }()
 
+    private lazy var collectionView: CustomCollectionView = {
+        let collectionView = CustomCollectionView()
+        collectionView.backgroundColor = .yellow
+        collectionView.registerCollectionViewCell(UICollectionViewCell.self)
+        return collectionView
+    }()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureViews()
@@ -38,6 +45,12 @@ extension MyRestaurantsView {
         backgroundView.addSubview(searchBar)
         searchBar.snp.makeConstraints { make in
             make.top.leading.trailing.equalTo(safeAreaLayoutGuide)
+        }
+
+        backgroundView.addSubview(collectionView)
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(searchBar.snp.bottom)
+            make.leading.trailing.bottom.equalToSuperview()
         }
     }
 }
