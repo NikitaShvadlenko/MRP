@@ -31,3 +31,5 @@
 
 "Error.emptyTokenField" = "The token field can not be empty!";
 
+"Cook" = "Cook";
+

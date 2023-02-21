@@ -2,13 +2,16 @@ import UIKit
 import Utils
 
 public enum MyRestaurantsAssembly {
-   public static func assemble() -> AssembledModule<MyRestaurantsModuleInput> {
+    public static func assemble() -> AssembledModule<MyRestaurantsModuleInput> {
         let viewController = MyRestaurantsViewController()
         let presenter = MyRestaurantsPresenter()
         let interactor = MyRestaurantsInteractor()
         let router = MyRestaurantsRouter()
 
+        let collectionViewDataSource = MyRestaurantsCollectionManager()
+
         viewController.presenter = presenter
+        viewController.setRestaurantCollectionViewDataSource(dataSource: collectionViewDataSource)
 
         presenter.view = viewController
         presenter.interactor = interactor

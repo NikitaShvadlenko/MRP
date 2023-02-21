@@ -30,3 +30,5 @@
 "Localization.ru" = "RU";
 
 "Error.emptyTokenField" = "Поле для токена не может быть пустым!";
+
+"Cook" = "Готовить";

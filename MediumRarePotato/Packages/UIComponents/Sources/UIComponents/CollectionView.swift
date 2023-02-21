@@ -21,6 +21,7 @@ public class CustomCollectionView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.delegate = self
         setupViews()
     }
 
@@ -36,7 +37,7 @@ extension CustomCollectionView {
         collectionView.register(cellClass, forCellWithReuseIdentifier: reuseIdentifier)
     }
 
-    var dataSource: UICollectionViewDataSource? {
+    public var dataSource: UICollectionViewDataSource? {
         get {
             collectionView.dataSource
         }
@@ -45,7 +46,7 @@ extension CustomCollectionView {
         }
     }
 
-    var delegate: UICollectionViewDelegate? {
+    public var delegate: UICollectionViewDelegate? {
         get {
             collectionView.delegate
         }
@@ -75,7 +76,6 @@ extension CustomCollectionView {
         let itemDimension = (availableWidth / Constants.shownCellsCount).rounded(.down)
         return itemDimension
     }
-
 }
 
 extension CustomCollectionView {

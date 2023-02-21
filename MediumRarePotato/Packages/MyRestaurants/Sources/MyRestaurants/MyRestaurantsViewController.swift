@@ -21,6 +21,10 @@ final class MyRestaurantsViewController: UIViewController {
     func setSearchFieldDelegate(delegate: SearchBarDelegate) {
         myRestaurantsView.searchBarDelegate = delegate
     }
+
+    func setRestaurantCollectionViewDataSource(dataSource: UICollectionViewDataSource) {
+        myRestaurantsView.collectionViewDataSource = dataSource
+    }
 }
 
 // MARK: - MyRestaurantsViewInput

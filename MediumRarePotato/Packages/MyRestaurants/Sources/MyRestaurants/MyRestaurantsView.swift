@@ -5,6 +5,12 @@ import UIComponents
 
 final class MyRestaurantsView: UIView {
 
+    var collectionViewDataSource: UICollectionViewDataSource? {
+        didSet {
+            collectionView.dataSource = collectionViewDataSource
+        }
+    }
+
     private lazy var backgroundView: UIImageView = {
         let view = UIImageView()
         view.image = UIImage(asset: Asset.Assets.background)
@@ -57,7 +63,7 @@ extension MyRestaurantsView {
 
 // MARK: - Public Methods
 extension MyRestaurantsView {
-    var searchBarDelegate: SearchBarDelegate? {
+    public var searchBarDelegate: SearchBarDelegate? {
         get {
             searchBar.delegate
         }
