@@ -6,6 +6,8 @@ public class RestaurantCollectionViewCell: UICollectionViewCell {
 
     private let horizontalEmptySpace = 10
 
+    let fillerView = UIView()
+
     private lazy var numberOfPeopleIcon: UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
@@ -43,7 +45,7 @@ public class RestaurantCollectionViewCell: UICollectionViewCell {
 
     private lazy var chefLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: FontFamily.AmaticSC.regular.name, size: 15)
+        label.font = UIFont(name: FontFamily.AmaticSC.bold.name, size: 40)
         label.textAlignment = .left
         label.text = "Chef"
         label.adjustsFontSizeToFitWidth = true
@@ -54,7 +56,7 @@ public class RestaurantCollectionViewCell: UICollectionViewCell {
 
     private lazy var timeLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: FontFamily.AmaticSC.regular.name, size: 15)
+        label.font = UIFont(name: FontFamily.AmaticSC.bold.name, size: 40)
         label.textAlignment = .left
         label.text = "12:00:00"
         label.adjustsFontSizeToFitWidth = true
@@ -66,7 +68,7 @@ public class RestaurantCollectionViewCell: UICollectionViewCell {
     private lazy var comissionLabel: UILabel = {
         let label = UILabel()
         label.text = "1"
-        label.font = UIFont(name: FontFamily.AmaticSC.regular.name, size: 15)
+        label.font = UIFont(name: FontFamily.AmaticSC.bold.name, size: 40)
         label.textAlignment = .left
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.4
@@ -76,7 +78,7 @@ public class RestaurantCollectionViewCell: UICollectionViewCell {
 
     private lazy var numberOfPeopleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: FontFamily.AmaticSC.regular.name, size: 15)
+        label.font = UIFont(name: FontFamily.AmaticSC.bold.name, size: 40)
         label.textAlignment = .left
         label.text = "122/140"
         label.adjustsFontSizeToFitWidth = true
@@ -87,7 +89,7 @@ public class RestaurantCollectionViewCell: UICollectionViewCell {
 
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: FontFamily.AmaticSC.bold.name, size: 15)
+        label.font = UIFont(name: FontFamily.AmaticSC.bold.name, size: 40)
         label.textAlignment = .left
         label.text = "ALALALLALALALALLALAL"
         label.adjustsFontSizeToFitWidth = true
@@ -170,7 +172,8 @@ extension RestaurantCollectionViewCell {
         let hRestaurantDetailsStack = UIStackView(
             arrangedSubviews: [
                 restaurantImage,
-                vRestaurantDetailsStack
+                vRestaurantDetailsStack,
+                fillerView
             ])
 
         let vRestaurantDetailNameStack = UIStackView(
@@ -198,9 +201,6 @@ extension RestaurantCollectionViewCell {
             vRestaurantFoodButtonStack
         ])
 
-        chefIcon.snp.makeConstraints { make in
-            make.height.equalTo(15)
-        }
         backgroundColor = .clear
         addSubview(restaurantStack)
         restaurantStack.snp.makeConstraints { make in
@@ -210,22 +210,23 @@ extension RestaurantCollectionViewCell {
 
         func setupStackViews() {
             hRestaurantNumberOfPeopleStack.axis = .horizontal
-            hRestaurantNumberOfPeopleStack.distribution = .fillProportionally
+            hRestaurantNumberOfPeopleStack.distribution = .fillEqually
 
             hRestaurantChefStack.axis = .horizontal
-            hRestaurantChefStack.distribution = .fillProportionally
+            hRestaurantChefStack.distribution = .fillEqually
 
             hRestaurantTimeStack.axis = .horizontal
-            hRestaurantTimeStack.distribution = .fillProportionally
+            hRestaurantTimeStack.distribution = .fillEqually
 
             hRestaurantCommissionStack.axis = .horizontal
-            hRestaurantCommissionStack.distribution = .fillProportionally
+            hRestaurantCommissionStack.distribution = .fillEqually
 
-            vRestaurantDetailsStack.axis = .vertical
-            vRestaurantDetailsStack.distribution = .equalCentering
+            hRestaurantDetailsStack.axis = .horizontal
+            hRestaurantDetailsStack.distribution = .fillProportionally
 
             vRestaurantDetailNameStack.axis = .vertical
-            vRestaurantDetailsStack.distribution = .fillProportionally
+            vRestaurantDetailsStack.distribution = .fillEqually
+            vRestaurantDetailsStack.axis = .vertical
 
             hFoodStack.axis = .horizontal
             hFoodStack.spacing = 10
