@@ -8,7 +8,7 @@ public class RestaurantCollectionViewCell: UICollectionViewCell {
 
     private lazy var numberOfPeopleIcon: UIImageView = {
         let view = UIImageView()
-        view.contentMode = .redraw
+        view.contentMode = .scaleAspectFit
         view.image = UIImage(asset: Asset.Assets.Icons.person)
         return view
     }()
@@ -66,7 +66,7 @@ public class RestaurantCollectionViewCell: UICollectionViewCell {
     private lazy var comissionLabel: UILabel = {
         let label = UILabel()
         label.text = "1"
-        label.font = UIFont(name: FontFamily.AmaticSC.regular.name, size: 40)
+        label.font = UIFont(name: FontFamily.AmaticSC.regular.name, size: 15)
         label.textAlignment = .left
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.4
@@ -76,7 +76,7 @@ public class RestaurantCollectionViewCell: UICollectionViewCell {
 
     private lazy var numberOfPeopleLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: FontFamily.AmaticSC.regular.name, size: 40)
+        label.font = UIFont(name: FontFamily.AmaticSC.regular.name, size: 15)
         label.textAlignment = .left
         label.text = "122/140"
         label.adjustsFontSizeToFitWidth = true
@@ -87,8 +87,9 @@ public class RestaurantCollectionViewCell: UICollectionViewCell {
 
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: FontFamily.AmaticSC.bold.name, size: 40)
+        label.font = UIFont(name: FontFamily.AmaticSC.bold.name, size: 15)
         label.textAlignment = .left
+        label.text = "ALALALLALALALALLALAL"
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.4
         label.textColor = Asset.Colors.primaryTextColor.color
@@ -117,7 +118,7 @@ public class RestaurantCollectionViewCell: UICollectionViewCell {
     }()
 
     private lazy var displayDishesButton: CustomButton = {
-        let button = CustomButton(frame: .zero, title: L10n.cook())
+        let button = CustomButton(frame: .zero, title: L10n.login())
         return button
     }()
 
@@ -197,39 +198,45 @@ extension RestaurantCollectionViewCell {
             vRestaurantFoodButtonStack
         ])
 
+        chefIcon.snp.makeConstraints { make in
+            make.height.equalTo(15)
+        }
+        backgroundColor = .clear
         addSubview(restaurantStack)
         restaurantStack.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+        setupStackViews()
 
         func setupStackViews() {
             hRestaurantNumberOfPeopleStack.axis = .horizontal
-            hRestaurantNumberOfPeopleStack.distribution = .fillEqually
+            hRestaurantNumberOfPeopleStack.distribution = .fillProportionally
 
             hRestaurantChefStack.axis = .horizontal
-            hRestaurantChefStack.distribution = .fillEqually
+            hRestaurantChefStack.distribution = .fillProportionally
 
             hRestaurantTimeStack.axis = .horizontal
-            hRestaurantTimeStack.distribution = .fillEqually
+            hRestaurantTimeStack.distribution = .fillProportionally
 
             hRestaurantCommissionStack.axis = .horizontal
-            hRestaurantCommissionStack.distribution = .fillEqually
+            hRestaurantCommissionStack.distribution = .fillProportionally
 
             vRestaurantDetailsStack.axis = .vertical
-            vRestaurantDetailsStack.distribution = .fillEqually
+            vRestaurantDetailsStack.distribution = .equalCentering
 
             vRestaurantDetailNameStack.axis = .vertical
-            vRestaurantDetailsStack.distribution = .fillEqually
+            vRestaurantDetailsStack.distribution = .fillProportionally
 
             hFoodStack.axis = .horizontal
             hFoodStack.spacing = 10
             hFoodStack.distribution = .fillEqually
 
-            vRestaurantFoodButtonStack.distribution = .fillEqually
+            vRestaurantFoodButtonStack.distribution = .equalSpacing
             vRestaurantFoodButtonStack.axis = .vertical
 
             restaurantStack.axis = .vertical
             restaurantStack.distribution = .fillEqually
+            restaurantStack.spacing = 10
         }
     }
 }

@@ -15,7 +15,7 @@ public class CustomCollectionView: UIView {
         layout.minimumLineSpacing = Constants.spaceBetweenCells
         layout.minimumInteritemSpacing = Constants.spaceBetweenCells
         layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
         return layout
     }()
 
@@ -23,6 +23,8 @@ public class CustomCollectionView: UIView {
         super.init(frame: frame)
         self.delegate = self
         setupViews()
+        backgroundColor = .clear
+        collectionView.backgroundColor = .clear
     }
 
     required init?(coder: NSCoder) {
@@ -62,7 +64,6 @@ extension CustomCollectionView {
 
 // MARK: - PrivateMethods
 extension CustomCollectionView {
-
     private func setupViews() {
         addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
@@ -70,19 +71,17 @@ extension CustomCollectionView {
         }
     }
 
-    private func collectionViewHeightForWidth(width: CGFloat) -> CGFloat {
-        let spacing = flowLayout.minimumInteritemSpacing
-        let availableWidth = width - spacing * Constants.spacesBetweenCellsCount
-        let itemDimension = (availableWidth / Constants.shownCellsCount).rounded(.down)
-        return itemDimension
+    private func collectionViewHeight(width: CGFloat) -> CGFloat {
+        let height = width / 5 * 7
+        return height
     }
 }
 
 extension CustomCollectionView {
     private enum Constants {
-        static let spaceBetweenCells: CGFloat = 40
+        static let spaceBetweenCells: CGFloat = 10
         static let spacesBetweenCellsCount: CGFloat = shownCellsCount.rounded() - 1
-        static let shownCellsCount: CGFloat = 1.3
+        static let shownCellsCount: CGFloat = 4
     }
 }
 
@@ -92,8 +91,8 @@ extension CustomCollectionView: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        let width = collectionView.bounds.width
-        let height = collectionViewHeightForWidth(width: width)
-        return CGSize(width: height, height: height)
+        let width = (collectionView.bounds.width - 100)
+        let height = collectionViewHeight(width: width)
+        return CGSize(width: width, height: height)
     }
 }
