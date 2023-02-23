@@ -7,7 +7,7 @@ class DetailItem: UIView {
 
     private lazy var label: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: FontFamily.AmaticSC.bold.name, size: 40)
+        label.font = UIFont(name: FontFamily.AmaticSC.bold.name, size: 30)
         label.textAlignment = .left
         label.text = text
         label.adjustsFontSizeToFitWidth = true

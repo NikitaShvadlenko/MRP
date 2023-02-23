@@ -18,7 +18,7 @@ public class RestaurantCollectionViewCell: UICollectionViewCell {
 
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.font = UIFont(name: FontFamily.AmaticSC.bold.name, size: 40)
+        label.font = UIFont(name: FontFamily.AmaticSC.bold.name, size: 30)
         label.textAlignment = .left
         label.text = "ALALALLALALALALLALAL"
         label.adjustsFontSizeToFitWidth = true
@@ -78,14 +78,15 @@ extension RestaurantCollectionViewCell {
     private func setupView() {
         addSubview(restaurantImage)
         addSubview(restaurantDetailsView)
+        addSubview(nameLabel)
 
         let distanceFromBorder = 12
 
         restaurantImage.snp.makeConstraints { make in
             make.top.equalToSuperview().inset(distanceFromBorder)
             make.leading.equalToSuperview().inset(distanceFromBorder)
-            make.width.equalToSuperview().multipliedBy(0.4)
-            make.height.equalTo(restaurantImage.snp.width).multipliedBy(1.4)
+            make.height.equalToSuperview().multipliedBy(0.34)
+            make.width.equalTo(restaurantImage.snp.height).multipliedBy(0.71)
         }
 
         restaurantDetailsView.snp.makeConstraints { make in
@@ -93,6 +94,12 @@ extension RestaurantCollectionViewCell {
             make.bottom.equalTo(restaurantImage)
             make.leading.equalTo(restaurantImage.snp.trailing).offset(distanceFromBorder)
             make.trailing.equalToSuperview()
+        }
+
+        nameLabel.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(distanceFromBorder)
+            make.top.equalTo(restaurantImage.snp.bottom).offset(distanceFromBorder)
+
         }
     }
 }
