@@ -24,9 +24,8 @@ final class MyRestaurantsView: UIView {
     }()
 
     private lazy var collectionView: CustomCollectionView = {
-        let collectionView = CustomCollectionView()
+        let collectionView = CustomCollectionView(shownCardsCount: 2, padding: 12, layout: .vertical)
         collectionView.registerCollectionViewCell(RestaurantCollectionViewCell.self)
-        collectionView.shownCardsCount = 2
         return collectionView
     }()
 

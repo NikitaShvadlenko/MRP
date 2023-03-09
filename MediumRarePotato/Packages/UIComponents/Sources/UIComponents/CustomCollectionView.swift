@@ -1,20 +1,17 @@
 import UIKit
 import SnapKit
 
-public class CustomCollectionView: UIView {
-    public var shownCardsCount: CGFloat? {
-        didSet {
-            layoutSubviews()
-        }
-    }
+public enum CustomCollectionViewLayout {
+    case horizontal
+    case vertical
+}
 
-    public var padding: CGFloat? {
-        didSet {
-            guard let padding else { return }
-            flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
-            layoutSubviews()
-        }
-    }
+public class CustomCollectionView: UIView {
+
+    private var layout: CustomCollectionViewLayout
+    private var shownCardsCount: CGFloat
+
+    private var padding: CGFloat
 
     private var collectionViewHeightConstraint: LayoutConstraint?
 
@@ -28,12 +25,15 @@ public class CustomCollectionView: UIView {
     private lazy var flowLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
+        layout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
         return layout
     }()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    public init(shownCardsCount: CGFloat, padding: CGFloat, layout: CustomCollectionViewLayout) {
+        self.padding = padding
+        self.shownCardsCount = shownCardsCount
+        self.layout = layout
+        super.init(frame: .zero)
         self.delegate = self
         setupViews()
         backgroundColor = .clear
@@ -47,8 +47,9 @@ public class CustomCollectionView: UIView {
 
 // MARK: - Public methods
 extension CustomCollectionView {
-    public func setupConstants() {
-
+    public func setScrollDirection(_ scrollDirection: UICollectionView.ScrollDirection) {
+        flowLayout.scrollDirection = scrollDirection
+        layoutSubviews()
     }
 
     public func registerCollectionViewCell(_ cellClass: UICollectionViewCell.Type) {
@@ -92,6 +93,11 @@ extension CustomCollectionView {
         let width = height / 7 * 5
         return width
     }
+
+    private func collectionViewHeightForWidth(width: CGFloat) -> CGFloat {
+        let height = width / 5 * 7
+        return height
+    }
 }
 
 extension CustomCollectionView: UICollectionViewDelegateFlowLayout {
@@ -100,12 +106,15 @@ extension CustomCollectionView: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        guard let shownCardsCount else {
-            return CGSize(width: 0, height: 0)
-        }
 
-        let height = collectionView.bounds.height / shownCardsCount
-        let width = collectionViewWidthForHieght(height: height)
-        return CGSize(width: width, height: height)
+        if layout == .vertical {
+            let height = collectionView.bounds.height / shownCardsCount - padding * 2
+            let width = collectionViewWidthForHieght(height: height)
+            return CGSize(width: width, height: height)
+        } else {
+            let width = collectionView.bounds.width / shownCardsCount - padding * 2
+            let height = collectionViewHeightForWidth(width: width)
+            return CGSize(width: width, height: height)
+        }
     }
 }

@@ -3,8 +3,7 @@ import UIKit
 class DishesCollectionView: UIView {
 
     private lazy var collectioView: CustomCollectionView = {
-        let collectionView = CustomCollectionView()
-
+        let collectionView = CustomCollectionView(shownCardsCount: 3, padding: 12, layout: .horizontal)
         return collectionView
     }()
 
