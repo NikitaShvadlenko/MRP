@@ -49,7 +49,7 @@ final class LoginScreenView: UIView {
     }()
 
     private lazy var loginButton: CustomButton = {
-        let button = CustomButton(frame: self.frame, title: L10n.login())
+        let button = CustomButton(title: L10n.login())
         return button
     }()
 

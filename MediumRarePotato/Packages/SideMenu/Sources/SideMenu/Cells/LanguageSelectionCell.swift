@@ -45,7 +45,7 @@ extension LanguageSelectionCell {
         removeAllSubviews(from: stackView)
         contentView.isUserInteractionEnabled = false
         for language in 0 ..< languages.count {
-            let button = CustomButton(frame: .zero, title: languages[language].displayName)
+            let button = CustomButton(title: languages[language].displayName)
             button.delegate = delegate
             stackView.addArrangedSubview(button)
         }

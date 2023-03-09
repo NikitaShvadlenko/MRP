@@ -20,7 +20,6 @@ public class RestaurantCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.font = UIFont(name: FontFamily.AmaticSC.bold.name, size: 30)
         label.textAlignment = .left
-        label.text = "ALALALLALALALALLALAL"
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.4
         label.textColor = Asset.Colors.primaryTextColor.color
@@ -49,12 +48,12 @@ public class RestaurantCollectionViewCell: UICollectionViewCell {
     }()
 
     private lazy var displayDishesButton: CustomButton = {
-        let button = CustomButton(frame: .zero, title: L10n.login())
+        let button = CustomButton(title: L10n.login())
         return button
     }()
 
     private lazy var cookButton: CustomButton = {
-        let button = CustomButton(frame: .zero, title: L10n.cook())
+        let button = CustomButton(title: L10n.cook())
         return button
     }()
 
