@@ -81,7 +81,6 @@ extension TableViewManager: UITableViewDataSource {
                 return UITableViewCell()
             }
             cell.addButton(for: languages, delegate: self)
-            cell.selectionStyle = .none
             return cell
 
         default:

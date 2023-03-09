@@ -3,6 +3,16 @@ import SnapKit
 
 public class CustomCollectionView: UIView {
 
+    public var padding: CGFloat? {
+        didSet {
+            guard let padding else { return }
+            flowLayout.sectionInset = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+            layoutSubviews()
+        }
+    }
+
+    private var collectionViewHeightConstraint: LayoutConstraint?
+
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: self.frame, collectionViewLayout: flowLayout)
         collectionView.showsHorizontalScrollIndicator = false
@@ -12,10 +22,8 @@ public class CustomCollectionView: UIView {
 
     private lazy var flowLayout: UICollectionViewFlowLayout = {
         let layout = UICollectionViewFlowLayout()
-        layout.minimumLineSpacing = Constants.spaceBetweenCells
-        layout.minimumInteritemSpacing = Constants.spaceBetweenCells
         layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
+        layout.sectionInset = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
         return layout
     }()
 
@@ -71,17 +79,9 @@ extension CustomCollectionView {
         }
     }
 
-    private func collectionViewHeight(width: CGFloat) -> CGFloat {
-        let height = width / 5 * 7
-        return height
-    }
-}
-
-extension CustomCollectionView {
-    private enum Constants {
-        static let spaceBetweenCells: CGFloat = 10
-        static let spacesBetweenCellsCount: CGFloat = shownCellsCount.rounded() - 1
-        static let shownCellsCount: CGFloat = 4
+    private func collectionViewWidthForHieght(height: CGFloat) -> CGFloat {
+        let width = height / 7 * 5
+        return width
     }
 }
 
@@ -91,8 +91,17 @@ extension CustomCollectionView: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        let width = (collectionView.bounds.width - 100)
-        let height = collectionViewHeight(width: width)
+        let height = collectionView.bounds.height / Constants.shownCardsCount
+        let width = collectionViewWidthForHieght(height: height)
         return CGSize(width: width, height: height)
+    }
+}
+
+// MARK: Constants
+extension CustomCollectionView {
+    public enum Constants {
+        static let spaceBetweenCards: CGFloat = 10
+        static let spacesBetweenCardsCount: CGFloat = shownCardsCount.rounded() - 1
+        static let shownCardsCount: CGFloat = 1.8
     }
 }
