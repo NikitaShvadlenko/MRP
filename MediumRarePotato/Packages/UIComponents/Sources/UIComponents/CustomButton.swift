@@ -27,9 +27,9 @@ public class CustomButton: UIView {
         return button
     }()
 
-    public init(frame: CGRect, title: String) {
+    public init(title: String) {
         self.title = title
-        super.init(frame: frame)
+        super.init(frame: .zero)
         setupView()
     }
 

@@ -49,12 +49,12 @@ public class RestaurantCollectionViewCell: UICollectionViewCell {
     }()
 
     private lazy var displayDishesButton: CustomButton = {
-        let button = CustomButton(frame: .zero, title: L10n.login())
+        let button = CustomButton(title: L10n.login())
         return button
     }()
 
     private lazy var cookButton: CustomButton = {
-        let button = CustomButton(frame: .zero, title: L10n.cook())
+        let button = CustomButton(title: L10n.cook())
         return button
     }()
 
