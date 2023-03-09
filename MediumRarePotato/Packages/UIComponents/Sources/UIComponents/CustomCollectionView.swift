@@ -2,6 +2,11 @@ import UIKit
 import SnapKit
 
 public class CustomCollectionView: UIView {
+    public var shownCardsCount: CGFloat? {
+        didSet {
+            layoutSubviews()
+        }
+    }
 
     public var padding: CGFloat? {
         didSet {
@@ -42,6 +47,10 @@ public class CustomCollectionView: UIView {
 
 // MARK: - Public methods
 extension CustomCollectionView {
+    public func setupConstants() {
+
+    }
+
     public func registerCollectionViewCell(_ cellClass: UICollectionViewCell.Type) {
         let reuseIdentifier = String(describing: cellClass)
         collectionView.register(cellClass, forCellWithReuseIdentifier: reuseIdentifier)
@@ -65,7 +74,7 @@ extension CustomCollectionView {
         }
     }
 
-    func reloadCollection() {
+    public func reloadCollection() {
         collectionView.reloadData()
     }
 }
@@ -91,17 +100,12 @@ extension CustomCollectionView: UICollectionViewDelegateFlowLayout {
         layout collectionViewLayout: UICollectionViewLayout,
         sizeForItemAt indexPath: IndexPath
     ) -> CGSize {
-        let height = collectionView.bounds.height / Constants.shownCardsCount
+        guard let shownCardsCount else {
+            return CGSize(width: 0, height: 0)
+        }
+
+        let height = collectionView.bounds.height / shownCardsCount
         let width = collectionViewWidthForHieght(height: height)
         return CGSize(width: width, height: height)
-    }
-}
-
-// MARK: Constants
-extension CustomCollectionView {
-    public enum Constants {
-        static let spaceBetweenCards: CGFloat = 10
-        static let spacesBetweenCardsCount: CGFloat = shownCardsCount.rounded() - 1
-        static let shownCardsCount: CGFloat = 1.8
     }
 }

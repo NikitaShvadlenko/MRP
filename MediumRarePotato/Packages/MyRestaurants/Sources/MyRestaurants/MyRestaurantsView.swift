@@ -26,6 +26,7 @@ final class MyRestaurantsView: UIView {
     private lazy var collectionView: CustomCollectionView = {
         let collectionView = CustomCollectionView()
         collectionView.registerCollectionViewCell(RestaurantCollectionViewCell.self)
+        collectionView.shownCardsCount = 2
         return collectionView
     }()
 
