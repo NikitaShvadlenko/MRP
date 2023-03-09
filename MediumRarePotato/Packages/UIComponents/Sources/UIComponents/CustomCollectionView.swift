@@ -36,8 +36,6 @@ public class CustomCollectionView: UIView {
         super.init(frame: .zero)
         self.delegate = self
         setupViews()
-        backgroundColor = .clear
-        collectionView.backgroundColor = .clear
     }
 
     required init?(coder: NSCoder) {
@@ -83,6 +81,8 @@ extension CustomCollectionView {
 // MARK: - PrivateMethods
 extension CustomCollectionView {
     private func setupViews() {
+        backgroundColor = .clear
+        collectionView.backgroundColor = .clear
         addSubview(collectionView)
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
