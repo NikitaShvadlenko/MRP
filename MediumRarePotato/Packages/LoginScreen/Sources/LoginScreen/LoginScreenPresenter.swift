@@ -26,6 +26,9 @@ extension LoginScreenPresenter: LoginScreenViewOutput {
 
 // MARK: - LoginScreenInteractorOutput
 extension LoginScreenPresenter: LoginScreenInteractorOutput {
+    func interactorDidReceiveMockPassword(_ interactor: LoginScreenInteractorInput) {
+        router?.routeToMainScreen()
+    }
 
     func interactor(_ interactor: LoginScreenInteractorInput, didReceiveUserData data: UserData, key: String) {
         interactor.saveUserData(data)
@@ -46,7 +49,7 @@ extension LoginScreenPresenter: LoginScreenInteractorOutput {
         view?.removeActivityIndicator()
     }
 
-    func intercatorReceivedEmptyTokenField(_ interactor: LoginScreenInteractorInput) {
+    func intercatorDidReceiveEmptyTokenField(_ interactor: LoginScreenInteractorInput) {
         view?.displayEmptyFieldToast()
         view?.removeActivityIndicator()
     }

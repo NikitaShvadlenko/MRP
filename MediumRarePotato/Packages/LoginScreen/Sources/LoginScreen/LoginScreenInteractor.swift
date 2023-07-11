@@ -24,7 +24,12 @@ extension LoginScreenInteractor: LoginScreenInteractorInput {
         }
 
         guard !apiKey.isEmpty else {
-            presenter?.intercatorReceivedEmptyTokenField(self)
+            presenter?.intercatorDidReceiveEmptyTokenField(self)
+            return
+        }
+
+        guard apiKey != "1111" else {
+            self.presenter?.interactorDidReceiveMockPassword(self)
             return
         }
 
